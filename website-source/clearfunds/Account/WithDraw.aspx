@@ -37,6 +37,12 @@
     <h2 style="left: 336px;">withdraw</h2>
     <div class="clear"></div>
     <br />
+    <div id="errorblock" runat="server" visible="false" class="top-message-block errorblock" enableviewstate="false">
+        <asp:Label runat="server" Text="test" ID="txtError" />
+    </div>
+    <div id="successblock" runat="server" visible="false" class="top-message-block successblock" enableviewstate="false">
+        <asp:Label runat="server" Text="test" id="txtSuccess"/>
+    </div>
     <asp:Panel ID="Panel2" runat="server" meta:resourcekey="Panel2Resource1" class="content-block">
         <h3>Select your payment plan for withdrawal</h3>
         <br />
@@ -68,10 +74,10 @@
         <asp:UpdatePanel runat="server" ID="updPaymode" UpdateMode="Always">
             <ContentTemplate>
                 <asp:PlaceHolder ID="PlaceHolder2" runat="server">
-                    <asp:RadioButton runat="server" ID="rb0000002G" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbPP_CheckedChanged" /><img style="height: 30px; width: 90px;" src="../Handlers/makedeposit.ashx?id=0000002G">
-                    <asp:RadioButton runat="server" ID="rb0000002H" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbPZ_CheckedChanged" /><img style="height: 30px; width: 90px;" src="../Handlers/makedeposit.ashx?id=0000002H">
-                    <asp:RadioButton runat="server" ID="rb0000002J" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbSTP_CheckedChanged" /><img style="height: 30px; width: 90px;" src="../Handlers/makedeposit.ashx?id=0000002J">
-                    <asp:RadioButton runat="server" ID="rb0000002L" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbPM_CheckedChanged" />
+                    <asp:RadioButton runat="server" ID="rbPP" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbPP_CheckedChanged" /><img style="height: 30px; width: 90px;" src="../Handlers/makedeposit.ashx?id=0000002G">
+                    <asp:RadioButton runat="server" ID="rbPZ" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbPZ_CheckedChanged" /><img style="height: 30px; width: 90px;" src="../Handlers/makedeposit.ashx?id=0000002H">
+                    <asp:RadioButton runat="server" ID="rbSTP" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbSTP_CheckedChanged" /><img style="height: 30px; width: 90px;" src="../Handlers/makedeposit.ashx?id=0000002J">
+                    <asp:RadioButton runat="server" ID="rbPM" GroupName="test" AutoPostBack="true" OnCheckedChanged="rbPM_CheckedChanged" />
                     <img style="height: 30px; width: 90px;" src="../Handlers/makedeposit.ashx?id=0000002L">
                 </asp:PlaceHolder>
                 <div id="divPaypal" runat="server" visible="false">
@@ -99,7 +105,7 @@
                 <div id="divPayza" runat="server" visible="false">
                     <br />
                     <div id="divPZID" runat="server" class="cre_card12">
-                        <asp:Label ID="lblPZID" runat="server" Text="Username : " />
+                        <asp:Label ID="lblPZID" runat="server" Text="Email address : " />
                         <asp:TextBox ID="txtPZID" runat="server" />
                     </div>
                     <div id="divPZName" runat="server" class="cre_card12">
@@ -110,7 +116,7 @@
                 <div id="divPerfectMoney" runat="server" visible="false">
                     <br />
                     <div id="divPMID" runat="server" class="cre_card12">
-                        <asp:Label ID="lblPMID" runat="server" Text="Username : " />
+                        <asp:Label ID="lblPMID" runat="server" Text="Account number : " />
                         <asp:TextBox ID="txtPMID" runat="server" />
                     </div>
                     <div id="divPMName" runat="server" class="cre_card12">

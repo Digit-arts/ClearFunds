@@ -88,6 +88,25 @@ ul,ol
     background-image :url('Images/left_sid.png');
     margin-top:-1px;
 }
+.top-message-block
+{
+    border: 1px solid #999999;
+    border-radius: 3px;
+    padding: 10px;
+    color:white;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+}
+.errorblock
+{
+    background-color:red;
+}
+.successblock
+{
+    background-color:green;
+}
 .pack_name_check
 {
     font-weight : bold;

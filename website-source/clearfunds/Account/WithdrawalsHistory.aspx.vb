@@ -62,7 +62,7 @@ Partial Class Account_WithdrawalsHistory
                     "FROM CF_WithDrawl a " &
                     "INNER JOIN CF_User b on b. User_UserId=a.WithDrawl_UserId  " &
                     "INNER JOIN CF_Package c on c.Package_Id = a.withdrawl_PackageId " &
-                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (WithDrawl_Status='HOLD' or WithDrawl_Status='Request') " &
+                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (WithDrawl_Status='HOLD' or WithDrawl_Status='PENDING') " &
                     "ORDER BY Reference ASC"
             pendingTable = obj.returndatatable(str, pendingTable)
             GVWithDrawalPendingHistory.DataSource = pendingTable.DefaultView

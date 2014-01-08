@@ -9,6 +9,7 @@ Partial Class Account_WithDraw
     Dim obj As New ClassFunctions()
     Dim SelectedIndexId As String = ""
     Dim userid As Guid
+    Dim withdrawID As String = ""
 
 
     Protected Sub Page_load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -107,11 +108,11 @@ Partial Class Account_WithDraw
                 Case "Add"
 
 
-                    ID = obj.getIndexKey()
+                    withdrawID = obj.getIndexKey()
 
                 Case "Modify"
 
-                    ID = SelectedIndexId
+                    withdrawID = SelectedIndexId
 
                 Case "Delete"
 
@@ -161,25 +162,41 @@ Partial Class Account_WithDraw
                 End If
 
             Next
+            'check if payment method is selected
+            Dim paymethod As String = ""
+            If (rbPM.Checked) Then
+                If (txtPMID.Text <> "" And txtPMName.Text <> "") Then
+                    paymethod = "PerfectMoney"
+                End If
+            ElseIf (rbPP.Checked) Then
+                If (txtPPID.Text <> "" And txtPPName.Text <> "") Then
+                    paymethod = "Paypal"
+                End If
+            ElseIf (rbPZ.Checked) Then
+                If (txtPZID.Text <> "" And txtPZName.Text <> "") Then
+                    paymethod = "Payza"
+                End If
+            ElseIf (rbSTP.Checked) Then
+                If (txtSTPID.Text <> "" And txtSTPName.Text <> "") Then
+                    paymethod = "SolidTrustPay"
+                End If
+            End If
 
-            If Not rbpid = "" And Not txtwithdraw.Text = "" Then
+            If Not rbpid = "" And Not txtwithdraw.Text = "" And Not paymethod = "" Then
                 Dim percent As String = obj.Returnsinglevalue("select Package_WDFee from CF_Package where Package_Id='" + rbpid + "'")
                 Dim perfectamt As Double = rbamt * percent / 100
                 If txtwithdraw.Text <= Val(perfectamt) Then
-                    Dim paymethod As String = ""
                     Dim userid1 As String = Session("User_Id").ToString()
                     Dim d3 As New DataTable
                     d3 = obj.returndatatable("select * from CF_User where User_Id='" + userid1 + "'", d3)
                     If d3.Rows.Count > 0 Then
                         If d3.Rows(0).Item("user_AutoWD").ToString = "True" Then
 
-
-                            Dim status As String = "Pending"
+                            Dim status As String = "PENDING"
                             Dim strHostName As String
                             Dim strIPAddress As String
                             strHostName = System.Net.Dns.GetHostName()
                             strIPAddress = System.Net.Dns.GetHostByName(strHostName).AddressList(0).ToString()
-                            'Dim strcurip As String = "106.213.122.187"
                             Dim ipcurrno As String = getCountry(strIPAddress)
                             Dim countryname As String = obj.Returnsinglevalue("select con_name from IP where ipno_from <= '" + ipcurrno + "' and ipno_to>='" + ipcurrno + "'")
                             Dim con As New SqlConnection
@@ -200,27 +217,26 @@ Partial Class Account_WithDraw
                             cmd.Parameters.Add(New SqlParameter("@withDrawl_PackageId", SqlDbType.VarChar, 100)).Value = rbpid
                             cmd.Parameters.Add(New SqlParameter("@withDrawl_PayName", SqlDbType.VarChar, 100)).Value = paymethod
                             cmd.Parameters.Add(New SqlParameter("@Auto_WithDrawl", SqlDbType.VarChar, 10)).Value = "instant"
+                            cmd.Parameters.Add(New SqlParameter("@withdrawl_TrnsId", SqlDbType.VarChar, 100)).Value = ""
 
 
-                            Dim uniqueid As String
-                            uniqueid = obj.Returnsinglevalue("select max( withdrawl_TrnsId) from CF_WithDrawl")
-                            Dim un1 As Integer
-                            Dim un2 As Integer
+                            'Dim uniqueid As String
+                            'uniqueid = obj.Returnsinglevalue("select max( withdrawl_TrnsId) from CF_WithDrawl")
+                            'Dim un1 As Integer
+                            'Dim un2 As Integer
 
-                            If Not uniqueid = 0 Then
-                                un1 = Convert.ToInt32(uniqueid)
-                                un2 = un1 + 1
+                            'If Not uniqueid = 0 Then
+                            '    un1 = Convert.ToInt32(uniqueid)
+                            '    un2 = un1 + 1
 
 
-                            Else
-                                uniqueid = obj.Returnsinglevalue("select Settings_WithdrawTrnsno from CF_Settings")
-                                un2 = uniqueid
-                            End If
-                            cmd.Parameters.Add(New SqlParameter("@withdrawl_TrnsId", SqlDbType.VarChar, 100)).Value = un2
+                            'Else
+                            '    uniqueid = obj.Returnsinglevalue("select Settings_WithdrawTrnsno from CF_Settings")
+                            '    un2 = uniqueid
+                            'End If
+                            'cmd.Parameters.Add(New SqlParameter("@withdrawl_TrnsId", SqlDbType.VarChar, 100)).Value = un2
                             cmd.ExecuteNonQuery()
                             cmd.Parameters.Clear()
-                            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Request Successfull');", True)
-
 
                             ViewState("Wd_Id") = ID
 
@@ -239,101 +255,112 @@ Partial Class Account_WithDraw
                             ElseIf paymethod = "MoneyBookers" Then
                                 moneybooker()
                             ElseIf paymethod = "PerfectMoney" Then
-                                ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Perfect money not registered');", True)
+                                PM()
                             ElseIf paymethod = "SolidTrustPay" Then
                                 Stp()
                             End If
 
 
                         Else
-                            paymethod = obj.Returnsinglevalue("select b.CustomProcessing_Name from CF_User a join CF_CustomProcessing b on a.user_PaymentTypeId=b.CustomProcessing_id where a.User_Id='" + userid1 + "'")
-                            Dim status As String = "Request"
+                            Dim status As String = "PENDING"
                             Dim strHostName As String
                             Dim strIPAddress As String
                             strHostName = System.Net.Dns.GetHostName()
                             strIPAddress = System.Net.Dns.GetHostByName(strHostName).AddressList(0).ToString()
-                            Dim strcurip As String = "106.213.122.187"
-                            Dim ipcurrno As String = getCountry(strcurip)
+                            Dim ipcurrno As String = getCountry(strIPAddress)
                             Dim countryname As String = obj.Returnsinglevalue("select con_name from IP where ipno_from <= '" + ipcurrno + "' and ipno_to>='" + ipcurrno + "'")
-                            Dim con As New SqlConnection
-                            con = New SqlConnection(obj.ConnectionString)
-                            con.Open()
-                            Dim cmd As New SqlCommand
-                            cmd.CommandType = CommandType.StoredProcedure
-                            cmd.CommandText = "SP_CF_WithDrawl"
-                            cmd.Connection = con
-                            cmd.Parameters.Add(New SqlParameter("@Mode", SqlDbType.VarChar, 10)).Value = obj.strMode
-                            cmd.Parameters.Add(New SqlParameter("@WithDrawl_Id", SqlDbType.VarChar, 10)).Value = ID
+                            Using con As New SqlConnection(obj.ConnectionString)
+                                con.Open()
+                                Dim cmd As New SqlCommand
+                                cmd.CommandType = CommandType.StoredProcedure
+                                cmd.CommandText = "SP_CF_WithDrawl"
+                                cmd.Connection = con
+                                cmd.Parameters.Add(New SqlParameter("@Mode", SqlDbType.VarChar, 10)).Value = obj.strMode
+                                cmd.Parameters.Add(New SqlParameter("@WithDrawl_Id", SqlDbType.VarChar, 10)).Value = withdrawID
 
-                            cmd.Parameters.Add(New SqlParameter("@WithDrawl_UserId", SqlDbType.UniqueIdentifier)).Value = userId
-                            cmd.Parameters.Add(New SqlParameter("@WithDrawl_Amount", SqlDbType.Decimal, 18, 2)).Value = txtwithdraw.Text
-                            cmd.Parameters.Add(New SqlParameter("@WithDrawl_Date", SqlDbType.DateTime)).Value = Format(obj.GetCurrentDate(), "yyyy/MM/dd")
-                            cmd.Parameters.Add(New SqlParameter("@WithDrawl_Status", SqlDbType.VarChar, 10)).Value = status
-                            cmd.Parameters.Add(New SqlParameter("@WithDrawl_SysIp", SqlDbType.VarChar, 100)).Value = strIPAddress
-                            cmd.Parameters.Add(New SqlParameter("@withdrawl_CountryName", SqlDbType.VarChar, 100)).Value = countryname
-                            cmd.Parameters.Add(New SqlParameter("@withDrawl_PackageId", SqlDbType.VarChar, 100)).Value = rbpid
-                            cmd.Parameters.Add(New SqlParameter("@withDrawl_Payname", SqlDbType.VarChar, 100)).Value = paymethod
-                            cmd.Parameters.Add(New SqlParameter("@Auto_WithDrawl", SqlDbType.VarChar, 10)).Value = "manual"
+                                cmd.Parameters.Add(New SqlParameter("@WithDrawl_UserId", SqlDbType.UniqueIdentifier)).Value = userId
+                                cmd.Parameters.Add(New SqlParameter("@WithDrawl_Amount", SqlDbType.Decimal, 18, 2)).Value = txtwithdraw.Text
+                                cmd.Parameters.Add(New SqlParameter("@WithDrawl_Date", SqlDbType.DateTime)).Value = DateAndTime.Now
+                                cmd.Parameters.Add(New SqlParameter("@WithDrawl_Status", SqlDbType.VarChar, 10)).Value = status
+                                cmd.Parameters.Add(New SqlParameter("@WithDrawl_SysIp", SqlDbType.VarChar, 100)).Value = strIPAddress
+                                cmd.Parameters.Add(New SqlParameter("@withdrawl_CountryName", SqlDbType.VarChar, 100)).Value = countryname
+                                cmd.Parameters.Add(New SqlParameter("@withDrawl_PackageId", SqlDbType.VarChar, 100)).Value = rbpid
+                                cmd.Parameters.Add(New SqlParameter("@withDrawl_Payname", SqlDbType.VarChar, 100)).Value = paymethod
+                                cmd.Parameters.Add(New SqlParameter("@Auto_WithDrawl", SqlDbType.VarChar, 10)).Value = "manual"
+                                cmd.Parameters.Add(New SqlParameter("@withdrawl_TrnsId", SqlDbType.VarChar, 100)).Value = ""
 
-                            Dim uniqueid As String
-                            uniqueid = obj.Returnsinglevalue("select max( withdrawl_TrnsId) from CF_WithDrawl")
-                            Dim un1 As Integer
-                            Dim un2 As Integer
+                                'Dim uniqueid As String
+                                'uniqueid = obj.Returnsinglevalue("select max( withdrawl_TrnsId) from CF_WithDrawl")
+                                'Dim un1 As Integer
+                                'Dim un2 As Integer
 
-                            If Not uniqueid = 0 Then
-                                un1 = Convert.ToInt32(uniqueid)
-                                un2 = un1 + 1
-
-
-                            Else
-                                uniqueid = obj.Returnsinglevalue("select Settings_WithdrawTrnsno from CF_Settings")
-                                un2 = uniqueid
-                            End If
-                            cmd.Parameters.Add(New SqlParameter("@withdrawl_TrnsId", SqlDbType.VarChar, 100)).Value = un2
-                            cmd.ExecuteNonQuery()
-                            cmd.Parameters.Clear()
-                            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Request Successfull');", True)
+                                'If Not uniqueid = 0 Then
+                                '    un1 = Convert.ToInt32(uniqueid)
+                                '    un2 = un1 + 1
 
 
+                                'Else
+                                '    uniqueid = obj.Returnsinglevalue("select Settings_WithdrawTrnsno from CF_Settings")
+                                '    un2 = uniqueid
+                                'End If
+                                'cmd.Parameters.Add(New SqlParameter("@withdrawl_TrnsId", SqlDbType.VarChar, 100)).Value = un2
+                                cmd.ExecuteNonQuery()
+                                cmd.Parameters.Clear()
 
+                                Try
+                                    If paymethod = "Paypal" Then
+                                        paypaladp()
+                                    ElseIf paymethod = "Payza" Then
+                                        payza()
+                                    ElseIf paymethod = "LibertyReserve" Then
+                                        LR()
+                                    ElseIf paymethod = "MoneyBookers" Then
+                                        moneybooker()
+                                    ElseIf paymethod = "PerfectMoney" Then
+                                        PM()
+                                    ElseIf paymethod = "SolidTrustPay" Then
+                                        Stp()
+                                    End If
+                                Catch ex As Exception
+                                    errorblock.Visible = True
+                                    txtError.Text = "The withdraw request has been registered but the payment failed. " + ex.Message
+                                    Dim errQuery = "update CF_WithDrawl set WithDrawl_Remarks= '" + ex.Message + "' where WithDrawl_Id='" + withdrawID + "'"
+                                    cmd = New SqlCommand(errQuery, con)
+                                    cmd.ExecuteNonQuery()
+                                End Try
+
+                            End Using
                         End If
-
-
                     End If
                 Else
-                    'lblerr.Visible = True
-                    'lblerr.Text = "given  amount is exceeds the  maximum fee of this current Package"
-                    'Dim message As String = "given  amount is exceeds the  maximum fee of this current Package"
-                    'Dim url As String = "withdraw.aspx"
-                    'Dim script As String = "window.onload = function(){ alert('"
-                    'script += message
-                    'script += "');"
-                    'script += "window.location = '"
-                    'script += url
-                    'script += "'; }"
-                    'ClientScript.RegisterStartupScript(Me.GetType(), "Redirect", script, True)
-                    ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('given  amount is exceeds the  maximum fee of this current Package');", True)
+                    errorblock.Visible = True
+                    txtError.Text = "The given amount exceeds the available amount for the selected package (fees included)"
                     GoTo A
 
                 End If
             ElseIf txtwithdraw.Text = "" Then
-                ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('please enter the amount');", True)
+                errorblock.Visible = True
+                txtError.Text = "Please enter a valid amount"
+                GoTo A
+            ElseIf paymethod = "" Then
+                successblock.Visible = True
+                txtError.Text = "Please select a payment method and fill the necessary information"
                 GoTo A
             Else
-                ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Plese Choose atleast one Package');", True)
+                errorblock.Visible = True
+                txtError.Text = "Plese Choose atleast one Package"
                 GoTo A
             End If
 
             Dim uid As Guid = Membership.GetUser.ProviderUserKey()
             Dim uid1 As String = Convert.ToString(uid)
-            Response.Redirect("withdraw.aspx")
+
+            ClearForm()
 A:
         Catch ex As Exception
-
+            errorblock.Visible = True
+            txtError.Text = "The withdraw request has been registered but the payment failed. " + ex.Message
         End Try
-        'Else
-        '    ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Insufficient Balance');", True)
-        'End If
 
     End Sub
 
@@ -406,12 +433,14 @@ A:
 
         Dim payeraccname As String = ""
 
-        dtp = obj.returndatatable("select * from [UserPaymentDet] where Payment_UserId ='" + userid.ToString + "'", dtp)
-        Dim payeremail() As Array
+        'dtp = obj.returndatatable("select * from [UserPaymentDet] where Payment_UserId ='" + userid.ToString + "'", dtp)
+        Dim payeremail As String = ""
+        payeremail = txtPZID.Text
+        payeraccname = txtPZName.Text
         If dtp.Rows.Count > 0 Then
             For i As Integer = 0 To dtp.Rows.Count
-                payeremail = dtp.Rows(i).Item("UserPaymentAccDet")
-                payeraccname = dtp.Rows(i).Item("UserPaymentAccDetName")
+                'payeremail = dtp.Rows(i).Item("UserPaymentAccDet")
+                'payeraccname = dtp.Rows(i).Item("UserPaymentAccDetName")
 
             Next
 
@@ -424,7 +453,7 @@ A:
         post_values.Add("PASSWORD", "TGHTRe4zxNzI9gWU")
         post_values.Add("AMOUNT", txtwithdraw.Text)
         post_values.Add("CURRENCY", "USD")
-        post_values.Add("RECEIVEREMAIL", dtp.Rows(0).Item("UserPaymentAccDet"))
+        post_values.Add("RECEIVEREMAIL", payeremail)
         post_values.Add("PURCHASETYPE", "3")
         post_values.Add("TESTMODE", "1")
         Dim post_string As String = ""
@@ -484,20 +513,33 @@ A:
         Dim strtest As String = htResponse("TESTMODE").ToString()
         If str4 = "success" Then
 
+            successblock.Visible = True
+            txtSuccess.Text = "Your withdrawal request has been successfully created. Your Payza account (" & txtPZID.Text & ") will be sent the money within 24h"
 
+            'Dim con As New SqlConnection
+            'con = New SqlConnection(obj.ConnectionString)
+
+            'Dim cmd As New SqlCommand
+            'Dim query As String
+
+
+            'query = "update CF_WithDrawl set WithDrawl_Status= 'True' where WithDrawl_Id='" + ViewState("Wd_Id") + "'"
+            'con.Open()
+            'cmd = New SqlCommand(query, con)
+            'cmd.ExecuteNonQuery()
+            'con.Close()
+            sr.Close()
+        Else
+            errorblock.Visible = True
+            txtError.Text = "The withdraw request has been registered but the payment failed. Please contact the system administrator"
             Dim con As New SqlConnection
             con = New SqlConnection(obj.ConnectionString)
-
             Dim cmd As New SqlCommand
-            Dim query As String
-
-
-            query = "update CF_WithDrawl set WithDrawl_Status= 'True' where WithDrawl_Id='" + ViewState("Wd_Id") + "'"
+            Dim errQuery = "update CF_WithDrawl set WithDrawl_Remarks= '" & result & "' where WithDrawl_Id='" + withdrawID + "'"
             con.Open()
-            cmd = New SqlCommand(query, con)
+            cmd = New SqlCommand(errQuery, con)
             cmd.ExecuteNonQuery()
             con.Close()
-            sr.Close()
         End If
     End Sub
 
@@ -507,12 +549,13 @@ A:
         Dim payeraccname As String = ""
 
         dtp = obj.returndatatable("select * from [UserPaymentDet] where Payment_UserId ='" + userid.ToString + "'", dtp)
-        Dim payeremail() As Array
+        Dim payeremail As String = ""
+        payeremail = txtPPID.Text
+        payeraccname = txtPPName.Text
         If dtp.Rows.Count > 0 Then
             For i As Integer = 0 To dtp.Rows.Count
-                payeremail = dtp.Rows(i).Item("UserPaymentAccDet")
-                payeraccname = dtp.Rows(i).Item("UserPaymentAccDetName")
-
+                'payeremail = dtp.Rows(i).Item("UserPaymentAccDet")
+                'payeraccname = dtp.Rows(i).Item("UserPaymentAccDetName")
             Next
 
 
@@ -528,7 +571,7 @@ A:
         post_values.Add("VERSION", "2.3")
         post_values.Add("METHOD", "MassPay")
         post_values.Add("RECEIVERTYPE", "EmailAddress")
-        post_values.Add("L_EMAIL0", dtp.Rows(0).Item("UserPaymentAccDet"))
+        post_values.Add("L_EMAIL0", payeremail)
         post_values.Add("L_AMT0", txtwithdraw.Text)
         post_values.Add("CURRENCYCODE", "USD")
 
@@ -579,26 +622,20 @@ A:
 
 
         If strAck = "Success" Then
-            Dim con As New SqlConnection
-            con = New SqlConnection(obj.ConnectionString)
-
-            Dim cmd As New SqlCommand
-            Dim query As String
-
-            query = "update CF_WithDrawl set WithDrawl_Status= 'True' where WithDrawl_Id='" + ViewState("Wd_Id") + "'"
-            con.Open()
-            cmd = New SqlCommand(query, con)
-            cmd.ExecuteNonQuery()
-            con.Close()
-
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('SUCCESS');", True)
-            'successLabel.Text = strAck.ToString
-            'Dim Script As String = "alert('" + strAck.ToString() + "');"
-            'ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), Script, True)
-
+            successblock.Visible = True
+            txtSuccess.Text = "Your withdrawal request has been successfully created. Your Paypal account (" & txtPPID.Text & ") will be sent the money within 24h"
             sr.Close()
         Else
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Payment failure');", True)
+            errorblock.Visible = True
+            txtError.Text = "The withdraw request has been registered but the payment failed. Please contact the system administrator"
+            Dim con As New SqlConnection
+            con = New SqlConnection(obj.ConnectionString)
+            Dim cmd As New SqlCommand
+            Dim errQuery = "update CF_WithDrawl set WithDrawl_Remarks= '" & result & "' where WithDrawl_Id='" + withdrawID + "'"
+            con.Open()
+            cmd = New SqlCommand(errQuery, con)
+            cmd.ExecuteNonQuery()
+            con.Close()
         End If
     End Sub
     Public Sub LR()
@@ -687,12 +724,14 @@ A:
         Dim payeraccname As String = ""
 
         dtp = obj.returndatatable("select * from [UserPaymentDet] where Payment_UserId ='" + userid.ToString + "'", dtp)
-        Dim payeremail() As Array
+        Dim payeremail As String = ""
+        payeremail = txtSTPID.Text
+        payeraccname = txtSTPName.Text
         If dtp.Rows.Count > 0 Then
             For i As Integer = 0 To dtp.Rows.Count
 
-                payeremail = dtp.Rows(i).Item("UserPaymentAccDet")
-                payeraccname = dtp.Rows(i).Item("UserPaymentAccDetName")
+                'payeremail = dtp.Rows(i).Item("UserPaymentAccDet")
+                'payeraccname = dtp.Rows(i).Item("UserPaymentAccDetName")
 
             Next
 
@@ -703,7 +742,7 @@ A:
         Dim post_values As New Dictionary(Of String, String)
         post_values.Add("api_id", "rizwan")
         post_values.Add("api_pwd", "81dc9bdb52d04dc20036dbd8313ed055")
-        post_values.Add("user", dtp.Rows(0).Item("UserPaymentAccDet"))
+        post_values.Add("user", payeremail)
         post_values.Add("amount", txtwithdraw.Text)
         post_values.Add("item_id", ViewState("Wd_Id"))
         post_values.Add("currency", "USD")
@@ -740,35 +779,54 @@ A:
         ' decode the response string
         response = HttpUtility.UrlDecode(response)
         Dim alert As String = "alert('" + response + "')"
-        ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", alert, True)
         Dim arrResult As String() = result.Split("&"c)
         Dim htResponse As New Hashtable()
         Dim responseItemArray As String()
         For Each responseItem As String In arrResult
             responseItemArray = responseItem.Split("="c)
-            htResponse.Add(responseItemArray(0), responseItemArray(1))
+            If (responseItemArray.Count > 1) Then
+                htResponse.Add(responseItemArray(0), responseItemArray(1))
+            End If
         Next
 
-        Dim strAck As String = htResponse("Transaction ID ").ToString()
+        Dim strAck As String = ""
+        If (htResponse.ContainsKey("Transaction ID")) Then
+            htResponse("Transaction ID ").ToString()
+        End If
 
-        Dim strAck1 As String = strAck.Substring(24, 8)
+        Dim strAck1 As String = ""
+        If (strAck.Length > 31) Then
+            strAck1 = strAck.Substring(24, 8)
+        End If
         If strAck1 = "ACCEPTED" Then
-            Dim con As New SqlConnection
-            con = New SqlConnection(obj.ConnectionString)
+            'Dim con As New SqlConnection
+            'con = New SqlConnection(obj.ConnectionString)
 
-            Dim cmd As New SqlCommand
-            Dim query As String
-            query = "update CF_WithDrawl set WithDrawl_Status= 'True' where WithDrawl_Id='" + ViewState("Wd_Id") + "'"
-            con.Open()
-            cmd = New SqlCommand(query, con)
-            cmd.ExecuteNonQuery()
-            con.Close()
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('SUCCESS');", True)
-            'successLabel.Text = response.ToString
+            'Dim cmd As New SqlCommand
+            'Dim query As String
+            'query = "update CF_WithDrawl set WithDrawl_Status= 'True' where WithDrawl_Id='" + ViewState("Wd_Id") + "'"
+            'con.Open()
+            'cmd = New SqlCommand(query, con)
+            'cmd.ExecuteNonQuery()
+            'con.Close()
+            successblock.Visible = True
+            txtSuccess.Text = "Your withdrawal request has been successfully created. Your SolidTrustPay account (" & txtSTPID.Text & ") will be sent the money within 24h"
             sr.Close()
         Else
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Payment failure');", True)
+            errorblock.Visible = True
+            txtError.Text = "The withdraw request has been registered but the payment failed. Please contact the system administrator"
+            Dim con As New SqlConnection
+            con = New SqlConnection(obj.ConnectionString)
+            Dim cmd As New SqlCommand
+            Dim errQuery = "update CF_WithDrawl set WithDrawl_Remarks= '" & result & "' where WithDrawl_Id='" + withdrawID + "'"
+            con.Open()
+            cmd = New SqlCommand(errQuery, con)
+            cmd.ExecuteNonQuery()
+            con.Close()
         End If
+    End Sub
+    Private Sub PM()
+        Throw New Exception("PerfectMoney is not implemented yet")
     End Sub
     Public Function getCountry(ByVal ip As String) As String
 
@@ -808,4 +866,33 @@ A:
         divPerfectMoney.Visible = False
         divPayza.Visible = False
     End Sub
+
+    Private Sub ClearForm()
+        txtwithdraw.Text = ""
+        rbPP.Checked = False
+        rbPZ.Checked = False
+        rbPM.Checked = False
+        rbSTP.Checked = False
+        divPaypal.Visible = False
+        divPayza.Visible = False
+        divPerfectMoney.Visible = False
+        divSolidTrustPay.Visible = False
+        txtPMID.Text = ""
+        txtPMName.Text = ""
+        txtPPID.Text = ""
+        txtPPName.Text = ""
+        txtPZID.Text = ""
+        txtPZName.Text = ""
+        txtSTPID.Text = ""
+        txtSTPName.Text = ""
+
+        For Each ctl1 In RbPackage.Controls
+            If TypeOf ctl1 Is RadioButton Then
+                Dim rbtn1 = DirectCast(ctl1, RadioButton)
+                rbtn1.Checked = False
+            End If
+        Next
+    End Sub
+
+
 End Class
