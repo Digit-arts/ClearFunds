@@ -1,0 +1,292 @@
+﻿<%@ Master Language="VB" CodeFile="Member2.master.vb" Inherits="Member" %>
+<%@ Register Src="~/account/SmallLogOut.ascx" TagName="smallLogout" TagPrefix="uc3" %>
+<%@ Register Src="~/Account/Logout1.ascx" TagName="Logout" TagPrefix="uc4" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Clear Funds</title>
+    <link href="c_style.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    
+        <link href="css/template.css" rel="stylesheet" type="text/css" />
+        <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.6.min.js" type="text/javascript"></script>
+<script src="js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery("#form1").validationEngine();
+    });
+</script>
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+       <form id ="form1"  runat="server">
+        <div class="main_topbg">
+        <uc3:smallLogout ID="SmallLogout1" runat="server" />
+       
+         <div  id="pnllogin" runat="server" class="main_top"><!---start main_top-->
+        	<div class="main_left"><!---start main_left-->
+            	Sales& Support & Payments : 23984305-0000-4400
+            </div><!---end main_left-->
+            <div class="main_right"><!---start main_right-->
+            	<ul>
+           			<li><a href="support.aspx">Support</a></li>
+                	<li>/</li>
+                	<li><%--<a href="Account/Login.aspx">Login</a>--%>
+                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
+                    </li>
+                
+             </ul>
+             <div><a href="~/Register.aspx"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/Register.aspx" runat="server">
+                        <asp:Image ID="Image3" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/sign.png" runat="server" /></asp:HyperLink></a></div>
+            </div><!---end main_right-->
+        </div><!---end main_top-->
+</div>
+        <div class="header"><!---start header-->
+        	<div class="header_left"><!---start header_left-->
+            	<%--<img src="~/images/cf.png" alt="" />--%>
+                <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Default.aspx" runat="server">
+                        <asp:Image ID="Image1" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/cf.png" runat="server"   /></asp:HyperLink>
+
+            </div><!---end header_left-->
+            <div class="header_right"><!---start header_right-->
+            	<%--<img src="images/girl_img.png" alt="" />--%>
+                <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Default.aspx" runat="server">
+                        <asp:Image ID="Image2" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/girl_img.png" runat="server" /></asp:HyperLink>
+            </div><!---end header_right-->
+         </div><!---end header-->
+
+
+          <div class="main_menu"><!--main_menu div start-->
+          <div class="mmenueft">
+              <asp:HyperLink ID="HyperLink4" runat="server">
+                        <asp:Image ID="Image4" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/left_arrow.png" runat="server" /></asp:HyperLink>
+          
+         <%-- <img src="images/left_arrow.png" alt="" />--%>
+          
+          
+          </div>
+         	<div class="menucenter"><!---start menu_top-->
+            	<ul>
+                	<li>               
+                      <asp:HyperLink ID="HyperLink8" NavigateUrl="~/Default.aspx" runat="server">HOME</asp:HyperLink></li>
+                    <li>  <asp:HyperLink ID="HyperLink7" NavigateUrl="~/support.aspx" runat="server">SUPPORT</asp:HyperLink></li>
+                    <li> <asp:HyperLink ID="HyperLink9" NavigateUrl="~/Stats.aspx" runat="server">STATS</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink17" NavigateUrl="~/rules.aspx" runat="server">RULES</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink21" NavigateUrl="~/InvestorsTop.aspx" runat="server">TOP TEN</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink22" NavigateUrl="~/Rateus.aspx" runat="server">RATE US</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink30" NavigateUrl="~/Account/Profile.aspx" runat="server" Visible="false" >PROFILE</asp:HyperLink>
+                    </li>
+                    <li> <asp:HyperLink ID="HyperLink23" NavigateUrl="~/Contact.aspx" runat="server">CONTACT US</asp:HyperLink></li>
+                  </ul>
+            </div><!---end menu_top-->
+             <div class="mmenueft">
+                 <asp:HyperLink ID="HyperLink5" runat="server">
+                        <asp:Image ID="Image5" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/right_arrow.png" runat="server" /></asp:HyperLink>
+             
+             
+            <%-- <img src="images/right_arrow.png" alt="" />--%></div>
+              </div><!--main_menu div end--> 
+              <div class="clear" margin-top:5px;></div>
+              <div class="m2_content"><!---m2_content start-->
+
+
+             
+
+
+
+
+                <div id="leftside" class="mid_leftcon"><!--mid_leftcon div start-->
+
+                             <asp:Panel ID="Panel1"  Visible="false" runat="server">
+
+                <div  id="divNavigation"  runat ="server" >
+              
+               <div class="o_infotop"><!---start o_infotop-->
+                    	<div class="o_infotopleft"><!---start o_infotopleft-->
+                        	<%--<img src="images/sub3_img1.png" />--%>
+                             <asp:Image ID="Image16" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/sub3_img1.png" runat="server" />
+                        </div><!---end middle_img_h1t_left-->
+
+                        <div class="o_infotopright"><!---start o_infotopright-->
+                        	<div class="middle_img_h1t_right1"><!---start middle_img_h1t_right1-->
+                           		<b>Navigation</b>
+              
+                            </div><!---end middle_img_ht1_right1-->
+                        </div><!---end middle_img_h1t_rigth-->
+                    </div><!---end middle_img_h1t-->
+
+                           <div class="status_pmiddle navigation">
+                    	<ul>
+                        	<li> <asp:HyperLink ID="HyperLink10" NavigateUrl="~/Account/Home.aspx" runat="server"    Font-Underline="False" ForeColor="Black">HOME</asp:HyperLink>  </li>
+                            <li><asp:HyperLink ID="HyperLink18" NavigateUrl="~/Account/Account.aspx" runat="server"    Font-Underline="False" ForeColor="Black">Account</asp:HyperLink>   </li>  
+                            <li> <asp:HyperLink ID="HyperLink11" NavigateUrl="~/Account/MakeDeposit.aspx" runat="server" Font-Underline="False" ForeColor="Black">Make Deposit</asp:HyperLink> </li>
+                            <li> <asp:HyperLink ID="HyperLink19" NavigateUrl="~/Account/CurrentPlan.aspx" runat="server" Font-Underline="False" ForeColor="Black">Current plan</asp:HyperLink></li>
+                            <li> <asp:HyperLink ID="HyperLink12" NavigateUrl="~/Account/DeposistsHistory.aspx" runat="server" Font-Underline="False" ForeColor="Black">Deposits History</asp:HyperLink> </li>
+                             <li> <asp:HyperLink ID="HyperLink35" NavigateUrl="~/Account/EarningsHistory.aspx" runat="server" Font-Underline="False" ForeColor="Black">Earnings History</asp:HyperLink> </li>
+                     
+                            <li> <asp:HyperLink ID="HyperLink31" NavigateUrl="~/Account/ReferralsHistory.aspx" runat="server" Font-Underline="False" ForeColor="Black">Referrals History</asp:HyperLink> </li>
+                            <li> <asp:HyperLink ID="HyperLink34" NavigateUrl="~/Account/WithDraw.aspx" runat="server" Font-Underline="False" ForeColor="Black">Withdraw</asp:HyperLink> </li>
+                    
+                            <li> <asp:HyperLink ID="HyperLink32" NavigateUrl="~/Account/WithdrawalsHistory.aspx" runat="server" Font-Underline="False" ForeColor="Black">Withdrawals History</asp:HyperLink> </li>
+                            <li> <asp:HyperLink ID="HyperLink33" NavigateUrl="~/Account/YourReferrals.aspx" runat="server" Font-Underline="False" ForeColor="Black">Your Referrals</asp:HyperLink> </li>
+                            <li><asp:HyperLink ID="HyperLink20" NavigateUrl="~/Account/Referral_link.aspx" runat="server" Font-Underline="False" ForeColor="Black">Referral Links</asp:HyperLink></li>
+                            <li><uc4:Logout ID="Logout" runat="server"  /></li>
+                              </ul>
+                    </div>
+
+              </div>
+
+              </asp:Panel>
+
+            	<div class="mid_leftcon_b1"><!---start mid_leftcon_b1-->
+                	<div class="o_infotop"><!---start o_infotop-->
+                    	<div class="o_infotopleft"><!---start o_infotopleft-->
+                        	<%--<img src="images/sub3_img1.png" />--%>
+                             <asp:Image ID="Image15" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/sub3_img1.png" runat="server" />
+                        </div><!---end middle_img_h1t_left-->
+                        <div class="o_infotopright"><!---start o_infotopright-->
+                        	<div class="middle_img_h1t_right1"><!---start middle_img_h1t_right1-->
+                           		<b>Our Info                  </div><!---end middle_img_ht1_right1-->
+                        </div><!---end middle_img_h1t_rigth-->
+                    </div><!---end middle_img_h1t-->
+                    <div class="oinfocenter"><!---start oinfocenter-->
+                    	<table cellpadding="0" cellspacing="0" class="cen_con">
+                        	<tr><th>Started </th><td> <asp:Label ID="lblstarted" runat="server" Text=""></asp:Label></td></tr>
+                            <tr><th>Running Days  </th><td><asp:Label ID="lblRunningDays" runat="server" Text=""></asp:Label></td></tr>
+                            <tr><th>Total Accounts  </th><td> <asp:Label ID="lblTotalAccounts" runat="server" Text=""></asp:Label></td></tr>
+                            <tr><th>Active Accounts  </th><td><asp:Label ID="lblActiveAccounts" runat="server" Text=""></asp:Label></td></tr>
+                            <tr><th>Total Deposited </th><td> <asp:Label ID="lblTotalDeposited" runat="server" Text=""></asp:Label></td></tr>
+                             <tr><th>Total Withdraw </th><td> <asp:Label ID="lblTotalWithdraw" runat="server" Text=""></asp:Label></td></tr>
+                              <tr><th>Last Update  </th><td><asp:Label ID="lblLastUpdate" runat="server" Text=""></asp:Label></td></tr>
+                        </table>
+                    </div><!---end middle_img_h1_bottom-->
+                    
+                    <div class="o_infobottom"><%--<img src="images/o_infobottom.png" alt="" />--%>
+                    <asp:Image ID="Image14" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/o_infobottom.png" runat="server" />
+                    </div>
+                </div><!---end mid_leftcon_b1-->
+            
+            
+            <div class=" status_part1"><!---status_part1 div start-->
+                	<div class="status_ptop"><!---status_ptop div start-->
+                    	STATS
+                    </div><!---status_ptop div end-->
+                    <div class="status_pmiddle"><!---status_pmiddle div start-->
+                    	<ul>
+                        	<li> <asp:HyperLink ID="HyperLink13" NavigateUrl="~/Stats.aspx" runat="server" Font-Underline="False" ForeColor="Black">Investors Stats</asp:HyperLink></li>
+                            <li><asp:HyperLink ID="HyperLink14" NavigateUrl="~/PaidOut.aspx" runat="server" Font-Underline="False" ForeColor="Black">Paid Out</asp:HyperLink></li>
+                            <li><asp:HyperLink ID="HyperLink15" NavigateUrl="~/InvestorsTop.aspx" runat="server" Font-Underline="False" ForeColor="Black">Investors Top 10</asp:HyperLink></li>
+                            <li><asp:HyperLink ID="HyperLink16" NavigateUrl="~/InvistorsLast.aspx" runat="server" Font-Underline="False" ForeColor="Black">Investors Last 10</asp:HyperLink></li>
+                        </ul>
+                    </div><!---status_pmiddle div start-->
+                    <div class="statu_partbo"><%--<img src="images/bg_stats_botombg.png" alt="" />--%>
+                    <asp:Image ID="Image13" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/bg_stats_botombg.png" runat="server" />
+                    </div>
+                </div><!---status_part1 div end-->
+            
+            
+             
+            
+            </div> 
+               
+          <div id="rightside"  class ="mid_rigcon"  > <!---start main-->
+
+                <div class="mid_rigtop"><!--mid_rigtop div start-->
+                <div class="midletcurve"><%--<img src="images/innleftcur.png" alt="" />--%>
+                <asp:Image ID="Image6" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/innleftcur.png" runat="server" />
+                </div>
+                <div class="mid_ctcnbg"><!--mid_ctcnbg div start-->
+                  <div class="midtopcon">
+                    <div class="midtlfcurve"><%--<img src="images/i_lefttopcuve.png" alt="" />--%>
+                    <asp:Image ID="Image7" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/i_lefttopcuve.png" runat="server" />
+                    </div>
+                     <div class="midtcencon"></div>
+                      <div class="midtlfcurve"><%--<img src="images/i_righttopcuve.png" alt="" />--%>
+                      <asp:Image ID="Image8" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/i_righttopcuve.png" runat="server" />
+                      </div>
+                   </div>
+                   <div class="mid_innerlogimg"><a href="#"><%--<img src="images/innlogoimg.png" alt="" />--%>
+                   <asp:Image ID="Image9" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/innlogoimg.png" runat="server" />
+                   </a></div>
+                </div><!--mid_ctcnbg div end-->
+
+
+                <div class="midletcurve"><%--<img src="images/innrightcur.png" alt="" />--%>
+                <asp:Image ID="Image10" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/innrightcur.png" runat="server" />
+                </div>
+                </div><!--mid_rigtop div end-->
+
+
+                <div class="m_mainconbg"><!--m_mainconbg div start-->
+                 <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+         
+               <asp:ContentPlaceHolder ID="MainContent" runat="server"/>  
+                
+                </div><!--m_mainconbg div end-->
+
+
+                <div class="mid_rigbottom"><!--mid_rigbottom div start-->
+                    <div class="mbtlcurve"><%--<img src="images/innbtlecurve.png" alt="" />--%>
+                    <asp:Image ID="Image11" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/innbtlecurve.png" runat="server" />
+                    </div>
+                    <div class="mid_cencnbg">
+                    
+                    </div>
+                     <div class="mbtlcurve"><%--<img src="images/innbtrgcurve.png" alt="" />--%>
+                     <asp:Image ID="Image12" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/innbtrgcurve.png" runat="server" />
+                     </div>
+                </div><!--mid_rigbottom div end-->
+
+              
+          
+          <div class="clear"></div> 
+        </div> <!---start end--> 
+      <div class="clear"></div>
+      </div><!---m2_content end-->       
+   
+    <div class="footer"><!---footer div start-->
+    	<div class="footer_main"><!---fooder_main div start-->
+        	<div class="footer_menu"><!---footer_menu start-->
+              <ul>
+
+
+              <li>  <asp:HyperLink ID="HyperLink24" NavigateUrl="~/Default.aspx" runat="server">HOME</asp:HyperLink></li>
+                    <li>  <asp:HyperLink ID="HyperLink25" NavigateUrl="~/support.aspx" runat="server">SUPPORT</asp:HyperLink></li>
+                    <li> <asp:HyperLink ID="HyperLink26" NavigateUrl="~/Stats.aspx" runat="server">STATS</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink27" NavigateUrl="~/rules.aspx" runat="server">RULES</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink28" NavigateUrl="~/InvestorsTop.aspx" runat="server">TOP TEN</asp:HyperLink></li>
+                    <li> <asp:HyperLink ID="HyperLink29" NavigateUrl="~/Contact.aspx" runat="server">CONTACT US</asp:HyperLink></li>
+  </ul>
+            </div><!---footer_menu end-->
+            <div class="footer_copy">
+            	<div class="footer_cleft">Copyright © 2006-2013, Clear funds.com</div>
+                <div class="footer_cright">Privacy Policy</div>
+            </div>
+        </div><!---footer_main div end-->
+    </div><!---footer div end-->
+
+
+
+</form> 
+</body>
+</html>

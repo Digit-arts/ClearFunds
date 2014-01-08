@@ -1,0 +1,196 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Site.Master.vb" Inherits="Site" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head id="Head1" runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Admin Template</title>
+<link href="Styles/layout.css" rel="stylesheet" type="text/css" />
+<link href="Styles/wysiwyg.css" rel="stylesheet" type="text/css" />
+<!-- Theme Start -->
+<link href="blue/styles.css" rel="stylesheet" type="text/css" />
+<!-- Theme End -->
+<link href="Styles/CF_styles.css" rel="stylesheet" type="text/css" />
+<link href="css/template.css" rel="stylesheet" type="text/css" />
+<link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.6.min.js" type="text/javascript"></script>
+<script src="js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+<%--<link href="~/Styles/site.css" rel="stylesheet" type="text/css" />--%>
+<asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body id="homepage">
+<div id="header">
+    	<a href="" title="">
+            <asp:Image ID="Image1" ImageUrl="~/Admin/img/cp_logo.png" 
+            AlternateText="Control Panel" CssClass="logo" runat="server" />
+        </a>
+    	<div id="searcharea">
+            <p class="left smltxt"><a href="#" title="">Advanced</a></p>
+            <input type="text" class="searchbox" value="Search control panel..." onclick="if (this.value =='Search control panel...'){this.value=''}"/>
+            <input type="submit" value="Search" class="searchbtn" />
+        </div>
+    </div>
+    <form id="form1" runat="server">
+   
+
+     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+
+    <!-- Top Breadcrumb Start -->
+    <div id="breadcrumb">
+    	<ul>	
+        	<li><%--<img src="img/icons/icon_breadcrumb.png" alt="Location" />--%><asp:Image ID="Image3"
+                  ImageUrl="img/icons/icon_breadcrumb.png" AlternateText="Location"  runat="server" /></li>
+        	<li><strong>Location:</strong></li>
+            <li><a href="#" title="">Sub Section</a></li>
+            <li>/</li>
+            <li class="current">Control Panel</li>
+        </ul>
+    </div>
+    <!-- Top Breadcrumb End -->
+     
+    <!-- Right Side/Main Content Start -->
+    <div id="rightside">
+
+         <div class="main">
+            <div class="ad_mtop"><!--ad_mtop div start-->
+                <div class="bmain_tcurve"><asp:Image ID="Image4" ImageUrl="Images/left_arrow.png" AlternateText="Location"  runat="server" /></div>
+                <div class="bmain_center"></div>
+                <div class="bmain_bcurve"><asp:Image ID="Image5" ImageUrl="Images/right_arrow.png" AlternateText="Location"  runat="server" /></div>
+            </div><!--ad_mtop div ned-->
+            <div class="mainbinner"><!--mainbinner div start-->
+             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            </div><!--mainbinner div start-->
+        </div>
+    </div>
+    <!-- Right Side/Main Content End -->
+    
+        <!-- Left Dark Bar Start -->
+    <div id="leftside">
+    	<div class="user">
+        	<%--<img src="img/avatar.png" width="44" height="44" class="hoverimg" alt="Avatar" />--%>
+            <asp:Image ID="Image2" ImageUrl="~/Admin/img/avatar.png" Width="44" Height="44" CssClass="hoverimg" AlternateText="Avatar" runat="server" />
+            <p>Logged in as:</p>
+            <p class="username">Administrator</p>
+            <p class="userbtn"><a href="#" title="">Profile</a></p>
+            <p class="userbtn"><a href="Admin_Logout.aspx" title="">Log out</a></p>
+        </div>
+        
+        
+        <ul id="nav">
+        	<li>
+                <ul class="navigation">
+                    <li><a href="contentmanage.aspx">Add Content</a> </li>
+                    <li><a href="NewsList.aspx">NewsList</a> </li>
+                    <li><a href="FAQList.aspx">FAQList</a> </li>
+                    <li><a href="VoteImageList.aspx">VoteUs List</a> </li>
+                    <li><a href="packages.aspx">Packages</a> </li>
+                    <li><a href="Members.aspx" title="">Members</a></li>
+                    <li><a href="sendbonus.aspx" title="">Send Bonus</a></li>
+                    <li><a href="sendpenalty.aspx" title="">Send Penalty</a></li>
+                    <li><a href="NewsLetter.aspx" title="">Send Newsletters</a></li>
+                    <li><a href="EmailTemplate.aspx" title="">Email Templates</a></li>
+                    <li><a href="Categories.aspx" title="">Categories</a></li>
+                    <li><a href="ManageUser.aspx" title="">HelpDesk Users</a></li>
+                    <li><a href="AdminUsers.aspx" title="">Admin Users</a></li>
+                    <li><a href="MessagingList.aspx" title="">Messaging</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="collapsed heading">Payment Details</a>
+                 <ul class="navigation">
+                    <li><a href="DepositDetails.aspx" title="">Deposit Details</a></li>
+                    <li><a href="WithDrawalHistory.aspx" title="">Withdrawal History</a></li>
+                    <li><a href="#" title="">Earning History</a></li>
+                    <li><asp:HyperLink ID="HyperLink6" NavigateUrl="~/Admin/WithDarwlRequest.aspx" runat="server">Withdrawal Request</asp:HyperLink></li>
+                    <li><a href="AutoWithDrawHistory.aspx" title="">Auto Withdrawal</a></li>
+                    <li><a href="TransactionHistory.aspx" title="">Transactions History</a></li>
+                    <li><a href="BonusHistory.aspx" title="">Bonuses</a></li>
+                    <li><a href="PenaltyHistory.aspx" title="">Penalties</a></li>
+                    <li><a href="PaymentProcessings.aspx" title="">Payment Processings</a></li>
+                    <li><a href="PendingDeposists.aspx" title="">Pending Deposits</a></li>
+                    <li><a href="referralSettings.aspx" title="">Referral Details</a></li>
+                    <li><a href="MainSetting.aspx" title="">Settings</a></li>
+                    <li><a href="ReferralBonusDetails.aspx" title="">Referral Settings</a></li>
+                    <li><a href="IpHistory.aspx" title="">IP History</a></li>
+                    <li><a href="Custompage.aspx" title="">Custom Pages</a></li>
+                </ul>
+            </li>
+            <li><a class="collapsed heading">Extras</a>
+                <ul class="navigation">
+                    <li><a href="Advertisement.aspx" title="" class="likelogin">Advertisement Details</a></li>
+                    <li><a href="Banner.aspx" title="">Banner Images</a></li>
+                    
+                </ul>
+            </li>
+            <li><a class="collapsed heading">CMS</a>
+                <ul class="navigation">
+                    <li><a href="Support.aspx" title="" class="likelogin">Support</a></li>
+                    <li><a href="rules.aspx" title="">Rules</a></li>
+                    
+                </ul>
+            </li>            
+        </ul>
+    </div>
+    <!-- Left Dark Bar End --> 
+    
+    <!-- Notifications Box/Pop-Up Start --> 
+   <%-- <div id="notificationsbox">
+        <h4>Notifications</h4>
+        <ul>
+            <li>
+            	<a href="#" title=""><img src="img/icons/icon_square_close.png" alt="Close" class="closenot" /></a>
+            	<h5><a href="#" title="">New member registration</a></h5>
+                <p>Admin eve joined on 18.12.2010</p>
+            </li>
+            <li>
+            	<a href="#" title=""><img src="img/icons/icon_square_close.png" alt="Close" class="closenot" /></a>
+            	<h5><a href="#" title="">New member registration</a></h5>
+                <p>Jackson Michael joined on 16.12.2010</p>
+            </li>
+            <li>
+            	<a href="#" title=""><img src="img/icons/icon_square_close.png" alt="Close" class="closenot" /></a>
+                <h5><a href="#" title="">New blog post created</a></h5>
+                <p>New post created on 15.12.2010</p>
+            </li>
+            <li>
+            	<a href="#" title=""><img src="img/icons/icon_square_close.png" alt="Close" class="closenot" /></a>
+            	<h5><a href="#" title="">New group created</a></h5>
+                <p>“Web Design” group created on 12.12.2010</p>
+            </li>
+            <li>
+            	<a href="#" title=""><img src="img/icons/icon_square_close.png" alt="Close" class="closenot" /></a>
+            	<h5><a href="#" title="">1 new private message</a></h5>
+                <p>New message from Joe sent on 21.11.2010</p>
+            </li>
+            <li>
+            	<a href="#" title=""><img src="img/icons/icon_square_close.png" alt="Close" class="closenot" /></a>
+            	<h5><a href="#" title="">New member registration</a></h5>
+                <p>Graham joined on 20.11.2010</p>
+            </li>
+        </ul>
+        <p class="loadmore"><a href="#" title="">Load more notifications</a></p>
+    </div>--%>
+    <!-- Notifications Box/Pop-Up End --> 
+    
+       
+      
+    <%--
+   
+    
+    <script type="text/javascript" src="http://dwpe.googlecode.com/svn/trunk/_shared/EnhanceJS/enhance.js"></script>	
+    <script type='text/javascript' src='http://dwpe.googlecode.com/svn/trunk/charting/js/excanvas.js'></script>
+	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js'></script>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js'></script>--%>
+	<script type='text/javascript' src='scripts/jquery.wysiwyg.js'></script>
+    <script type='text/javascript' src='scripts/visualize.jQuery.js'></script>
+    <script type="text/javascript" src='scripts/functions.js'></script>
+    </form> 
+</body>
+</html>

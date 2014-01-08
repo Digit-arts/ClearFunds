@@ -1,0 +1,27 @@
+/* Skitter styles */
+
+.box_skitter {position:relative;width:980px;height:235px; }
+.box_skitter ul {display:none;}
+.box_skitter .container_skitter {overflow:hidden;position:relative; width:980px !important;height:350px !important;}
+.box_skitter .image {overflow:hidden; width:980px;}
+.box_skitter .image img {display:none; width:980px; }
+
+.box_skitter .box_clone {position:absolute;top:0;left:0;width:100px;overflow:hidden;display:none;z-index:20;}
+.box_skitter .box_clone img {position:absolute;top:0;left:0;z-index:20; width:980px; }
+
+.box_skitter .prev_button { display:none; }
+.box_skitter .next_button { display:none; }
+
+.box_skitter .info_slide {position:absolute;top:15px;left:15px;z-index:100;background:#000;color:#fff;font:bold 11px arial;padding:5px 0 5px 5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;opacity:0.75;}
+
+.box_skitter .label_skitter {z-index:150;position:absolute;bottom:0px;left:0px;display:none;}
+
+.loading {position:absolute; top:50%; right:50%; z-index:10000; margin:-16px -16px;color:#fff;text-indent:-9999em;overflow:hidden;background:url(../Images/ajax-loader.gif) no-repeat left top;width:32px;height:32px;}
+
+/**
+ * Example for dimenions:
+ */
+.box_skitter_large {width:980px;height:350px;}
+.box_skitter_small {width:200px;height:200px;}
+
+.border_box         { width:980px !important; margin:0 auto; } 

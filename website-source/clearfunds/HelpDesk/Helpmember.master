@@ -1,0 +1,182 @@
+﻿<%@ Master Language="VB" CodeFile="Helpmember.master.vb" Inherits="login" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    
+    <title>Clear Funds</title>
+    <link href="../Design.css" rel="stylesheet" type="text/css" />
+      <link href="../c_style.css" rel="stylesheet" type="text/css" />
+     <link href="../css/l_style.css" rel="stylesheet" type="text/css" />
+     
+      <style type="text/css">
+.accordionContent {
+background-color: #fff;
+border-color: -moz-use-text-color #2F4F4F #2F4F4F;
+border-right: 1px dashed #2F4F4F;
+border-style: none dashed dashed;
+border-width: medium 1px 1px;
+padding: 5px 5px 5px;
+width:98%;
+}
+.accordionHeaderSelected {
+background-color: #DE0F0F;
+border: 1px solid #2F4F4F;
+color: white;
+cursor: pointer;
+font-family: Arial,Sans-Serif;
+font-size: 12px;
+font-weight: bold;
+margin-top: 5px;
+padding: 5px;
+width:98%;
+}
+.accordionHeader {
+background-color: #484848;
+border: 1px solid #2F4F4F;
+color: white;
+cursor: pointer;
+font-family: Arial,Sans-Serif;
+font-size: 12px;
+font-weight: bold;
+margin-top: 5px;
+padding: 5px;
+width:98%;
+}
+.href
+{
+color:White;  
+font-weight:bold;
+text-decoration:none;
+}
+</style>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+     
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    
+       <form runat="server">
+       
+        <div class="main_topbg">
+        <div class="help_mone">
+          <div class="main_right"><!---start main_right-->
+           <div class="logo_butt">
+            	<ul>
+           			<li><a>Welcome!</a>
+                	 
+                        <asp:Label ID="Label1" runat="server" ForeColor="Red"  ></asp:Label>
+                 
+                	<%--<a href="Account/Login.aspx">Login</a>--%>
+                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Helpdesk/Default.aspx" runat="server">Logout</asp:HyperLink>
+                    </li> 
+             </ul>
+                 
+                
+                   </div>
+                  </div>
+                  </div>
+        </div><!---end main_top-->
+
+ 
+    	
+		 	
+    			<div class="MainpageOne">
+                <div class="header">
+               <asp:ImageButton PostBackUrl="/HelpDesk/HelpHome.aspx"  ImageUrl="~/images/lgn_logo.png" ID="ImageButton1" runat="server" />
+                </div>
+				</div>
+              
+                
+         	<div class="acc_nav"><!---acc_nav start---->
+            <div class="MainMenu">
+            <div class="MenuOne">
+                
+            <img src="~/images/rit_head.png" />
+            </div>
+            <div id="divmenu" runat="server" class="m_menutwo "><!---acc_nav_center start-->
+            	<ul>
+                    <%--<li><a href="#">My account</a></li>
+                    <li><a href="#">My services</a></li>
+                    <li><a href="#">My domains</a></li>
+                    <li><a href="#">My tickets</a></li>--%>
+				</ul>
+                </div><!---acc_nav_center end-->
+                <div class="MenuFour ">
+                <img src="~/images/rit_head1.png" />
+                </div>
+                </div>
+                
+        	</div><!---acc_nav end---->
+            <div id="menu" class="help_main" visible="false" runat="server">
+           	<div class="acc_infmn"><!---acc_infmn start---->
+            
+              <ul id="MenuBar1" class="MenuBarHorizontal">
+  <%--<li><asp:HyperLink ID="HyperLink10" NavigateUrl="~/Account/Home.aspx" runat="server"    Font-Underline="False" ForeColor="Black" CssClass="Invoices">DashBoard</asp:HyperLink>  </li>
+  
+  
+<li><asp:HyperLink ID="HyperLink18" NavigateUrl="~/Account/Account.aspx" runat="server"    Font-Underline="False" ForeColor="Black">Account</asp:HyperLink>   </li>    
+<li> <asp:HyperLink ID="HyperLink11" NavigateUrl="~/Account/MakeDeposit.aspx" runat="server" Font-Underline="False" ForeColor="Black">Make Deposit</asp:HyperLink> </li>
+<li> <asp:HyperLink ID="HyperLink19" NavigateUrl="~/Account/CurrentPlan.aspx" runat="server" Font-Underline="False" ForeColor="Black">Current plan</asp:HyperLink></li>
+<li> <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Account/profile.aspx" runat="server" Font-Underline="False" ForeColor="Black">profile</asp:HyperLink></li>
+<li> <asp:HyperLink ID="HyperLink34" NavigateUrl="~/Account/WithDraw.aspx" runat="server" Font-Underline="False" ForeColor="Black">Withdraw</asp:HyperLink> </li>
+<li> <asp:HyperLink ID="HyperLink33" NavigateUrl="~/Account/YourReferrals.aspx" runat="server" Font-Underline="False" ForeColor="Black">Your Referrals</asp:HyperLink> </li>
+<li><asp:HyperLink ID="HyperLink20" NavigateUrl="~/Account/Referral_link.aspx" runat="server" Font-Underline="False" ForeColor="Black" CssClass="MenuBarItemSubmenu">Referral Links</asp:HyperLink>
+
+<li><asp:HyperLink ID="HyperLink1" NavigateUrl="~/Account/Forum.aspx" runat="server" Font-Underline="False" ForeColor="Black">My Tickets</asp:HyperLink></li>--%>
+                            
+                                
+
+		<%--<ul>
+          <li><a href="#">Item 3.1</a></li>
+          <li><a href="#">Item 3.1</a></li>
+           <li><a href="#">Item 3.1</a></li>
+            <li><a href="#">Item 3.1</a></li>
+             <li><a href="#">Item 3.1</a></li>
+              <li><a href="#">Item 3.1</a></li>
+        </ul>--%>
+<%--</li>--%>
+</ul>
+            
+            </div><!---acc_infmn end---->
+		</div><!---acc_center-wp end ---->
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+    <div class="help_main">
+    <div class="acc_cnt"><!---acc_cnt start---->
+        	
+            <div class="acc_mn"><!---ac_mn start--->
+            
+           		<div class="acc_mn_lft"><!---ac_mn_lft start--->
+                
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+          
+        </asp:ContentPlaceHolder>
+        </div>
+        </div>
+     
+        
+       <div class="clear"></div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

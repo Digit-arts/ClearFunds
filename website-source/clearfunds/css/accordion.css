@@ -1,0 +1,27 @@
+﻿ 
+      accordion {  
+         width: 400px;  
+         border: solid 1px black;  
+         background-color:red;
+    }  
+  
+    .contentAccordion {  
+         padding: 4px;  
+         background-color:White;
+      }  
+                
+      .selectedheader {  
+          color: White;  
+         background-color: #DE0F0F; 
+          padding: 4px;        
+          border: solid 1px black;                    
+      }  
+        
+      .headerAccordion {  
+          color: White;  
+         background-color:#666666;
+         cursor: pointer;
+          padding: 4px;  
+          border:1px solid #000;           
+                                         
+      }  

@@ -1,0 +1,44 @@
+#nav {
+	  height :50px;
+    width :1000px;
+    color: white;
+    font-family :Verdana;
+    font-size :10px;
+    font-weight: bold;
+}
+#nav ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+#nav li {
+	   float:left;
+    height:33px;
+    margin-top:12px;
+    padding-top:5px;
+    border-right: 1px solid;
+}
+#nav ul li:last-child
+{
+    border-right: 0px;
+}
+#nav a {
+	   color:white;
+    padding:5px 15px 15px 15px;
+    overflow:hidden;
+    text-decoration:none;
+}
+#nav a:hover
+{
+    
+ background:#F1F1F1;
+
+}
+#page {
+	margin-left: 170px;
+}
+#nav li.current {
+
+  /*background:#F1F1F1;
+    color:#000;*/
+}

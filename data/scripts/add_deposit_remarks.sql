@@ -1,0 +1,3 @@
+ALTER TABLE CF_Deposit
+ADD Deposit_Remarks NVARCHAR(MAX)
+GO

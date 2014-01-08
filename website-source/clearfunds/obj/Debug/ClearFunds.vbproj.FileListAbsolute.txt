@@ -1,0 +1,20 @@
+D:\Live Projects\ClearFunds\ClearFunds\bin\ClearFunds.dll
+D:\Live Projects\ClearFunds\ClearFunds\bin\ClearFunds.pdb
+D:\Live Projects\ClearFunds\ClearFunds\bin\ClearFunds.xml
+D:\Live Projects\ClearFunds\ClearFunds\obj\Debug\ResolveAssemblyReference.cache
+D:\Live Projects\ClearFunds\ClearFunds\obj\Debug\ClearFunds.Resources.resources
+D:\Live Projects\ClearFunds\ClearFunds\obj\Debug\GenerateResource.read.1.tlog
+D:\Live Projects\ClearFunds\ClearFunds\obj\Debug\GenerateResource.write.1.tlog
+D:\Live Projects\ClearFunds\ClearFunds\obj\Debug\ClearFunds.dll
+D:\Live Projects\ClearFunds\ClearFunds\obj\Debug\ClearFunds.xml
+D:\Live Projects\ClearFunds\ClearFunds\obj\Debug\ClearFunds.pdb
+F:\ClearFunds\bin\ClearFunds.dll
+F:\ClearFunds\bin\ClearFunds.pdb
+F:\ClearFunds\bin\ClearFunds.xml
+F:\ClearFunds\obj\Debug\ResolveAssemblyReference.cache
+F:\ClearFunds\obj\Debug\ClearFunds.Resources.resources
+F:\ClearFunds\obj\Debug\GenerateResource.read.1.tlog
+F:\ClearFunds\obj\Debug\GenerateResource.write.1.tlog
+F:\ClearFunds\obj\Debug\ClearFunds.dll
+F:\ClearFunds\obj\Debug\ClearFunds.xml
+F:\ClearFunds\obj\Debug\ClearFunds.pdb

@@ -1,0 +1,160 @@
+﻿<%@ Master Language="VB" CodeFile="newmember.master.vb" Inherits="login" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Src="~/account/SmallLogOut.ascx" TagName="smallLogout" TagPrefix="uc3" %>
+<%@ Register Src="~/Account/Logout1.ascx" TagName="Logout" TagPrefix="uc4" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    
+    <title>Clear Funds</title>
+      <link href="c_style.css" rel="stylesheet" type="text/css" />
+     <link href="css/l_style.css" rel="stylesheet" type="text/css" />
+     <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
+    <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+     
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+   
+    ccon<asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+          <div class="main_topbg">
+                  <div class="logo_butt"><uc3:smallLogout ID="SmallLogout1" runat="server" /></div>
+            <div  id="pnllogin" runat="server" visible="false" class="main_top"><!---start main_top-->
+            
+            <div class="main_left"><!---start main_left-->
+            	<p>Sales& Support & Payments: <span style="color:#fff;">23984305-0000-4400</span></p>
+            </div><!---end main_left-->
+            <div class="main_right"><!---start main_right-->
+            	<ul>
+           			<li><a href="support.aspx">Support</a></li>
+                	<li>/</li>
+                	<li><%--<a href="Account/Login.aspx">Login</a>--%>
+                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
+                    </li>
+                
+             </ul>
+             <div><a href="~/Register.aspx"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/Register.aspx" runat="server">
+                        <asp:Image ID="Image3" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/sign.png" runat="server" /></asp:HyperLink></a></div>
+            </div><!---end main_right-->
+        </div><!---end main_top-->
+</div>
+   
+
+     <div class="acc_logo_wp"><!---acc_logo_wp start ---->
+    	<div class="acc_center-wp"><!---acc_center-wp start ---->
+		 	<div class="acc_center"><!---acc_center start ---->
+    			<div class="acc_logo">
+                <div class="acc_logo_img">
+               <asp:ImageButton PostBackUrl="~/Default.aspx"  ImageUrl="~/images/lgn_logo.png" ID="ImageButton1" runat="server" />
+                </div>
+				</div>
+                </div>
+                
+         	<div class="acc_nav"><!---acc_nav start---->
+            <div class="acc_nav1">
+            <div class="acc_nav_lft">
+                
+            <img src="images/rit_head.png" />
+            </div>
+            <div id="divmenu" runat="server" class="acc_nav_center"><!---acc_nav_center start-->
+            	<ul>
+                    <%--<li><a href="#">My account</a></li>
+                    <li><a href="#">My services</a></li>
+                    <li><a href="#">My domains</a></li>
+                    <li><a href="#">My tickets</a></li>--%>
+				</ul>
+                </div><!---acc_nav_center end-->
+                <div class="acc_nav_rgt">
+                <img src="images/rit_head1.png" />
+                </div>
+                </div>
+                
+        	</div><!---acc_nav end---->
+            <div id="menu" class="acc_center" visible="false" runat="server">
+           	<div class="acc_infmn"><!---acc_infmn start---->
+            
+              <ul id="MenuBar1" class="MenuBarHorizontal">
+  <li><asp:HyperLink ID="HyperLink10" NavigateUrl="~/Account/Home.aspx" runat="server"    Font-Underline="False" ForeColor="Black" CssClass="Invoices">DashBoard</asp:HyperLink>  </li>
+  
+  
+<li><asp:HyperLink ID="HyperLink18" NavigateUrl="~/Account/Account.aspx" runat="server"    Font-Underline="False" ForeColor="Black">Account</asp:HyperLink>   </li>    
+<li> <asp:HyperLink ID="HyperLink11" NavigateUrl="~/Account/MakeDeposit.aspx" runat="server" Font-Underline="False" ForeColor="Black">Make Deposit</asp:HyperLink> </li>
+<li> <asp:HyperLink ID="HyperLink19" NavigateUrl="~/Account/CurrentPlan.aspx" runat="server" Font-Underline="False" ForeColor="Black">Current plan</asp:HyperLink></li>
+<li> <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Account/profile.aspx" runat="server" Font-Underline="False" ForeColor="Black">profile</asp:HyperLink></li>
+<li> <asp:HyperLink ID="HyperLink34" NavigateUrl="~/Account/WithDraw.aspx" runat="server" Font-Underline="False" ForeColor="Black">Withdraw</asp:HyperLink> </li>
+<li> <asp:HyperLink ID="HyperLink33" NavigateUrl="~/Account/YourReferrals.aspx" runat="server" Font-Underline="False" ForeColor="Black">Your Referrals</asp:HyperLink> </li>
+<li><asp:HyperLink ID="HyperLink20" NavigateUrl="~/Account/Referral_link.aspx" runat="server" Font-Underline="False" ForeColor="Black" CssClass="MenuBarItemSubmenu">Referral Links</asp:HyperLink>
+
+<li><asp:HyperLink ID="HyperLink1" NavigateUrl="~/Account/Forum.aspx" runat="server" Font-Underline="False" ForeColor="Black">My Tickets</asp:HyperLink></li>
+                            
+                                
+
+		<%--<ul>
+          <li><a href="#">Item 3.1</a></li>
+          <li><a href="#">Item 3.1</a></li>
+           <li><a href="#">Item 3.1</a></li>
+            <li><a href="#">Item 3.1</a></li>
+             <li><a href="#">Item 3.1</a></li>
+              <li><a href="#">Item 3.1</a></li>
+        </ul>--%>
+</li>
+</ul>
+            
+            </div><!---acc_infmn end---->
+		</div><!---acc_center-wp end ---->
+
+
+
+
+
+
+         </div>
+    </div>
+
+    <div class="acc_center">
+    <div class="acc_cnt"><!---acc_cnt start---->
+        	
+            <div class="acc_mn"><!---ac_mn start--->
+            
+           		<div class="acc_mn_lft"><!---ac_mn_lft start--->
+                
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+          
+        </asp:ContentPlaceHolder>
+        </div>
+        </div>
+        <div id="Menuleft"  runat="server" visible="false" class="acc_mn_rgt" ><!---acc_mn_rgt start--->
+    <h4>Account and Payments</h4>
+                <h5>Account Balance</h5>
+                <p>£ 2.43</p>
+                <h5>Current Active plan:</h5>
+                <p>110% after 3 days</p>
+                <h5>Next Required Payment </h5>
+                <p>$ 200.00 by 25/02/2013 by12/01/2013</p>
+                <div class="acc_btn">
+                <div class="acc_btn_cnt">
+                <a href="#"> <img src="images/acc_btn_arr.png"  />
+                   <%-- <asp:ImageButton ID="ImageButton2" ImageUrl="images/acc_btn_arr.png" PostBackUrl="~/Account/WithDraw.aspx" runat="server" />--%>
+                    <asp:HyperLink ID="HyperLink2" CssClass="withdrwrit" NavigateUrl="~/Account/WithDraw.aspx" runat="server">Withdtraw Funds</asp:HyperLink>
+               <%--   <p> Withdtraw Funds</p>--%></a>
+                </div>
+        </div>
+        </div>
+        
+       <div class="clear"></div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

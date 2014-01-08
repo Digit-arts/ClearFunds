@@ -1,0 +1,130 @@
+﻿<%@ Master Language="VB" CodeFile="Member.master.vb" Inherits="Member" %>
+<%@ Register Src="~/account/SmallLogOut.ascx" TagName="smallLogout" TagPrefix="uc3" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Clear Funds</title>
+    <link href="c_style.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<div style="background:#fff;"
+       <form runat="server">
+        <div class="main_topbg">
+                  <div class="logo_butt"><uc3:smallLogout ID="SmallLogout1" runat="server" /></div>
+            <div  id="pnllogin" runat="server" class="main_top"><!---start main_top-->
+            
+            <div class="main_left"><!---start main_left-->
+            	Sales& Support & Payments : 23984305-0000-4400
+            </div><!---end main_left-->
+            <div class="main_right"><!---start main_right-->
+            	<ul>
+           			<li><a href="support.aspx">Support</a></li>
+                	<li>/</li>
+                	<li><%--<a href="Account/Login.aspx">Login</a>--%>
+                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
+                    </li>
+                
+             </ul>
+             <div><a href="~/Register.aspx"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/Register.aspx" runat="server">
+                        <asp:Image ID="Image3" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/sign.png" runat="server" /></asp:HyperLink></a></div>
+            </div><!---end main_right-->
+        </div><!---end main_top-->
+</div>
+        <div class="header"><!---start header-->
+        	<div class="header_left"><!---start header_left-->
+            	<%--<img src="~/images/cf.png" alt="" />--%>
+                <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Default.aspx"  runat="server">
+                        <asp:Image ID="Image1" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/cf.png" runat="server"  /></asp:HyperLink>   
+            </div><!---end header_left-->
+            <div class="header_right"><!---start header_right-->
+            	<%--<img src="images/girl_img.png" alt="" />--%>
+                <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Default.aspx" runat="server">
+                        <asp:Image ID="Image2" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/girl_img.png" runat="server" /></asp:HyperLink>
+            </div><!---end header_right-->
+         </div><!---end header-->
+
+
+          <div class="main_menu"><!--main_menu div start-->
+          <div class="mmenueft">
+              <asp:HyperLink ID="HyperLink4" runat="server">
+                        <asp:Image ID="Image4" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/left_arrow.png" runat="server" /></asp:HyperLink>
+          
+         <%-- <img src="images/left_arrow.png" alt="" />--%>
+          
+          
+          </div>
+         	<div id="divmenu" runat="server" class="menucenter"><!---start menu_top-->
+            	<ul>
+                    
+
+                <li>               
+                      <asp:HyperLink ID="HyperLink8" NavigateUrl="~/Default.aspx" runat="server">HOME</asp:HyperLink></li>
+                    <li>  <asp:HyperLink ID="HyperLink7" NavigateUrl="~/support.aspx" runat="server">SUPPORT</asp:HyperLink></li>
+                    <li> <asp:HyperLink ID="HyperLink9" NavigateUrl="~/Stats.aspx" runat="server">STATS</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink17" NavigateUrl="~/rules.aspx" runat="server">RULES</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink21" NavigateUrl="~/InvestorsTop.aspx" runat="server">TOP TEN</asp:HyperLink></li>
+                   <li><asp:HyperLink ID="HyperLink22" NavigateUrl="~/Rateus.aspx" runat="server">RATE US</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink30" NavigateUrl="~/Account/Profile.aspx" runat="server" Visible="false" >PROFILE</asp:HyperLink>
+                    </li>
+                    <li> <asp:HyperLink ID="HyperLink23" NavigateUrl="~/Contact.aspx"  runat="server">CONTACT US</asp:HyperLink></li>
+                	</ul>
+            </div><!---end menu_top-->
+             <div class="mmenueft">
+                 <asp:HyperLink ID="HyperLink5" runat="server">
+                        <asp:Image ID="Image5" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/right_arrow.png" runat="server" /></asp:HyperLink>
+             
+             
+            <%-- <img src="images/right_arrow.png" alt="" />--%></div>
+
+        </div><!--main_menu div end--> 
+         <div class="main"><!---start main-->
+         <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+         
+               <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+         
+         <div class="clear"></div>
+
+         </div>    <!---start end-->
+        
+
+
+   
+
+
+
+    <div class="footer"><!---footer div start-->
+    	<div class="footer_main"><!---fooder_main div start-->
+        	<div class="footer_menu"><!---footer_menu start-->
+              <ul>
+               <li>  <asp:HyperLink ID="HyperLink24" NavigateUrl="~/Default.aspx" runat="server">HOME</asp:HyperLink></li>
+                    <li>  <asp:HyperLink ID="HyperLink25" NavigateUrl="~/support.aspx" runat="server">SUPPORT</asp:HyperLink></li>
+                    <li> <asp:HyperLink ID="HyperLink26" NavigateUrl="~/Stats.aspx" runat="server">STATS</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink27" NavigateUrl="~/rules.aspx" runat="server">RULES</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink28" NavigateUrl="~/InvestorsTop.aspx" runat="server">TOP TEN</asp:HyperLink></li>
+                   <li>  <asp:HyperLink ID="HyperLink31" NavigateUrl="~/Register.aspx" runat="server">Sign Up</asp:HyperLink></li>
+                   <li>  <asp:HyperLink ID="HyperLink29" NavigateUrl="~/Contact.aspx" runat="server">Contact Us</asp:HyperLink></li>
+                </ul>
+            </div><!---footer_menu end-->
+            <div class="footer_copy">
+            	<div class="footer_cleft">Copyright © 2006-2013, Clear funds.com</div>
+                <div class="footer_cright">Privacy Policy</div>
+            </div>
+        </div><!---footer_main div end-->
+    </div><!---footer div end-->
+
+
+
+</form> 
+</div>
+</body>
+</html>

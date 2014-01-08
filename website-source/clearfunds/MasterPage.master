@@ -1,0 +1,195 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+<%@ Register Src="~/Account/SmallLogOut.ascx" TagName="smallLogout" TagPrefix="uc3" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="c_style.css" rel="stylesheet" type="text/css" />
+    <link href="css/l_style.css" rel="stylesheet" type="text/css" />
+ 
+
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+
+</div>
+ <div class="main_topbg">
+                  <div> <uc3:smallLogout ID="SmallLogout1" runat="server" /></div>
+            <div  id="pnllogin" runat="server" visible="false" class="main_top"><!---start main_top-->
+            
+            <div class="main_left"><!---start main_left-->
+            	<p>Sales& Support & Payments: <span style="color:#fff;">23984305-0000-4400</span></p>
+            </div><!---end main_left-->
+             <div class="main_right"><!---start main_right-->
+            	<ul>
+           			<li><a href="support.aspx">Support</a></li>
+                	<li>/</li>
+                	<li><%--<a href="Account/Login.aspx">Login</a>--%>
+                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
+                    </li>
+                
+             </ul>
+             <div><a href="~/Register.aspx"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/Register.aspx" runat="server">
+                        <asp:Image ID="Image3" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/sign.png" runat="server" /></asp:HyperLink></a></div>
+            </div><!---end main_right-->
+            
+            </div> 
+<div class ="clear_main ">   
+<div id="container">
+	<!-- Header -->
+    <div id="header">
+    <div class="header_left">
+                <asp:HyperLink ID="HyperLink2" NavigateUrl="~/Default.aspx"  runat="server">
+                        <asp:Image ID="Image1" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/cf.png" runat="server"  /></asp:HyperLink>   
+                            </div> 
+                            
+       
+        </div> 
+         
+            
+	</div>
+	<div id="menu" runat="server" class="png_bg">
+			<%--<ul>
+                    
+
+                <li>               
+                      <asp:HyperLink ID="HyperLink8" NavigateUrl="~/Default.aspx" runat="server">HOME</asp:HyperLink></li>
+                    <li>  <asp:HyperLink ID="HyperLink7" NavigateUrl="~/support.aspx" runat="server">SUPPORT</asp:HyperLink></li>
+                    <li> <asp:HyperLink ID="HyperLink9" NavigateUrl="~/Stats.aspx" runat="server">STATS</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink17" NavigateUrl="~/rules.aspx" runat="server">RULES</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink21" NavigateUrl="~/InvestorsTop.aspx" runat="server">TOP TEN</asp:HyperLink></li>
+                   <li><asp:HyperLink ID="HyperLink22" NavigateUrl="~/Rateus.aspx" runat="server">RATE US</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink30" NavigateUrl="~/Account/Profile.aspx" runat="server" Visible="false">PROFILE</asp:HyperLink>
+                    </li>
+                    <li> <asp:HyperLink ID="HyperLink23" NavigateUrl="~/Contact.aspx"  runat="server">CONTACT US</asp:HyperLink></li>
+                	</ul>--%>
+		
+		<div class="search">
+			<form id="search_form" action="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/index.html#" method="get">
+					<input id="search_input" type="text" value="" name="s">
+					<input id="search_submit" type="submit" value="" name="SearchSubmit">
+			</form>
+		</div>
+	</div>
+    <!-- /Header -->
+    
+	<!-- Main content alpha -->
+	<%--<div class="main png_bg">--%>
+		<%--<div class="inner_main">--%>
+		<!-- True containers (keep the content inside containers!) -->
+			
+			
+			<div class="container_gamma slogan">
+	
+
+        <asp:ContentPlaceHolder id="MainContent" runat="server">
+        
+         
+        
+        </asp:ContentPlaceHolder>
+      
+  
+       
+   
+			</div>
+			
+			
+		<%--</div>--%>
+		<!-- /True containers (keep the content inside containers!) -->
+    <%--</div>--%>
+    
+	<!-- /Main content alpha -->
+	
+	<!-- Footer styling transition (the stripe). You can remove it if you don't like it -->
+	
+	<!-- /Footer styling transition -->
+	
+	<!-- Footer -->
+<%--	<div id="footer_top" class="png_bg"></div>--%>
+<div id="footer">
+	
+				<div class="gs_2 widget" style="height: 167px;">
+					<h4 class="widgettitle">Pages</h4>
+					<ul>
+               <li>  <asp:HyperLink ID="HyperLink24" NavigateUrl="~/Default.aspx" runat="server">HOME</asp:HyperLink></li>
+                    <li>  <asp:HyperLink ID="HyperLink25" NavigateUrl="~/support.aspx" runat="server">SUPPORT</asp:HyperLink></li>
+                    <li> <asp:HyperLink ID="HyperLink26" NavigateUrl="~/Stats.aspx" runat="server">STATS</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink27" NavigateUrl="~/rules.aspx" runat="server">RULES</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="HyperLink28" NavigateUrl="~/InvestorsTop.aspx" runat="server">TOP TEN</asp:HyperLink></li>
+                   <li>  <asp:HyperLink ID="HyperLink31" NavigateUrl="~/Register.aspx" runat="server">SIGN UP</asp:HyperLink></li>
+                   <li>  <asp:HyperLink ID="HyperLink29" NavigateUrl="~/Contact.aspx" runat="server">CONTACT US</asp:HyperLink></li>
+                </ul>
+				</div>
+				<div class="gs_4 widget" style="height: 167px;">
+					<div class="add_border alignleft no_bottom_margin" style="width: 45px; background-image: url(file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/css/img/zoom.png);"><img src="./index_files/ds.jpg" alt="" class="border_magic" style="display: block;"></div>
+					<h4 class="widgettitle">Contact with us!</h4>
+					<p>Got some questions? Need advice? Get in touch with us!</p>
+					<p><strong>by phone:</strong> +48 555-654-983 <br>
+					<strong>by mail:</strong> <a href="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/index.html#">johndoes@ohnoes.com</a><br>
+					<strong>or by our:</strong> <a href="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/contact.html">Contact Page</a></p>
+				</div>
+				<div class="gs_4 widget" style="height: 167px;">
+					<h4 class="widgettitle">Newsletter</h4>
+					<p>Subscribe to our newsletter to always be up to date! See more, learn more.</p>
+						<form action="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/mail.php" id="subscribe-form" method="post">
+							<input type="text" name="email" id="email" value="Type in your email" title="Type in your email">
+							<input name="submitted" id="submit" value="Submit" class="superbutton" type="submit">
+						</form>
+					<ul class="icons">
+						<li><a href="http://www.facebook.com/pages/designsentry/110639872348300"><img src="./index_files/facebook_16.png" alt="designsentry on facebook"></a></li>
+						<li><a href="http://twitter.com/designsentry"><img src="./index_files/twitter_16.png" alt="designsentry on twitter"></a></li>
+						<li><a href="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/index.html#"><img src="./index_files/myspace_16.png" alt=""></a></li>
+						<li><a href="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/index.html#"><img src="./index_files/picasa_16.png" alt=""></a></li>
+						<li><a href="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/index.html#"><img src="./index_files/youtube_16.png" alt=""></a></li>
+						<li><a href="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/index.html#"><img src="./index_files/vimeo_16.png" alt=""></a></li>
+					</ul>
+				</div>
+				<div class="gs_2 omega widget" style="height: 167px;">
+				<h4 class="widgettitle">Our Affiliates</h4>
+				<p>Lorem Ipsum is simply dummy text. </p>
+				<ul>
+						<li><a href="http://www.designsentry.com/">DesignSentry</a></li>
+						<li><a href="http://www.themeforest.net/user/EvGreen/portfolio?ref=evgreen">Themeforest</a></li>
+						<li><a href="file:///D:/thiru/BUYERS%20PACKAGE/THE%20THEME/index.html#">FreshBananas</a></li>
+				</ul>
+				
+				</div>
+	</div></div>
+	<div id="footer_bottom" class="png_bg"><p>Copyrights © <a href="http://www.Clearfunds.acopies.com/">Clearfunds</a> 2006-2013. All rights reserved.</p></div>
+	<!-- /footer -->
+	
+	
+	
+	
+ 
+	
+  </div> <!--! end of #container -->
+
+
+  <!-- Javascript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+  <%--<script src="file://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script>      !window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.4.2.min.js"%3E%3C/script%3E'))</script><script src="./index_files/jquery-1.4.2.min.js"></script>
+  
+  
+  <!-- scripts concatenated and minified via ant build script-->
+  <script src="./index_files/plugins.js"></script>
+  <script src="./index_files/script.js"></script>--%>
+  <!-- end concatenated and minified scripts-->
+  
+  <!--[if lt IE 7 ]>
+    <script src="js/libs/dd_belatedpng.js"></script>
+    <script> DD_belatedPNG.fix('img, .png_bg, .sidebar, .sidebar ul, .sidebar ul li, .sidebar ul li a'); //fix any <img> or .png_bg background-images </script>
+  <![endif]-->
+
+   </form>
+</body>
+</html>

@@ -1,0 +1,261 @@
+﻿body {background: #E5E5E5 url(../img/bg_login_page.png) repeat-x top; height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 16px; margin:0; padding: 0;  color: #666;}
+
+.accountInfo { width : 387px; height :auto; margin :190px auto; border-radius: 20px; -moz-border-radius: 20px; background: #000 url(../img/bg_login_box.png) repeat-x top; border-bottom: 1px solid #fff; }
+
+.login_header { width :387px; height:30px; text-align: center; padding: 15px 0; background: url(../img/bg_login_header.png) repeat-x bottom; border-bottom: 1px solid #424242; border-top-left-radius: 20px; border-top-right-radius: 20px; -moz-border-radius-topright: 20px; -moz-border-radius-topleft: 20px;}
+
+.login_content  {width: 260px; margin: 0 auto; padding:0px; color:#dddddd;}
+
+.lable_size  { color: #ddd; font-weight: 700; text-shadow: 1px 1px 1px #222; margin :0px; padding :0px; }
+
+.text_size {width: 240px; padding: 10px; border: 1px solid #fff; border-radius: 8px; -moz-border-radius: 8px; font-size: 15px; margin: 10px 0;}
+
+ .login_content fieldset    { margin :0px; padding :0px; border :0px;}
+ 
+ .login_header h2 {color:#dddddd; margin:0px;}
+ 
+ .login_header h2 a {color:#f1b636;}
+
+.btn_style  { -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("img/bg_login_btn.png") repeat-x scroll center top #f1b636;
+    border-color: #f1b636 -moz-use-text-color -moz-use-text-color;
+    border-image: none;
+    border-radius: 8px 8px 8px 8px;
+    border-right: medium none;
+    border-style: solid none none;
+    border-width: 1px medium medium;
+    color: #1C5571;
+    cursor: pointer;
+    display: block;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 5px 0 0;
+    padding: 11px 0;
+    text-shadow: 1px 1px 1px #9CCED6;
+    width: 260px;}
+    
+    .login p
+    {
+        margin:3px 0px 0px 0px; 
+    }
+    
+    .main
+    {
+     width:100%; height:auto; float:left;    background: url("../Images/back_con_bg.png") repeat; border:1px solid #363434;  
+    }
+    
+    
+    .ad_mtop
+    {
+        width:102.2%; height:53px; float:left; margin-left:-18px; position:relative;  
+    }
+    
+    .bmain_tcurve
+    {
+        width:21px; height:53px; float:left; 
+    }
+    
+    .bmain_bcurve
+    {
+         width:21px; height:53px; float:left; 
+    }
+    
+    .bmain_center
+    {
+        width:auto; height:53px; float:left;   background: url("../Images/center_menubg.png") repeat-x; min-width:97.46%;
+    }
+    
+    .mainbinner
+    {
+        width:100%; height:auto; float:left; position:relative; 
+    }
+    
+    .mainbinner table
+    {
+        width:100%; height:auto; float:left; background:#fff; border:3px solid #e5e5e5; margin:10px;
+    }
+    
+     .mainbinner table td
+     {
+         vertical-align:top;
+     }
+     .mainbinner table td span
+     {
+         font:bold 12px Arial, Helvetica, sans-serif;
+     }
+      .mainbinner h2
+      {
+           position:absolute; top:-30px; left:10px; font:bold 20px Arial, Helvetica, sans-serif; text-transform:uppercase; color:#000;
+      }
+     
+     .add_button
+     {
+         width:100%; height:auto; float:left; 
+     }
+     
+      .add_button a
+      {
+          
+      }
+    
+  .plan_con
+{
+    width:98.4% !important; height:auto; float:left; background:#fff; border:3px solid #e5e5e5; margin:10px;
+}
+
+ .plan_con table
+ {
+     background:none; border:0px; width:90%; margin:0px !important; 
+ }
+ 
+  table.pack_top1
+ {
+     width:50.5%; height:auto; float:left; 
+ }
+ 
+ .add_button
+ {
+    width:100%; height:auto; margin:15px 0px; 
+ }
+ 
+ .add_button a
+ {
+    background: url("../Images/bg_btn.png") no-repeat; width:91px; height:29px;  display:block; text-align:center; color:#fff; margin-left:10px;   
+ }
+ 
+ .add_button a img
+ {
+     padding-top:5px; float:left; padding-left:10px; 
+ }
+ 
+  .add_button a span
+  {
+      float:left; padding-top:5px;  font:bold 14px Arial, Helvetica, sans-serif; text-transform:uppercase; padding-left:5px;
+    height: 21px;
+}
+  
+  .pack_tab
+  {
+      padding:10px 0px; width:98.7% !important; float:left;  
+  }
+  
+  .pack_tab a
+  {
+       font:bold 12px Arial, Helvetica, sans-serif; text-decoration:none; color:#CA7F03; 
+  }
+  .pack_tab a:hover
+  {
+      color:#000; text-decoration:underline;
+  }
+  .progress
+  {
+     width:95%; height:auto; margin:auto; 
+  }
+  
+  .pack_tab span
+  {
+      font: bold 12px  Arial, Helvetica, sans-serif; color:#fff; padding-left:5px; float:left; margin-top:4px; 
+  }
+  
+   .pack_tab .aspNetDisabled    { margin-bottom:7px; }
+  
+  .tablcon
+  {
+      width:100%; height:auto; float:left; 
+  }
+  
+   .tablcon tr td
+   {
+       padding:0px; 
+   } 
+   
+   .inner table
+   
+   {
+       width:99%; height:auto; float:left; border-bottom:1px solid #e5e5e5;
+   }
+   
+   .inner b span
+   {
+       font:bold 12px Arial, Helvetica, sans-serif; padding-left:7px; color:#CA7F03;  
+   }
+   
+   #MainContent_divlblgrid a
+   {
+       padding-left:10px; 
+   }
+   
+   .con_text2
+   {
+       width:58.5% !important; 
+   }
+   
+   .inncontt span
+   {
+       float:left; 
+   }
+   
+    .inncontt input
+    {
+        float:left; padding-right:5px;
+    }
+    
+    .inncontt label
+    {
+        width:130px;  float:left; 
+    }
+    
+     .inncontt td
+     {
+         width:auto; float:left; 
+     }
+     
+     .plan_con4 table span label
+     {
+         float:left; 
+     }
+     
+     .pack_top4 tr td span label
+     {
+         width:auto; float:left; 
+     }
+     
+      .pack_top4 tr td span input
+      {
+          float:left; 
+      }
+      
+      
+       
+        table.pack_top4 
+        {
+            width:100%; height:auto; float:left; 
+        }
+        
+        .pack_top4 tr td
+        {
+            padding-left:0px; padding-top:0px; padding-bottom:0px; width:30px; 
+        }
+        
+       /*pagination*/
+       
+       .pagination
+    {
+      background:#cccccc;
+   
+    }
+    
+  
+    .plan_con .smallbox                { width:170px !important; }
+    
+    #MainContent_txtadminnote { width:410px !important;}
+    
+    .tablcon tr td                            { padding:0px 10px; }
+    
+   table#MainContent_GVDepositDetails,#MainContent_GVWDHistory  { width:98.6% !important; margin-top:0px; margin-bottom:0px; }
+   
+   .depos_con              {width:auto; background:none; border:0px; color:#fff; float:right;  font:bold 16px Arial, Helvetica, sans-serif; margin:7px 13px 7px 0px; text-transform:uppercase;  }
