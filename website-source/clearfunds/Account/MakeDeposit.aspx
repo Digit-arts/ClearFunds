@@ -23,6 +23,12 @@
     <h2 style="left: 330px;">Make deposit</h2>
     <div class="clear"></div>
     <br />
+    <div id="errorblock" runat="server" visible="false" class="top-message-block errorblock" enableviewstate="false">
+        <asp:Label runat="server" Text="test" ID="txtError" />
+    </div>
+    <div id="successblock" runat="server" visible="false" class="top-message-block successblock" enableviewstate="false">
+        <asp:Label runat="server" Text="test" ID="txtSuccess" />
+    </div>
     <div id="maindiv" runat="server">
         <asp:Panel ID="Panel1" runat="server" class="content-block" meta:resourcekey="Panel1Resource1">
             <h3>Select a payment plan</h3>

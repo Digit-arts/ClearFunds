@@ -16,73 +16,8 @@ Partial Class Account_UserEntryTickets
      
         If Not Session("User_Id") = Nothing Then
             obj.Fill_DropDown("select category_name,category_Id from Ticket_Category", drpcategories)
-            'Dim admincount As String = obj.Returnsinglevalue("select Settings_TicketDefaulttime from CF_Settings")
-            'Dim originDate As Date = Date.Parse(DateAndTime.Now)
-            'Dim daysToAdd As Integer = Integer.Parse(admincount)
-            'Dim result As Date = originDate.AddDays(daysToAdd)
-            'ViewState("date") = result
-            'result1 = result.ToString("dd/MM/yyyy")
-            'txtdatetime.Text = result1
             Dim uid As Guid = Membership.GetUser.ProviderUserKey()
             Dim uid1 As String = Convert.ToString(uid)
-            'Dim uname As String = obj.Returnsinglevalue("select username from aspnet_users where userId='" + uid1 + "'")
-            'txtusername.Text = uname
-            'Dim email As String = obj.Returnsinglevalue("select email from aspnet_membership where userId='" + uid1 + "'")
-            'txtemailaddress.Text = email
-            '    If IsPostBack = False Then
-
-            '        SelectedIndexId = Session("User_Id")
-
-            '        dt = obj.returndatatable("select c.Tickets_Id, c.Tickets_Sender,c.Tickets_Operator,b.Tickets_UserName,b.Tickets_CategoryId,c.Tickets_Priority,c.Tickets_Date,c.Tickets_Problem,c.Tickets_Comment  from Tickets c left join Ticket_Category b  on c.Tickets_CategoryId=b.Category_Id   where c.TicketsUserId='" + SelectedIndexId + "'", dt)
-            '        If dt.Rows.Count > 0 Then
-            '            txtcustomerid.Text = dt.Rows(0).Item("User_Saluation").ToString()
-            '            txtsender.Text = dt.Rows(0).Item("User_FirstName").ToString()
-            '            txtoperator.Text = dt.Rows(0).Item("User_LastName").ToString()
-            '            txtusername.Text = dt.Rows(0).Item("UserName").ToString()
-            '            txtemailaddress.Text = dt.Rows(0).Item("User_Addr1").ToString()
-            '            txtdatetime.Text = dt.Rows(0).Item("User_Addr2").ToString()
-            '            txtproblem.Text = dt.Rows(0).Item("User_City").ToString()
-            '            txtcomment.Text = dt.Rows(0).Item("User_Region").ToString()
-
-
-
-
-            '            For i = 0 To drpcategories.Items.Count - 1
-            '                If drpcategories.Items(i).Text = dt.Rows(0).Item("CustomProcessing_Name").ToString Then
-            '                    drpcategories.SelectedIndex = i
-            '                End If
-            '            Next
-
-
-            '            For i = 0 To ddlpriority.Items.Count - 1
-            '                If ddlpriority.Items(i).Text = dt.Rows(0).Item("CustomProcessing_Name").ToString Then
-            '                    ddlpriority.SelectedIndex = i
-            '                End If
-            '            Next
-
-
-
-
-
-
-            '        Else
-
-
-            '        End If
-
-
-
-
-            '        'End If
-            '    Else
-            '        'Response.Redirect("login.aspx")
-            '    End If
-
-
-
-
-
-
         Else
             Response.Redirect("login.aspx")
 

@@ -18,6 +18,7 @@ Partial Class Account_MakeDeposit
     Dim selectedIndexDetId As String = ""
     Dim selectedIndexDetIdnew As String = ""
     Dim userid1 As Guid
+    Dim depositID As String = ""
     Protected WithEvents resultSpan As New Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
 
@@ -250,7 +251,8 @@ Partial Class Account_MakeDeposit
 
             If count <> 0 And st < value Then
 
-                ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Sorry You Have Already Activate Your Plan');", True)
+                errorblock.Visible = True
+                txtError.Text = "Sorry You Have Already Activate Your Plan."
 
             Else
                 dt3 = obj.returndatatable("select CustomProcessing_id, CustomProcessing_Name  from dbo.CF_CustomProcessing", dt3)
@@ -265,11 +267,11 @@ Partial Class Account_MakeDeposit
                     Case "Add"
 
 
-                        ID = obj.getIndexKey()
+                        depositID = obj.getIndexKey()
 
                     Case "Modify"
 
-                        ID = SelectedIndexId
+                        depositID = SelectedIndexId
 
 
                     Case "Delete"
@@ -363,7 +365,7 @@ Partial Class Account_MakeDeposit
                             cmd.CommandText = "SP_CF_BonusDeposit"
                             cmd.Connection = con
                             cmd.Parameters.Add(New SqlParameter("@Mode", SqlDbType.VarChar, 10)).Value = obj.strMode
-                            cmd.Parameters.Add(New SqlParameter("@Deposit_Id", SqlDbType.VarChar, 10)).Value = ID
+                            cmd.Parameters.Add(New SqlParameter("@Deposit_Id", SqlDbType.VarChar, 10)).Value = depositID
                             cmd.Parameters.Add(New SqlParameter("@Deposit_UserId", SqlDbType.UniqueIdentifier)).Value = userid1
                             cmd.Parameters.Add(New SqlParameter("@Deposit_PackageId", SqlDbType.VarChar, 10)).Value = rbid
                             cmd.Parameters.Add(New SqlParameter("@Deposit_PackageDetId", SqlDbType.VarChar, 10)).Value = obj.Returnsinglevalue("select a.packagedet_id from cf_packagedet a join CF_Package b on a.Packagedet_PackageId=b.Package_Id where b.Package_Id ='" + rbid.ToString() + "'")
@@ -393,8 +395,7 @@ Partial Class Account_MakeDeposit
 
                             cmd.ExecuteNonQuery()
                             cmd.Parameters.Clear()
-                            'ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Deposited Successfully');", True)
-
+                            
                             Dim message As String = "Deposited SuccessFully"
                             Dim url As String = "MakeDeposit.aspx"
                             Dim script As String = "window.onload = function(){ alert('"
@@ -406,14 +407,15 @@ Partial Class Account_MakeDeposit
                             ClientScript.RegisterStartupScript(Me.GetType(), "Redirect", script, True)
 
                         ElseIf txtSpendAmount.Text = "" Then
-                            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('please enter the amount');", True)
+                            errorblock.Visible = True
+                            txtError.Text = "Please enter a valid amount."
                         Else
-                            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('pls select atleast one package');", True)
-
+                            errorblock.Visible = True
+                            txtError.Text = "Please select at least one package."
                         End If
                     Else
-                        ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Please Check Current Bonus Amount');", True)
-
+                        errorblock.Visible = True
+                        txtError.Text = "Please check your current bonus amount."
                     End If
 
                 Else
@@ -429,7 +431,7 @@ Partial Class Account_MakeDeposit
                         cmd.CommandText = "SP_CF_Deposit"
                         cmd.Connection = con
                         cmd.Parameters.Add(New SqlParameter("@Mode", SqlDbType.VarChar, 10)).Value = obj.strMode
-                        cmd.Parameters.Add(New SqlParameter("@Deposit_Id", SqlDbType.VarChar, 10)).Value = ID
+                        cmd.Parameters.Add(New SqlParameter("@Deposit_Id", SqlDbType.VarChar, 10)).Value = depositID
                         cmd.Parameters.Add(New SqlParameter("@Deposit_UserId", SqlDbType.UniqueIdentifier)).Value = userid1
                         cmd.Parameters.Add(New SqlParameter("@Deposit_PackageId", SqlDbType.VarChar, 10)).Value = rbid
                         cmd.Parameters.Add(New SqlParameter("@Deposit_PackageDetId", SqlDbType.VarChar, 10)).Value = obj.Returnsinglevalue("select a.packagedet_id from cf_packagedet a join CF_Package b on a.Packagedet_PackageId=b.Package_Id where b.Package_Id ='" + rbid.ToString() + "'")
@@ -463,11 +465,9 @@ Partial Class Account_MakeDeposit
 
 
                         obj.strMode = ""
-                        ' lblmsg.Visible = True
-                        ViewState("Deposit_Id") = ID
                         Session("Deposit_Id") = ID
                         Session("amount") = txtSpendAmount.Text
-                        packname = obj.Returnsinglevalue("select package_name from CF_Package a join  CF_Deposit b on a.Package_Id=b.Deposit_PackageId where  b.Deposit_UserId='" + userid1.ToString + "' and Deposit_Id='" + ViewState("Deposit_Id") + "'")
+                        packname = obj.Returnsinglevalue("select package_name from CF_Package a join  CF_Deposit b on a.Package_Id=b.Deposit_PackageId where  b.Deposit_UserId='" + userid1.ToString + "' and Deposit_Id='" + depositID + "'")
                         Session("itemname") = packname
                         ViewState("Deposit_PackageId") = rbid
                         userid1 = Membership.GetUser.ProviderUserKey
@@ -488,33 +488,27 @@ Partial Class Account_MakeDeposit
                             ElseIf paymethod = "PerfectMoney" Then
                                 ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Perfect money not registered');", True)
                             ElseIf paymethod = "SolidTrustPay" Then
-                                'paymentstp()
-                                Response.Redirect("~/stp.aspx")
+                                paymentstp()
                             ElseIf paymethod = "CreditCard" Then
                                 authorize()
-
                             End If
-
-
-
-
                         Else
-                            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('please choose any payment');", True)
-
+                            errorblock.Visible = True
+                            txtError.Text = "Please choose any payment method."
                         End If
                     ElseIf txtSpendAmount.Text = "" Then
-                        ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('please enter the amount');", True)
+                        errorblock.Visible = True
+                        txtError.Text = "Please enter the amount."
                     Else
-                        ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('pls select atleast one package');", True)
-
+                        errorblock.Visible = True
+                        txtError.Text = "Please select at least one package."
                     End If
                 End If
             End If
             ' End If
         Catch ex As Exception
-            Dim err As String = ex.Message
-
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('" + err + "');", True)
+            errorblock.Visible = True
+            txtError.Text = ex.Message
         Finally
 
         End Try
@@ -540,12 +534,12 @@ Partial Class Account_MakeDeposit
         email = obj.Returnsinglevalue("select Email from aspnet_Membership where UserId='" + userid.ToString + "'")
         postal = obj.Returnsinglevalue("select User_PostelCode from CF_User where User_UserId='" + userid.ToString + "'")
 
-        amount = obj.Returnsinglevalue("select Deposit_Amount from cf_deposit where Deposit_UserId ='" + userid.ToString + "' and Deposit_Id='" + ViewState("Deposit_Id") + "'")
+        amount = obj.Returnsinglevalue("select Deposit_Amount from cf_deposit where Deposit_UserId ='" + userid.ToString + "' and Deposit_Id='" + depositID + "'")
 
 
         firstname = obj.Returnsinglevalue("select User_FirstName from CF_User where User_UserId='" + userid.ToString + "'")
         city = obj.Returnsinglevalue("select User_City from CF_User where User_UserId='" + userid.ToString + "'")
-        packname = obj.Returnsinglevalue("select package_name from CF_Package a join  CF_Deposit b on a.Package_Id=b.Deposit_PackageId where  b.Deposit_UserId='" + userid.ToString + "' and Deposit_Id='" + ViewState("Deposit_Id") + "'")
+        packname = obj.Returnsinglevalue("select package_name from CF_Package a join  CF_Deposit b on a.Package_Id=b.Deposit_PackageId where  b.Deposit_UserId='" + userid.ToString + "' and Deposit_Id='" + depositID + "'")
 
         ' redirecturl += "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + ConfigurationManager.AppSettings("paypalemail").ToString()
 
@@ -567,7 +561,7 @@ Partial Class Account_MakeDeposit
         redirecturl += "&last_name=" + lastname
         redirecturl += "&city=" + city
         redirecturl += "&email=" + email
-        redirecturl += "&item_number=" + ViewState("Deposit_Id")
+        redirecturl += "&item_number=" + depositID
         redirecturl += "&item_name=" + packname
         redirecturl += "&amount=" + amount.ToString
         redirecturl += "&payer_email=" + payeremail
@@ -741,76 +735,106 @@ Partial Class Account_MakeDeposit
     'End Sub
     Public Sub paymentstp()
         Dim post_url = ""
-        post_url = "https://solidtrustpay.com/accapi/process.php?"
+        post_url = "https://www.solidtrustpay.com/handle.php"
         Dim post_values As New Dictionary(Of String, String)
-        post_values.Add("api_id", "api1")
-        post_values.Add("api_pwd", "41933e60e9c19b866b3d68864727afe7")
-        post_values.Add("user", "rizwan_ol")
+        post_values.Add("merchantAccount", "digitarts")
+        post_values.Add("sci_name", btnSubmit.ID)
+        post_values.Add("item_id", depositID)
         post_values.Add("amount", txtSpendAmount.Text)
-        post_values.Add("item_id", ViewState("Deposit_Id"))
         post_values.Add("currency", "USD")
-        post_values.Add("testmode", 0)
+        post_values.Add("return_url", ConfigurationManager.AppSettings("STPSuccessURL").ToString())
+        post_values.Add("confirm_url", ConfigurationManager.AppSettings("STPFailedURL").ToString())
+        post_values.Add("notify_url", ConfigurationManager.AppSettings("STPNotifyUrl").ToString)
+        post_values.Add("cancel_url", ConfigurationManager.AppSettings("STPCancelUrl").ToString)
+        post_values.Add("return_method", "POST")
+        post_values.Add("testmode", "OFF")
         Dim post_string As String = ""
         For Each field As KeyValuePair(Of String, String) In post_values
             post_string &= field.Key & "=" & HttpUtility.UrlEncode(field.Value) & "&"
         Next
         post_string = Left(post_string, Len(post_string) - 1)
-        Dim response As String = String.Empty
-        Dim myWriter As StreamWriter = Nothing
-        Dim objRequest As HttpWebRequest = CType(WebRequest.Create(post_url), HttpWebRequest)
-        objRequest.Method = "POST"
-        objRequest.ContentLength = post_string.Length
-        objRequest.ContentType = "application/x-www-form-urlencoded"
-        myWriter = New StreamWriter(objRequest.GetRequestStream())
-        myWriter.Write(post_string)
-        myWriter.Close()
-        Dim objResponse As HttpWebResponse = DirectCast(objRequest.GetResponse(), HttpWebResponse)
-        Dim sr As New StreamReader(objResponse.GetResponseStream())
-        Dim result As String = ""
-        Dim strTemp As String = ""
-        Dim flag As Boolean = True
-        While flag
-            strTemp = sr.ReadLine()
-            If strTemp IsNot Nothing Then
-                result += strTemp
-            Else
-                flag = False
-            End If
-        End While
 
-        response = result
-        ' decode the response string
-        response = HttpUtility.UrlDecode(response)
-        Dim arrResult As String() = result.Split("&"c)
-        Dim alert As String = "alert('" + response + "')"
-        ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", alert, True)
-        Dim htResponse As New Hashtable()
-        Dim responseItemArray As String()
-        For Each responseItem As String In arrResult
-            responseItemArray = responseItem.Split("="c)
-            htResponse.Add(responseItemArray(0), responseItemArray(1))
+        Response.Clear()
+
+        Dim sb As New StringBuilder()
+        sb.Append("<html>")
+        sb.AppendFormat("<body onload='document.forms[""form""].submit()'>")
+        sb.AppendFormat("<form name='form' action='{0}' method='post'>", post_url)
+        For Each field As KeyValuePair(Of String, String) In post_values
+                'sb.AppendFormat("<input type='hidden' name='{0}' value='{1}'>", field.Key, HttpUtility.UrlEncode(field.Value))
+            sb.AppendFormat("<input type='hidden' name='{0}' value='{1}'>", field.Key, field.Value)
         Next
+        sb.Append("</form>")
+        sb.Append("</body>")
+        sb.Append("</html>")
 
-        Dim strAck As String = htResponse("Transaction ID").ToString()
+        Response.Write(sb.ToString())
 
-        Dim strAck1 As String = strAck.Substring(24, 8)
-        If strAck1 = "ACCEPTED" Then
-            Dim con As New SqlConnection
-            con = New SqlConnection(obj.ConnectionString)
+        Response.End()
 
-            Dim cmd As New SqlCommand
-            Dim query As String
-            query = "update CF_WithDrawl set WithDrawl_Status= 'True' where WithDrawl_Id='" + ViewState("Wd_Id") + "'"
-            con.Open()
-            cmd = New SqlCommand(query, con)
-            cmd.ExecuteNonQuery()
-            con.Close()
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('SUCCESS');", True)
-            'successLabel.Text = response.ToString
-            sr.Close()
-        Else
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Payment failure');", True)
-        End If
+        'Dim response As String = String.Empty
+        'Dim myWriter As StreamWriter = Nothing
+        'Dim objRequest As HttpWebRequest = CType(WebRequest.Create(post_url), HttpWebRequest)
+        'objRequest.Method = "POST"
+        'objRequest.ContentLength = post_string.Length
+        'objRequest.ContentType = "application/x-www-form-urlencoded"
+        'myWriter = New StreamWriter(objRequest.GetRequestStream())
+        'myWriter.Write(post_string)
+        'myWriter.Close()
+        'Dim objResponse As HttpWebResponse = DirectCast(objRequest.GetResponse(), HttpWebResponse)
+        'Dim sr As New StreamReader(objResponse.GetResponseStream())
+        'Dim result As String = ""
+        'Dim strTemp As String = ""
+        'Dim flag As Boolean = True
+        'While flag
+        '    strTemp = sr.ReadLine()
+        '    If strTemp IsNot Nothing Then
+        '        result += strTemp
+        '    Else
+        '        flag = False
+        '    End If
+        'End While
+
+        'response = result
+        '' decode the response string
+        'response = HttpUtility.UrlDecode(response)
+        'Dim arrResult As String() = result.Split("&"c)
+        'Dim htResponse As New Hashtable()
+        'Dim responseItemArray As String()
+        'For Each responseItem As String In arrResult
+        '    responseItemArray = responseItem.Split("="c)
+        '    htResponse.Add(responseItemArray(0), responseItemArray(1))
+        'Next
+
+        'Dim strAck As String = htResponse("Transaction ID").ToString()
+
+        'Dim strAck1 As String = strAck.Substring(24, 8)
+        'If strAck1 = "ACCEPTED" Then
+        '    Dim con As New SqlConnection
+        '    con = New SqlConnection(obj.ConnectionString)
+
+        '    Dim cmd As New SqlCommand
+        '    Dim query As String
+        '    query = "update CF_Deposit set Deposit_Status= 'True' where Deposit_Id='" + depositID + "'"
+        '    con.Open()
+        '    cmd = New SqlCommand(query, con)
+        '    cmd.ExecuteNonQuery()
+        '    con.Close()
+        '    successblock.Visible = True
+        '    txtSuccess.Text = "Your deposit request has been successfully registered. Your SolidTrustPay account (TO-BE-DONE) has been used for the payment"
+        '    sr.Close()
+        'Else
+        '    errorblock.Visible = True
+        '    txtError.Text = "The deposit request has been registered but the payment failed. Please contact the system administrator"
+        '    Dim con As New SqlConnection
+        '    con = New SqlConnection(obj.ConnectionString)
+        '    Dim cmd As New SqlCommand
+        '    Dim errQuery = "update CF_Deposit set Deposit_Remarks= '" & result & "' where Deposit_Id='" + depositID + "'"
+        '    con.Open()
+        '    cmd = New SqlCommand(errQuery, con)
+        '    cmd.ExecuteNonQuery()
+        '    con.Close()
+        'End If
 
 
     End Sub
@@ -949,7 +973,7 @@ Partial Class Account_MakeDeposit
         post_values.Add("x_delim_data", "TRUE")
         post_values.Add("x_delim_char", "&")
         post_values.Add("x_relay_response", "FALSE")
-        post_values.Add("x_cust_id", ViewState("Deposit_Id"))
+        post_values.Add("x_cust_id", depositID)
         post_values.Add("x_type", "AUTH_CAPTURE")
         post_values.Add("x_method", "CC")
 
@@ -1015,9 +1039,8 @@ Partial Class Account_MakeDeposit
         Dim dep_id1 As String = arrResult(12)
 
         If strAck = "This transaction has been approved." Then
-            'Dim Script As String = "alert('" + strAck.ToString() + "');"
-            'ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), Script, True)
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('SUCCESS');", True)
+            successblock.Visible = True
+            txtSuccess.Text = "Your deposit has been is registered. We will notify you of the finalization of your payment within 24h"
             Dim con As New SqlConnection
             con = New SqlConnection(obj.ConnectionString)
 
@@ -1067,22 +1090,10 @@ Partial Class Account_MakeDeposit
             lnkhome.Visible = True
             lbldet.Visible = True
             lbldet.Text = output
-        ElseIf strAck = "The credit card number is invalid." Then
-
-            Dim Script As String = "alert('" + strAck.ToString() + "');"
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), Script, True)
-        ElseIf strAck = "The card code is invalid." Then
-
-            Dim Script As String = "alert('" + strAck.ToString() + "');"
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), Script, True)
-        ElseIf strAck = "Credit card expiration date is invalid." Then
-
-            Dim Script As String = "alert('" + strAck.ToString() + "');"
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), Guid.NewGuid().ToString(), Script, True)
         Else
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('Deposit failure');", True)
+            errorblock.Visible = True
+            txtError.Text = strAck
         End If
-
 
         sr.Close()
     End Sub
@@ -1504,6 +1515,10 @@ Partial Class Account_MakeDeposit
                 txtSpendAmount.Focus()
             End If
         End If
+
+    End Sub
+
+    Protected Sub txtcardexpiry_DataBinding(sender As Object, e As EventArgs) Handles txtcardexpiry.DataBinding
 
     End Sub
 End Class
