@@ -16,6 +16,10 @@ Partial Class Success
     Inherits System.Web.UI.Page
     Dim obj As New ClassFunctions()
     Dim SelectedIndexId As String = ""
+    Dim depositID As String = ""
+    Dim paymethod As String = ""
+    Dim packageName As String = ""
+    Dim amount As Double = 0
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         'Dim strSandbox As String = "https://sandbox.Payza.com/sandbox/payprocess.aspx"
 

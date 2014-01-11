@@ -38,6 +38,7 @@ Partial Class Account_Default
                     lblopen.Text = dt1.Rows(0).Item("Tickets_Date").ToString()
                     lblCategory.Text = dt1.Rows(0).Item("category_name").ToString()
                     lblStatus.Text = dt1.Rows(0).Item("Tickets_Status").ToString()
+                    lblComments.Text = dt1.Rows(0).Item("Tickets_Comment").ToString()
 
                     If lblStatus.Text = "Close" Then
 

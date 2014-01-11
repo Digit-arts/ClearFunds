@@ -10,6 +10,10 @@ Partial Class Account_WithDraw
     Dim SelectedIndexId As String = ""
     Dim userid As Guid
     Dim withdrawID As String = ""
+    Dim paymethod As String = ""
+    Dim payaccid As String = ""
+    Dim packageName As String = ""
+    Dim amount As Double = 0
 
 
     Protected Sub Page_load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -150,6 +154,8 @@ Partial Class Account_WithDraw
                                 Balance = ((Deposit + Bonus) - (WithDrawal + Penalty))
                                 'lb1.Text = Val(Balance)
                                 rbamt = Val(Balance)
+
+                                packageName = rbtn1.Text
                                 Exit For
 
 
@@ -161,7 +167,7 @@ Partial Class Account_WithDraw
 
             Next
             'check if payment method is selected
-            Dim paymethod As String = ""
+            paymethod = ""
             If (rbPM.Checked) Then
                 If (txtPMID.Text <> "" And txtPMName.Text <> "") Then
                     paymethod = "PerfectMoney"
@@ -181,6 +187,7 @@ Partial Class Account_WithDraw
             End If
 
             If Not rbpid = "" And Not txtwithdraw.Text = "" And Not paymethod = "" Then
+                amount = txtwithdraw.Text
                 Dim percent As String = obj.Returnsinglevalue("select Package_WDFee from CF_Package where Package_Id='" + rbpid + "'")
                 Dim perfectamt As Double = rbamt * percent / 100
                 If txtwithdraw.Text <= Val(perfectamt) Then
@@ -235,8 +242,6 @@ Partial Class Account_WithDraw
                             'cmd.Parameters.Add(New SqlParameter("@withdrawl_TrnsId", SqlDbType.VarChar, 100)).Value = un2
                             cmd.ExecuteNonQuery()
                             cmd.Parameters.Clear()
-
-                            ViewState("Wd_Id") = ID
 
 
 
@@ -434,6 +439,7 @@ A:
         'dtp = obj.returndatatable("select * from [UserPaymentDet] where Payment_UserId ='" + userid.ToString + "'", dtp)
         Dim payeremail As String = ""
         payeremail = txtPZID.Text
+        payaccid = txtPZID.Text
         payeraccname = txtPZName.Text
         If dtp.Rows.Count > 0 Then
             For i As Integer = 0 To dtp.Rows.Count
@@ -511,6 +517,7 @@ A:
         Dim strtest As String = htResponse("TESTMODE").ToString()
         If str4 = "success" Then
 
+            CreateTicket("Success")
             successblock.Visible = True
             txtSuccess.Text = "Your withdrawal request has been successfully created. Your Payza account (" & txtPZID.Text & ") will be sent the money within 24h"
 
@@ -528,6 +535,7 @@ A:
             'con.Close()
             sr.Close()
         Else
+            CreateTicket(result)
             errorblock.Visible = True
             txtError.Text = "The withdraw request has been registered but the payment failed. Please contact the system administrator"
             Dim con As New SqlConnection
@@ -549,6 +557,7 @@ A:
         dtp = obj.returndatatable("select * from [UserPaymentDet] where Payment_UserId ='" + userid.ToString + "'", dtp)
         Dim payeremail As String = ""
         payeremail = txtPPID.Text
+        payaccid = txtPPID.Text
         payeraccname = txtPPName.Text
         If dtp.Rows.Count > 0 Then
             For i As Integer = 0 To dtp.Rows.Count
@@ -620,10 +629,12 @@ A:
 
 
         If strAck = "Success" Then
+            CreateTicket("Success")
             successblock.Visible = True
             txtSuccess.Text = "Your withdrawal request has been successfully created. Your Paypal account (" & txtPPID.Text & ") will be sent the money within 24h"
             sr.Close()
         Else
+            CreateTicket(result)
             errorblock.Visible = True
             txtError.Text = "The withdraw request has been registered but the payment failed. Please contact the system administrator"
             Dim con As New SqlConnection
@@ -724,6 +735,7 @@ A:
         dtp = obj.returndatatable("select * from [UserPaymentDet] where Payment_UserId ='" + userid.ToString + "'", dtp)
         Dim payeremail As String = ""
         payeremail = txtSTPID.Text
+        payaccid = txtSTPID.Text
         payeraccname = txtSTPName.Text
         If dtp.Rows.Count > 0 Then
             For i As Integer = 0 To dtp.Rows.Count
@@ -808,10 +820,12 @@ A:
             'cmd = New SqlCommand(query, con)
             'cmd.ExecuteNonQuery()
             'con.Close()
+            CreateTicket("Success")
             successblock.Visible = True
             txtSuccess.Text = "Your withdrawal request has been successfully created. Your SolidTrustPay account (" & txtSTPID.Text & ") will be sent the money within 24h"
             sr.Close()
         Else
+            CreateTicket(result)
             errorblock.Visible = True
             txtError.Text = "The withdraw request has been registered but the payment failed. Please contact the system administrator"
             Dim con As New SqlConnection
@@ -841,7 +855,7 @@ A:
 
     End Function
 
-    Sub CreateTicket()
+    Sub CreateTicket(returnMessage As String)
         Dim ID As String = ""
         ID = Session("User_Id")
 
@@ -859,23 +873,25 @@ A:
             Dim cmd As New SqlCommand
             Dim d5 As New DataTable
 
-            filename = FileUpload1.PostedFile.FileName
-            Dim filelength As Int64 = FileUpload1.PostedFile.ContentLength
-            Dim b As Byte() = New Byte(filelength - 1) {}
-            FileUpload1.PostedFile.InputStream.Read(b, 0, filelength)
             Dim uid As Guid = Membership.GetUser.ProviderUserKey()
             Dim uid1 As String = Convert.ToString(uid)
             Dim uname As String = obj.Returnsinglevalue("select username from aspnet_users where userId='" + uid1 + "'")
 
             Dim email As String = obj.Returnsinglevalue("select email from aspnet_membership where userId='" + uid1 + "'")
+            Dim catID As String = obj.Returnsinglevalue("SELECT [Category_Id] FROM [Ticket_Category] where [Category_Name] = 'withdraw'")
             Dim admincount As String = obj.Returnsinglevalue("select Settings_TicketDefaulttime from CF_Settings")
             Dim originDate As Date = Date.Parse(DateAndTime.Now)
             Dim daysToAdd As Integer = Integer.Parse(admincount)
             Dim result As Date = originDate.AddDays(daysToAdd)
             ViewState("date") = result
-            result1 = result.ToString("dd/MM/yyyy")
+            Dim result1 = result.ToString("dd/MM/yyyy")
 
-
+            Dim message = ""
+            If (returnMessage <> "Success") Then
+                message = "Your withdrawal request failed : " & returnMessage
+            Else
+                message = "You have placed a withdrawal request : <br/> Package name : " & packageName & "<br/> Amount : " & amount.ToString() & "<br/> Payment method : " & paymethod & "<br/> Receiver identity : " & payaccid
+            End If
 
             cmd.CommandType = CommandType.StoredProcedure
             cmd.CommandText = "SP_Tickets"
@@ -888,23 +904,19 @@ A:
             'cmd.Parameters.Add(New SqlParameter("@Tickets_Operator", SqlDbType.VarChar, 100)).Value = txtoperator.Text.Trim()
             cmd.Parameters.Add(New SqlParameter("@Tickets_UserName ", SqlDbType.VarChar, 100)).Value = uname
             cmd.Parameters.Add(New SqlParameter("@Tickets_Email ", SqlDbType.VarChar, 100)).Value = email
-            cmd.Parameters.Add(New SqlParameter("@Tickets_Category", SqlDbType.VarChar, 100)).Value = drpcategories.SelectedValue
-            cmd.Parameters.Add(New SqlParameter("@Tickets_Priority", SqlDbType.VarChar, 100)).Value = ddlpriority.SelectedValue
-            cmd.Parameters.Add(New SqlParameter("@Tickets_Date", SqlDbType.DateTime)).Value = DateTime.ParseExact(result1, "dd/MM/yyyy", Nothing)
-            cmd.Parameters.Add(New SqlParameter("@Tickets_Problem ", SqlDbType.VarChar, 100)).Value = txtproblem.Text
-            cmd.Parameters.Add(New SqlParameter("@Tickets_Comment ", SqlDbType.VarChar, 1000)).Value = txtcomment.Text
+            cmd.Parameters.Add(New SqlParameter("@Tickets_Category", SqlDbType.VarChar, 100)).Value = catID
+            cmd.Parameters.Add(New SqlParameter("@Tickets_Priority", SqlDbType.VarChar, 100)).Value = "High"
+            cmd.Parameters.Add(New SqlParameter("@Tickets_Date", SqlDbType.DateTime)).Value = DateTime.Now
+            cmd.Parameters.Add(New SqlParameter("@Tickets_Problem ", SqlDbType.VarChar, 100)).Value = "Withdrawal request - " & withdrawID
+            cmd.Parameters.Add(New SqlParameter("@Tickets_Comment ", SqlDbType.VarChar, 1000)).Value = message
             cmd.Parameters.Add(New SqlParameter("@Tickets_RegDate", SqlDbType.DateTime)).Value = obj.GetCurrentDate()
             cmd.Parameters.Add(New SqlParameter("@Tickets_Status", SqlDbType.VarChar, 10)).Value = "New"
-            cmd.Parameters.Add(New SqlParameter("@Tickets_Filename", SqlDbType.NVarChar, 10)).Value = filename
+            'cmd.Parameters.Add(New SqlParameter("@Tickets_Filename", SqlDbType.NVarChar, 10)).Value = filename
 
-            cmd.Parameters.AddWithValue("@Tickets_attachfile", b)
+            'cmd.Parameters.AddWithValue("@Tickets_attachfile", b)
 
             cmd.ExecuteNonQuery()
             cmd.Parameters.Clear()
-            ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "popup", "alert('saved Successfully');", True)
-            Response.Redirect("Forum.aspx")
-
-
         Catch ex As Exception
 
         End Try

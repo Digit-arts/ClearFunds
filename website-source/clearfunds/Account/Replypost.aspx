@@ -33,6 +33,10 @@
     <label>Category:</label>
      <div class="helpfrm_right"><asp:Label ID="lblCategory" runat="server" Text="Label"></asp:Label></div>
  </div>
+ <div class="helpfrm_one">
+    <label>Commnents:</label>
+     <div class="helpfrm_right"><asp:Label ID="lblComments" runat="server" Text=""></asp:Label></div>
+ </div>
  <div class="alertclose" runat="server" id="alert1" visible="false" >
 
  <img src="../images/1382198980_messagebox_info.png" />
