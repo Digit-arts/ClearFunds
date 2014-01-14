@@ -1,0 +1,384 @@
+﻿body
+{
+    background-position: 0px 0px;
+    background-color: #ffffff;
+  
+}
+html
+{
+    overflow-x:hidden;
+    width:100%;
+}
+ul,ol
+{
+    list-style-type:none;
+    text-decoration:none;
+}
+.OutPage
+{
+    background: #1F1F1F 0 0;
+    height :36px;
+    width:1000px;
+    padding :0;
+    margin:0 auto;
+    position :relative;
+    z-index :100px;
+    font-family :Verdana ;
+}
+.HeaderOne
+{
+    height :80px;
+	width :336px;
+	background-color :#F6F8F5;
+	margin-top:5px;
+	font-family :Verdana ;
+	float :left ;
+}
+.HeaderTwo
+{
+    width: 610px;
+    background-color: #F6F8F5;
+    float: left;
+    text-align: right;
+    padding-top: 16px;
+}
+.HeaderThree
+{
+    
+    height: 100px;
+    width: 50px;
+    background-color: #F6F8F5;
+    font-family: Verdana;
+    float: left;
+
+}
+.MainpageOne
+{
+	background-color :White;
+	width :1000px;
+	height :100px;
+	margin:0 auto;
+	font-family :Verdana ;
+
+
+}
+.MainpageTwo
+{
+	background-color :White;
+		width :1000px;
+	height :800;
+	margin:0 auto;
+	font-family :Verdana ;
+
+}
+.Header
+{
+	height :120px;
+	width :1000px;
+	background-color :#F6F8F5;
+	font-family :Verdana ;
+		border-radius: 8px 8px 0px 0px;
+	/*background :#676143 url(Images\Images.png)no-repeat right top;*/
+}
+.MainMenu
+{
+    height :45px;
+    width :1025px;
+    margin-left:400px;
+    font-family :Verdana;
+    font-size :12px;
+    margin:0 auto;
+   
+}
+.MenuOne
+{
+    height :45px;
+    width :13px;
+    font-family :Verdana;
+    font-size :12px;
+    float :left ;
+    background-image :url('Images/left_sid.png');
+    margin-top:-1px;
+    
+   
+}
+.MenuTwo
+{
+    height :45px;
+    width :877px;
+    background-color :#000;
+    font-family :Verdana;
+    font-size :12px;
+    float :left ;
+}
+.MenuTwo ul
+{
+     margin:0;
+     padding  :0;
+}
+.MenuTwo ul li
+{ 
+
+    float:left;
+    height:22px;
+    margin-top:17px;
+   
+  
+     
+}
+.MenuTwo ul li a
+{
+    color: #fff;
+    padding: 17px 12px 14px 12px;
+    overflow: hidden;
+    text-decoration: none;
+}
+.MenuTwo ul li a:hover
+{
+  background:url('../Images/nav-active.png') repeat-x #353535;
+  color:#fff;
+}
+.MenuTwo ul li a.active
+
+{
+    background:url('../Images/nav-active.png') repeat-x #353535;
+  color:#fff;
+}
+
+.MenuThree
+{
+    height :45px;
+    width :123px;
+    background-image :url('Images/rit.png');
+    font-family :Verdana;
+    font-size :12px;
+    float :left ;
+}
+.MenuFour
+{
+    height :45px;
+    width :15px;
+    background-image :url('Images/rit_sid.png');
+    font-family :Verdana;
+    font-size :12px;
+    float:left ;
+    padding :0px 0px 0px 0px;
+    margin-left: -1px;
+  
+}
+.SubMenu
+{
+    height :50px;
+    width :1000px;
+    background-color :#A9A9A9;
+    font-family :Verdana;
+    font-size :12px;
+   
+}
+.SubMenu ul
+{
+     margin:0;
+     padding  :0;
+}
+.SubMenu ul li
+{ 
+    
+      float:left;
+    height:22px;
+    margin-top:17px;
+    
+}
+.SubMenu ul li a
+{
+       color:#000;
+    padding:18px;
+    overflow:hidden;
+    text-decoration:none;
+   
+}
+.SubMenu ul li a:hover
+{
+    background:#fff;
+    color:#000;
+    padding: 17px 17px 17px;
+    border:1px solid #999;
+}
+
+.SubMenu ul li a.active
+
+{ 
+    background:#fff;
+    color:#000;
+    padding: 17px 17px 17px;
+}
+.SubMenu ul li a.visited
+
+{ 
+    background:#de0f0f;
+    color:#000;
+    padding: 17px 17px 17px;
+}
+.visited
+{ 
+    background:#de0f0f;
+    color:#000;
+    padding: 17px 17px 17px;
+}
+    
+.Content
+{
+    height :auto ;
+    width :980px;
+    background-color :#F6F8F5;
+	float :left ;
+	padding :10px;
+	 font-family :Verdana;
+    font-size :12px;
+}
+.ContentOne
+{
+
+	width :765px;
+	background-color :#E4E4E4;
+	float :left ;
+	padding :0px,0px,0px,0px;
+	font:12px  arial;
+    font-size :12px;
+    border-radius:10px;
+    padding:6px;
+    border:1px Solid #999999;
+    margin-bottom:10px;
+    
+}
+.ContentTwo
+{
+
+	width :200px;
+	background-color:#F6F8F5;
+	float :left ;
+	padding :0px,0px,0px,0px;
+	 font-family :Verdana;
+    font-size :12px;
+}
+
+.Footer
+{
+	height :20px;
+	width:1000px;
+	background-color:Black;
+	float:left;
+	text-align :center ;
+    font-family :Verdana;
+    font-size :10px;
+
+}
+
+#MainContent_divRB 
+{
+    margin-top:10px; }
+    
+
+.accnt_box
+{
+
+
+background:#A0A0A0;
+border:1px solid #B6B6B6; 
+        Width:429px;
+        height:200px;
+        line-height:21px;
+
+    
+}
+
+
+.c_newsbox input { float:right; }
+
+.pro_one                            { width:700px; height:30px; float:left; margin-top:15px; }   
+
+.pro_one span                       { width:247px; float:left; }
+
+.pro_one input                      { width:300px; float:left; }
+
+.Header input                       { margin-top:10px; }
+
+.editprof_main
+{
+    width:670px;
+    height:auto;
+    float:left;
+    margin-top:10px;
+}
+.ediprof_one
+{
+    width:670px;
+    min-height:35px;
+    float:left;
+}
+
+.ediprof_one label
+{
+    min-width:200px;
+    height:20px;
+    float:left;
+}
+.ediprof_one input[type="text"]
+{
+    width:250px;
+    height:27px;
+    border-radius:3px;
+    float:left;
+}
+.ediprof_right
+{
+    min-width:260px;
+    min-height:32px;
+    float:left;
+}
+.m_menutwo
+{
+    background-color: #000000;
+    float: left;
+    font-family: Verdana;
+    font-size: 12px;
+    height: 50px;
+    width: 996px;
+}
+.acc_heading
+{
+    width:760px;
+    height:22px;
+    float:left;
+    background:#F4B305;
+    color:#fff;
+    margin-bottom:10px;
+    padding:3px;
+}
+.pinfo_rit
+{
+         background:#FEF1DB;
+    border: 1px dashed #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    float: left;
+    margin-bottom: 5px;
+    min-height: 10px;
+    min-width: 240px;
+    padding: 10px;
+    
+}
+.pinfo_rit  input[type="radio"]
+{
+    float:left;
+}
+
+.contentone input[type="submit"]
+{
+
+    background: url("../Images/btn_pixel.png") repeat scroll 0 0 transparent;
+    border: 1px solid #F6BD08;
+    border-radius: 4px 4px 4px 4px;
+    height: 29px;
+    margin-top: 15px;
+    padding-bottom: 3px;
+    width: 110px;
+}

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="SmallLogOut.ascx.vb" Inherits="Account_SmallLogOut" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
- <link href="c_style.css" rel="stylesheet" type="text/css" />
+ <!--<link href="c_style.css" rel="stylesheet" type="text/css" />-->
 <div>
 
 <div class="mri_loout">

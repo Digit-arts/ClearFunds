@@ -12,9 +12,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link href="Design.css" rel="stylesheet" type="text/css" />
+    <!--<link href="Design.css" rel="stylesheet" type="text/css" />
     <link href="css/c_style.css" rel="stylesheet" type="text/css" />
     <link href="css/l_style.css" rel="stylesheet" type="text/css" />
+    <link href="Menu/sample.css" rel="stylesheet" type="text/css" />-->
+
+    <link href="css/accountStyle.css" rel="stylesheet" type="text/css" />
+    <link href="css/accountC_Style.css" rel="stylesheet" type="text/css" />
+    <link href="css/accountMenu.css" rel="stylesheet" type="text/css" />
 
     <link href="css/skitter.styles.css" rel="stylesheet" type="text/css" />
     <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
@@ -25,9 +30,6 @@
 
 
     <script type="text/javascript" src="Menu/highlight.js"></script>
-
-
-    <link href="Menu/sample.css" rel="stylesheet" type="text/css" />
 
 
     <script>        function extractPageName(hrefString) {

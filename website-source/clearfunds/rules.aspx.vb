@@ -20,23 +20,25 @@ Partial Class rules
         Label12.Text = "Rules"
         Label12.CssClass = "innerptitl"
 
-        Dim contentid As String = "10"
-        Dim dt1 As New DataTable()
-        dt1 = obj.returndatatable("select * from [CF_contents] where [contents_id]='" & contentid & "'", dt1)
-        Label1.Text = dt1.Rows(0)("contents_content").ToString()
-        Label1.CssClass = "pho_sr"
-        Page.Title = dt1.Rows(0)("contents_metatitle").ToString()
-        'Page description
-        Dim pagedesc As New HtmlMeta()
-        pagedesc.Name = dt1.Rows(0)("contents_metakey").ToString()
-        pagedesc.Content = dt1.Rows(0)("contents_metadesc").ToString()
-        Header.Controls.Add(pagedesc)
-        'page keywords
-        Dim pagekeywords As New HtmlMeta()
-        pagekeywords.Name = dt1.Rows(0)("contents_metakey").ToString()
-        pagekeywords.Content = dt1.Rows(0)("contents_metadesc").ToString()
-        Header.Controls.Add(pagekeywords)
+        
         If Not IsPostBack Then
+
+            Dim contentid As String = "18"
+            Dim dt1 As New DataTable()
+            dt1 = obj.returndatatable("select * from [CF_contents] where [contents_id]='" & contentid & "'", dt1)
+            'Page title
+            Page.Title = dt1.Rows(0)("contents_metatitle").ToString()
+            'Page description
+            Dim pagedesc As New HtmlMeta()
+            pagedesc.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagedesc.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagedesc)
+            'page keywords
+            Dim pagekeywords As New HtmlMeta()
+            pagekeywords.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagekeywords.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagekeywords)
+
             Dim i As Integer = 0
             dt = obj.returndatatable("select * from CF_CMS_Rules where CMS_Rules_ChkActive='true'  ", dt)
             For Each Count In dt.Rows
@@ -62,6 +64,7 @@ Partial Class rules
                 End If
                 i = i + 1
             Next
+
 
 
         End If

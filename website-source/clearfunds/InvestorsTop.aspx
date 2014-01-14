@@ -5,8 +5,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <div class ="ContentPadding ">
-        	  <span style="left:353px; color:#CA7F03; text-transform:capitalize; font:bold 25px calibri;"> Top Ten </span>
-            
+        
+ <div class="abtus_cnt"><asp:Label ID="Label10" runat="server" Text="Top Ten"></asp:Label></div>        
  <div class="acc_table">
 <asp:GridView ID="GVInvestorsTop"  AutoGenerateColumns="false" runat="server"  >
 <Columns>

@@ -112,7 +112,7 @@ Partial Class Account_Register
             cmd.Parameters.Add(New SqlParameter("@User_Saluation", SqlDbType.VarChar, 10)).Value = cmbsaluation.SelectedValue
             cmd.Parameters.Add(New SqlParameter("@User_FirstName ", SqlDbType.VarChar, 75)).Value = txtFirstName.Text
             cmd.Parameters.Add(New SqlParameter("@User_LastName", SqlDbType.VarChar, 75)).Value = txtLastName.Text
-            cmd.Parameters.Add(New SqlParameter("@User_ThirdParty", SqlDbType.VarChar, 10)).Value = "No"
+            'cmd.Parameters.Add(New SqlParameter("@User_ThirdParty", SqlDbType.VarChar, 10)).Value = active.ToString()
             cmd.Parameters.Add(New SqlParameter("@User_RegDate", SqlDbType.DateTime)).Value = obj.GetCurrentDate()
             cmd.Parameters.Add(New SqlParameter("@User_IDDetails", SqlDbType.VarChar, 50)).Value = Environment.MachineName()
 

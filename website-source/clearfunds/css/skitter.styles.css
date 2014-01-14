@@ -1,6 +1,6 @@
 /* Skitter styles */
 
-.box_skitter {position:relative;width:980px;height:235px; }
+.box_skitter {position:relative;width:980px;height:350px; }
 .box_skitter ul {display:none;}
 .box_skitter .container_skitter {overflow:hidden;position:relative; width:980px !important;height:350px !important;}
 .box_skitter .image {overflow:hidden; width:980px;}
@@ -24,4 +24,9 @@
 .box_skitter_large {width:980px;height:350px;}
 .box_skitter_small {width:200px;height:200px;}
 
-.border_box         { width:980px !important; margin:0 auto; } 
+.border_box
+{
+    width: 980px !important;
+    margin: 0 auto;
+    height: 350px;
+} 

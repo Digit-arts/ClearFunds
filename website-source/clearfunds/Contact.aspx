@@ -23,16 +23,15 @@
      <asp:Label ID="Label12" runat="server" Text=""></asp:Label>
 
 </div>
-
-<div class="cntfrm_main">
-    
+<div class="mainpage_center">
+<div class="cntfrm_main"> 
     <div class="cntfrm_one">
         <label>Firstname </label>
         <div class="cntfrm_right">
               <asp:TextBox ID="txtfirstname" runat="server"  
                      CssClass="validate[required] inputbox smallbox" style="background:#fff;"></asp:TextBox>
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                     ErrorMessage="Name Required" ControlToValidate="txtfirstname" 
+                     ErrorMessage="" ControlToValidate="txtfirstname" 
                      ValidationGroup="a"></asp:RequiredFieldValidator>
         
         
@@ -41,23 +40,20 @@
     </div>
     <div class="cntfrm_one">
         <label>Lastname</label>
-        <div class="cntfrm_right">
+    <div class="cntfrm_right">
                  <asp:TextBox ID="txtlastname" runat="server"  
                      CssClass="validate[required] inputbox smallbox" style="background:#fff;"></asp:TextBox>
             
         </div>
     </div>
-
     <div class="cntfrm_one">
         <label>Email address</label>
         <div class="cntfrm_right">
              <asp:TextBox ID="txtemail" runat="server"  
                     CssClass="validate[required] inputbox smallbox" style="background:#fff;"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                    ErrorMessage="Email Required" ControlToValidate="txtemail" 
+                    ErrorMessage="" ControlToValidate="txtemail" 
                     ValidationGroup="a"></asp:RequiredFieldValidator>
-        
-        
         </div>
 
     </div>
@@ -68,22 +64,26 @@
                      CssClass="validate[required] inputbox smallbox" TextMode="MultiLine" 
                      style="width:265px; height:55px; background:#fff;"></asp:TextBox>
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                     ErrorMessage="Enter your message" ControlToValidate="txtcomments" 
+                     ErrorMessage="" ControlToValidate="txtcomments" 
                      ValidationGroup="a"></asp:RequiredFieldValidator>
-        
+            
+     
         
         </div>
     
     </div>
     <div class="cntfrm_one">
-        <label></label>
-          <asp:Button ID="Button1" runat="server" CssClass="yellow_btn"   Text="submit" 
-                ValidationGroup="a" />
-    
+     <label></label>
+       <asp:ImageButton ID="Button1" runat="server" ValidationGroup="a" ImageUrl="~/Images/btnSubmit.jpg"  ImageAlign="Bottom" CssClass="cntfrm_submit" Height="21px" Width="103px"/>
+       
     </div>
 </div>
 
-
+<div >
+    <img alt="" src="Images/contactus.jpg" class="cntfrm_pic" height="215px" 
+        width="355px" />
+    </div>
+</div>
 
 
 

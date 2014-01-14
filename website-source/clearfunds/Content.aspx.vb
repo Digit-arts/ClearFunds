@@ -13,7 +13,7 @@ Partial Class Content
                     Label5.Text = dt.Rows(0)("contents_title").ToString()
                     Label5.CssClass = "innerptitl"
                     Label3.Text = dt.Rows(0)("contents_content").ToString()
-            
+
                     Page.Title = dt.Rows(0)("contents_metatitle").ToString()
                     'Page description
                     Dim pagedesc As New HtmlMeta()
@@ -27,6 +27,15 @@ Partial Class Content
                     Header.Controls.Add(pagekeywords)
                     'Label1.Text = dt.Rows[0]["contents_content"].ToString();
                     'Response.Write(dt.Rows[0]["contents_content"].ToString());
+                    If contentid = 7 Then
+                        imgBanner.ImageUrl = "~/Images/banner-aboutus.jpg"
+                    ElseIf contentid = 8 Then
+                        imgBanner.ImageUrl = "~/Images/banking.sbnr.jpg"
+                    ElseIf contentid = 10 Then
+                        imgBanner.ImageUrl = "~/Images/affiliate.jpg"
+                    ElseIf contentid = 14 Then
+                        imgBanner.ImageUrl = "~/Images/banner-aboutus.jpg"
+                    End If
 
                 Else
 

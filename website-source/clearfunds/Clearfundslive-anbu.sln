@@ -1,24 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "clearfunds", ".", "{069762F7-4BF4-4B2B-BD27-787A79F2C07F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Clearfundslive-anbu", ".", "{069762F7-4BF4-4B2B-BD27-787A79F2C07F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/Clearfundslive-anbu"
-		Debug.AspNetCompiler.PhysicalPath = "..\clearfunds\"
+		Debug.AspNetCompiler.PhysicalPath = "..\Clearfundslive-anbu\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Clearfundslive-anbu\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/Clearfundslive-anbu"
-		Release.AspNetCompiler.PhysicalPath = "..\clearfunds\"
+		Release.AspNetCompiler.PhysicalPath = "..\Clearfundslive-anbu\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Clearfundslive-anbu\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "3073"
+		VWDPort = "49158"
 	EndProjectSection
 EndProject
 Global

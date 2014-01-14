@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <appSettings>
+    <!--  ADMIN SYSTEM parameters-->
+    <add key="EMAILADMIN" value="ol039.orangelab@gmail.com" />
+    <!--  SMTP parameters-->
+    <add key="EMAILFROM" value="ol039.orangelab@gmail.com" />
+    <!--<add key="EMAILSMTP" value="smtpout.secureserver.net"/>-->
+    <add key="EMAILSMTP" value="smtp.gmail.com" />
+    <add key="EMAILSMTPUSER" value="ol039.orangelab@gmail.com" />
+    <add key="EMAILSMTPPASSWD" value="rizwan4172" />
+    <!--<add key="UserName" value="ol039.orangelab@gmail.com"/>-->
+    <!--<add key="Password" value="ol039_ol"/>-->
+    <!--<add key="Host" value="smtp.gmail.com"/>-->
+    <add key="EMAILPORT" value="587" />
+    <add key="Host" value="smtp.gmail.com" />
+    <add key="EnableSsl" value="true" />
+    <add key="UserName" value="ol039.orangelab@gmail.com" />
+    <add key="Password" value="rizwan4172" />
+    <add key="Port" value="587" />
+    <add key="paypalemail" value="ol039.orangelab@gmail.com" />
+    <add key="payeremail" value="" />
+    <add key="PayPalSubmitUrl" value="https://www.paypal.com/cgi-bin/webscr" />
+    <add key="SuccessURL" value="http://clearfunds.acopies.com/Account/paypalsuccess.aspx" />
+    <add key="NotifyUrl" value="http://clearfunds.acopies.com/Account/IPNHandler.aspx" />
+    <add key="FailedURL" value="http://clearfunds.acopies.com/Account/paypalfailed.aspx" />
+    <add key="PAYPALURLPROD" value="https://www.paypal.com/cgi-bin/" />
+    <add key="SendToReturnURL" value="true" />
+    <add key="CurrencyCode" value="USD" />
+    <add key="UseSandbox" value="True" />
+    <add key="BusinessEmailPROD" value="ol039.orangelab@gmail.com" />
+    <add key="BusinessEmailQA" value="ol039.orangelab@gmail.com" />
+    <add key="PAYPALURLPROD" value="https://www.paypal.com/cgi-bin/" />
+    <add key="PAYPALURLQA" value="https://www.sandbox.paypal.com/cgi-bin/" />
+    <add key="SendToReturnURL" value="true" />
+    <add key="MBemail" value="ol041.orangelab@gmail.com" />
+    <add key="LoginID" value="4MBQ4rt7k" />
+    <add key="TransactionKey" value="3wx6S3jaCd46Vg7S" />
+    <add key="merchantemail" value="seller_1_jebinthilak@gmail.com" />
+    <add key="PayzaSuccessURL" value="http://clearfunds.acopies.com/Account/PayzaSuccess.aspx" />
+    <add key="PayzaFailedURL" value="http://clearfunds.acopies.com/Account/PayzaFailed.aspx" />
+    <add key="statusurl" value="http://clearfunds.acopies.com/Account/IPNHandlerMB.aspx" />
+    <add key="payto" value="ol034.orangelab@gmail.com" />
+    <add key="SuccessMB" value="http://clearfunds.acopies.com/Account/MoneyBookerSuccess.aspx" />
+    <add key="STPSuccessURL" value="http://clearfunds.acopies.com/Account/STPSuccess.aspx" />
+    <add key="STPFailedURL" value="http://clearfunds.acopies.com/Account/STPFailed.aspx" />
+    <add key="STPNotifyURL" value="http://clearfunds.acopies.com/Account/STPSuccess.aspx" />
+    <add key="lrsuccessurl" value="http://clearfunds.acopies.com/Account/LibertySuccess.aspx" />
+    <add key="lrfailedurl" value="http://clearfunds.acopies.com/Account/STPFailed.aspx" />
+    <add key="lrstatusurl" value="http://clearfunds.acopies.com/Account/LibertySuccess.aspx" />
+    <add key="stpmerchant" value="siva147" />
+  </appSettings>
+  
+  <system.net>
+    <mailSettings>
+      <smtp from="ol039.orangelab@gmail.com">
+        <network host="smtp.gmail.com" port="587" userName="ol039.orangelab@gmail.com" password="rizwan4172" defaultCredentials="false" />
+      </smtp>
+    </mailSettings>
+  </system.net>
+  <connectionStrings>
+    <!--<add name="ApplicationServices" connectionString="Data Source=208.91.198.174;User Id=ClearFunds;Password=orangelab" />-->
+	  <add connectionString="Data Source=localhost\SQLEXPRESS; Initial Catalog=Clear_Funds; Integrated Security=SSPI;" name="ApplicationServices" />
+  </connectionStrings>
+  <!--<system.web>
+    <customErrors mode="Off"/>
+  </system.web>-->
+  <system.web>
+    <customErrors mode="Off" />
+    <httpRuntime requestValidationMode="2.0" maxRequestLength="100000" executionTimeout="1800">
+    </httpRuntime>
+    <compilation debug="true" strict="false" explicit="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+        <add assembly="System.Web.Extensions.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+      </assemblies>
+    </compilation>
+    <authentication mode="Forms">
+      <forms loginUrl="~/Account/Login.aspx" timeout="2880" />
+    </authentication>
+    <machineKey decryptionKey="BD5F9999C030B825C76AC6948F9DA3D0B07DA91A6AC92141" validationKey="6377B21DF605FF875B106EDDA08AC0556E3F2D87" decryption="3DES" validation="SHA1" />
+    <membership>
+     
+      <providers>
+        <clear />
+        <add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ApplicationServices" passwordFormat="Encrypted" enablePasswordRetrieval="true" enablePasswordReset="false" requiresQuestionAndAnswer="true" requiresUniqueEmail="true" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="/" />
+      </providers>
+    </membership>
+    <profile>
+      <providers>
+        <clear />
+        <add name="AspNetSqlProfileProvider" type="System.Web.Profile.SqlProfileProvider" connectionStringName="ApplicationServices" applicationName="/" />
+      </providers>
+    </profile>
+    <roleManager enabled="false">
+      <providers>
+        <clear />
+        <add name="AspNetSqlRoleProvider" type="System.Web.Security.SqlRoleProvider" connectionStringName="ApplicationServices" applicationName="/" />
+        <add name="AspNetWindowsTokenRoleProvider" type="System.Web.Security.WindowsTokenRoleProvider" applicationName="/" />
+      </providers>
+    </roleManager>
+    <pages validateRequest="false" enableEventValidation="false" viewStateEncryptionMode="Never" enableSessionState="true" />
+    <httpModules>
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true" />
+  </system.webServer>
+</configuration>

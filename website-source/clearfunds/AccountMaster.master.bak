@@ -1,0 +1,205 @@
+﻿<%@ Master Language="VB" CodeFile="AccountMaster.master.vb" Inherits="AccountMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Src="~/account/SmallLogOut.ascx" TagName="smallLogout" TagPrefix="uc3" %>
+<%@ Register Src="~/Account/Logout1.ascx" TagName="Logout" TagPrefix="uc4" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+   <title></title>
+    <link href="css/Design.css" rel="stylesheet" type="text/css" />
+    <link href="css/c_style.css" rel="stylesheet" type="text/css" />
+    <link href="css/l_style.css" rel="stylesheet" type="text/css" />
+
+    <link href="css/skitter.styles.css" rel="stylesheet" type="text/css" />
+    <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+
+    <link href="css/template.css" rel="stylesheet" type="text/css" />
+    <script src="js/Active.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript" src="Menu/highlight.js"></script>
+
+
+    <link href="Menu/sample.css" rel="stylesheet" type="text/css" />
+
+
+    <script>        function extractPageName(hrefString) {
+            var arr = hrefString.split('/');
+            return (arr.length < 2) ? hrefString : arr[arr.length - 2].toLowerCase() + arr[arr.length - 1].toLowerCase();
+        }
+
+        function setActiveMenu(arr, crtPage) {
+            for (var i = 0; i < arr.length; i++) {
+                if (extractPageName(arr[i].href) == crtPage) {
+                    if (arr[i].parentNode.tagName != "DIV") {
+                        arr[i].className = "current";
+                        arr[i].parentNode.className = "current";
+                    }
+                }
+            }
+        }
+
+        function setPage() {
+            hrefString = document.location.href ? document.location.href : document.location;
+
+            if (document.getElementById("nav") != null)
+                setActiveMenu(document.getElementById("nav").getElementsByTagName("a"), extractPageName(hrefString));
+        }
+</script>
+   <script type ="text/javascript">
+
+       window.onload = function () {
+           setPage();
+       }
+   
+   </script>
+
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+  
+<script language="javascript">    setPage()</script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+     <div class ="OutPage "><div class="main_topbg">
+                  <div class="logo_butt"><uc3:smallLogout ID="SmallLogout1" runat="server" /></div>
+            <div  id="pnllogin" runat="server" visible="false" class="main_top"><!---start main_top-->
+            
+            <div class="main_left"><!---start main_left-->
+            	<p>Sales & Support & Payments: <span style="color:#DBAA0C; font-weight: bold;">23984305-0000-4400</span></p>
+            </div><!---end main_left-->
+            <div class="main_right"><!---start main_right-->
+            	<ul>
+           			<li><a href="support.aspx">Support</a></li>
+                	<li>/</li>
+                	<li><%--<a href="Account/Login.aspx">Login</a>--%>
+                        <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
+                    </li>
+                
+             </ul>
+             <div><a href="~/Register.aspx"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/Register.aspx" runat="server">
+                        <asp:Image ID="Image3" BorderWidth="0" AlternateText="ClearFunds"
+                            ImageUrl="~/images/sign.png" runat="server" /></asp:HyperLink></a></div>
+            </div><!---end main_right-->
+        </div><!---end main_top-->
+</div></div>
+    <div class ="MainpageOne">
+    <div class ="Header">
+     <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
+    <div class ="HeaderOne "><asp:ImageButton ID="ImageButton3" Height="67px" Width="336px" ImageUrl="~/Images/cf.png"   PostBackUrl="~/default.aspx" runat="server" /><asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager></div>
+    <div class ="HeaderTwo "><asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner_r3_c6.jpg" ImageAlign="Bottom" /></div>
+    <div class ="HeaderThree "></div>
+        
+        
+   </div></div>
+        
+    <div class ="MainMenu">
+    <div class ="MenuOne "></div>
+    <div id="divmenu" class ="MenuTwo " runat="server"></div>
+    <div class ="MenuThree"><asp:ImageButton ID="ImageButton1"  ImageUrl="~/Images/rit.png" PostBackUrl="~/Account/UserEntryTickets.aspx" runat="server" /></div>
+    <div class ="MenuFour "></div>
+    </div>
+    
+     <div class ="MainpageTwo">
+
+
+<div id="nav">
+<ul>
+   <li><a href="Home.aspx">Dashboard</a></li>
+ <li><a href="profile.aspx">My Account</a></li>
+  <li><a href="DeposistsHistory.aspx">My Payment</a></li>
+  
+    <li><a href="Forum.aspx">My Support</a></li>
+  <li><a  href="MakeDeposit.aspx">Make Deposit</a></li>
+ <%--<li><a  href="CurrentPlan.aspx">Current Plan</a></li>--%>
+  <%--<li><a href="profile.aspx">Profile</a></li>--%>
+   <li><a href="WithDraw.aspx">Withdraw</a></li>
+    <li><a href="YourReferrals.aspx">Your Referrals</a></li>
+     <li><a href="Referral_link.aspx">Referral links</a></li>
+     
+</ul>
+
+</div>
+
+
+   <%-- <div class="SubMenu">
+      <ul>
+    
+      
+    
+    
+    </ul>
+    
+    
+        </div>--%>
+        <div class ="Content ">  <div class ="ContentOne ">
+        <asp:ContentPlaceHolder id="MainContent" runat="server">
+        
+           
+        
+            <p>
+                <br />
+            </p>
+            <p>
+            </p>
+        
+           
+        
+        </asp:ContentPlaceHolder></div>
+        <div class ="ContentTwo "> <center><table>
+        <tr>
+        <td align ="left" >
+            <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="#D22EB9" 
+                Text="Account Balance "></asp:Label>
+            </td>
+        
+        </tr>
+        <tr>
+        <td align ="left" >
+            <asp:Label ID="Label2" runat="server" Text="$ 800.00"  Font-Bold="True" ForeColor ="Black" ></asp:Label>
+            </td>
+        
+        </tr>
+        <tr>
+        <td align ="left" >
+            <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="#D22EB9" 
+                Text="Unpaid Invoices"></asp:Label>
+            </td>
+        
+        </tr>
+        <tr>
+        <td align ="left" >
+            <asp:Label ID="Label4" runat="server" Text="2"  Font-Bold="True" 
+                ForeColor ="Black" ></asp:Label>
+            </td>
+        
+        </tr>
+          <tr>
+        <td align ="left" >
+            <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="#D22EB9" 
+                Text="Next Required Payment"></asp:Label>
+            </td>
+        
+        </tr>
+        <tr>
+        <td align ="left" >
+            <asp:Label ID="Label6" runat="server" Text="$ 800.00"  Font-Bold="True" ForeColor ="Black" ></asp:Label>
+            </td>
+        
+        </tr>
+        </table></center></div></div>
+  
+        <div class ="Footer"> <asp:HyperLink ID="HLink" runat="server" 
+                Font-Bold="True" ForeColor="White" Font-Underline="False" 
+                 Target="_blank"> </asp:HyperLink></div>
+    </div>
+    </form>
+</body>
+</html>

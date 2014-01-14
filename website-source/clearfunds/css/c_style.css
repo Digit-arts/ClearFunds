@@ -1,4 +1,4 @@
-﻿    @charset "utf-8";
+    @charset "utf-8";
 /* CSS Document */
 body
 {
@@ -25,12 +25,14 @@ h3,h4
 
 img
 {
-    border:0px;
-}
+    border-style: none;
+    border-color: inherit;
+    border-width: 0px;
+    }
 
 .main_topbg
 {
-    width:100%; height:35px;  background:#000;
+    width:100%; height:36px;  background:#fff;
 }
 .main
 {
@@ -42,11 +44,17 @@ img
 }
 .main_left
 {
-	width:630px; height:30px; float:left; padding-top:6px; padding-left:13px; 
+	width:600px; height:30px; float:left; padding-left:13px; 
 }
 .main_right
 {
-	width:260px; height:38px; float:right; padding-top:3px; 
+    padding: 3px 0px 0px 0px;
+
+    width: 300px;
+    height: 24px;
+    float: right;
+    background-color: #fff;
+    color: #DBAA0C;
 }
 .main_right ul
 {
@@ -58,7 +66,7 @@ img
 }
 .main_right ul li a
 {
-	color:#fff; text-decoration:none; 
+	color:#4B3E0E; text-decoration:none; 
 }
 .header
 {
@@ -786,7 +794,7 @@ a.fogpa
     
     .mri_loout span 
     {
-        font:bold  12px Arial, Helvetica, sans-serif; padding-top:3px; color:#fff;
+        font:bold  12px Arial, Helvetica, sans-serif; padding-top:3px; color:#DBAA0C;
     }
     
     .failureNotification
@@ -796,12 +804,12 @@ a.fogpa
     
     .mri_loout div a
     {
-        text-decoration:none;  font:bold  12px Arial, Helvetica, sans-serif; color: #fff;  padding-top:3px; 
+        text-decoration:none;  font:bold  12px Arial, Helvetica, sans-serif; color: #4B3E0E;  padding-top:3px; 
     }
     
     .mri_loout div a:hover
     {
-        text-decoration:underline; 
+        text-decoration:underline; color: #4B3E0E;
     }
     
     .pack_tab
@@ -823,13 +831,13 @@ a.fogpa
     
     .fix table
     {
-        margin:0px auto !important; 
+        width:75% !important;  margin:0px auto !important; 
     }
-   .fix tr th  { text-align:center; padding:5px; background: #FAF8CC; color:#CA7F03;  }
+   .fix tr th  { text-align:center; padding:5px 0px 5px 5px; background: #FAF8CC; color:#CA7F03; text-transform:uppercase; }
    
-   .fix tr td  { padding:5px 0px 5px 5px; background:#e5e5e5; text-align:center; }
+   .fix tr td  { padding:5px 0px 5px 5px; background:#e5e5e5; font:bold  12px Arial, Helvetica, sans-serif; text-align:center; }
    
-   .fix tr td span{ text-decoration:none;}
+   .fix tr td span{ color:#F1AC02; text-decoration:none;}
    
    
    
@@ -1062,7 +1070,7 @@ a.fogpa
 
 .mri_loout a            { list-style-type:none; text-decoration:none; }
 
-.main_left p            { color:#46B736; }
+.main_left p            { color:#4B3E0E;font-weight: bold; }
 
 
 
@@ -1075,7 +1083,7 @@ a.fogpa
 
 .refone_txt                  { width:300px; height:auto; float:left; }
 
-.s_up                       { border-radius:3px; }
+.s_up                       { border-radius:3px;width:110px;height:31px }
 
 .fone_head                  { font:bold 20px arial; color:#fff;  }
 

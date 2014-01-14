@@ -9,14 +9,13 @@
     <asp:Label ID="Label10" runat="server" Text=""></asp:Label>
      <asp:Label ID="Label12" runat="server" Text=""></asp:Label>
 
-</div>
+</div><div> <asp:Image ID="imgVoteus" runat="server" 
+        ImageUrl="~/Images/faq.jpg" /></div>
    <div id="div1" runat="server">
-      
-    
         <asp:Accordion ID="acrDynamic" runat="server" SelectedIndex="0" HeaderCssClass="headerAccordion" ContentCssClass="contentAccordion">
         </asp:Accordion>
     </div>
-
+    
     <div id="div2" runat="server" class="peocontent" >
     </div>
 </asp:Content>

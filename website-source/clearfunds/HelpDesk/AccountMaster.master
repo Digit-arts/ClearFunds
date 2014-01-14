@@ -124,14 +124,13 @@
 <ul>
    <li><a href="Home.aspx">Dashboard</a></li>
  <li><a href="profile.aspx">My Account</a></li>
+  <li><a href="DeposistsHistory.aspx">My Payment</a></li>
    <li><a href="Ipdetails.aspx">My Render</a></li>
     <li><a href="Forum.aspx">My Support</a></li>
   <li><a  href="MakeDeposit.aspx">Make Deposit</a></li>
-  <li><a href="DeposistsHistory.aspx">My Payments</a></li>
  <%--<li><a  href="CurrentPlan.aspx">Current Plan</a></li>--%>
   <%--<li><a href="profile.aspx">Profile</a></li>--%>
    <li><a href="WithDraw.aspx">Withdraw</a></li>
-   <li><a href="WithDrawalsHistory.aspx">Withdrawals History</a></li>
     <li><a href="YourReferrals.aspx">Your Referrals</a></li>
      <li><a href="Referral_link.aspx">Referral links</a></li>
      

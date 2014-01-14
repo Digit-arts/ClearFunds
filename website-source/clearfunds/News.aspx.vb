@@ -11,10 +11,10 @@ Partial Class News
 
 
 
-            Dim contentid As String = "10"
+            Dim contentid As String = "11"
             Dim dt1 As New DataTable()
             dt1 = obj.returndatatable("select * from [CF_contents] where [contents_id]='" & contentid & "'", dt1)
-            'Label1.Text = dt1.Rows(0)("contents_content").ToString()
+            'Page Title
             Page.Title = dt1.Rows(0)("contents_metatitle").ToString()
             'Page description
             Dim pagedesc As New HtmlMeta()

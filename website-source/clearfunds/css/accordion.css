@@ -7,7 +7,6 @@
   
     .contentAccordion {  
          padding: 4px;  
-         background-color:White;
       }  
                 
       .selectedheader {  
@@ -19,7 +18,7 @@
         
       .headerAccordion {  
           color: White;  
-         background-color:#666666;
+         background-color:#8B6A00;
          cursor: pointer;
           padding: 4px;  
           border:1px solid #000;           

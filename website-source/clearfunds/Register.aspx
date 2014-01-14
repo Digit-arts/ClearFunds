@@ -63,9 +63,10 @@
         <WizardSteps>
             <asp:CreateUserWizardStep ID="RegisterUserWizardStep" runat="server">
                 <ContentTemplate>
-                    <h2 style="left:347px;">Sign up</h2>
-                    <p>Use the form below to create a new account.</p>
-                    <p>Passwords are required to be a minimum of <%= Membership.MinRequiredPasswordLength %> characters in length.</p>
+                    <div class="abtus_cnt"><asp:Label ID="Label12" runat="server" Text="Sign up"></asp:Label> </div>
+                    <div id="divcontent" runat="server" class="register_content">Use the form below to create a new account.
+                    Passwords are required to be a minimum of <%= Membership.MinRequiredPasswordLength %> characters in length.</div>
+                    
                     <span class="failureNotification">
                         <asp:Literal ID="ErrorMessage" runat="server"></asp:Literal>
                     </span>
@@ -75,10 +76,10 @@
                             <fieldset    class="register">
                                <%-- <legend ><h3>Account Information</h3></legend>--%>
                                        <div class="regs_con1">
-                                                 <div class="cntfrm_one">
-                                                        <label style="padding-top:7px;"><asp:Label ID="Label2" runat="server" Text="Salutation *"></asp:Label></label>
-                                                        <div class="cntfrm_right"><asp:DropDownList ID="cmbsaluation" runat="server" CssClass="validate[required] input_box2 select" style="width:180px; border:1px solid #999;">
-                                                            <asp:ListItem Value="" Selected="True" text="Choose Salutation" />
+                                                 <div class="cntfrm_cbo">
+                                                        <asp:Label ID="Label2" runat="server" Text="Salutation *"></asp:Label>
+                                                        <div><asp:DropDownList ID="cmbsaluation" runat="server" CssClass="validate[required] input_box2 select" style="width:100px; border:1px solid #999;height:30px" >
+                                                            <asp:ListItem Value="" Selected="True" text="" />
                                                             <asp:ListItem Value="Mr"  Text="Mr" />
                                                             <asp:ListItem Value="Mrs" Text="Mrs" />
                                                             </asp:DropDownList>
@@ -86,7 +87,7 @@
                                                         </div> 
                                                    </div>
                                                     <div class="cntfrm_one">
-                                                    <label><asp:Label ID="lblFirstName" runat="server" Text="First Name *"></asp:Label></label>
+                                                   <label><asp:Label ID="lblFirstName" runat="server" Text="First Name *"></asp:Label></label>
                                                         <div class="cntfrm_right"><asp:TextBox ID="txtFirstName" runat="server" CssClass="validate[required] input_box2 small_box" onkeypress="return validateText(event)"></asp:TextBox>
                                                             <%--<asp:RequiredFieldValidator ID="txtfirstnameRequired" runat="server" ControlToValidate="txtFirstName"  ValidationGroup="RegisterUserValidationGroup"  ErrorMessage="FirstName is required"   ToolTip="First Name is required.">*</asp:RequiredFieldValidator>--%>
                                                             <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1"  ControlToValidate="txtFirstName" runat="server"  ValidationExpression="^[a-zA-Z]{2,128}$" ValidationGroup="RegisterUserValidationGroup" ErrorMessage="Invalid Name">*</asp:RegularExpressionValidator>--%> 
@@ -125,7 +126,7 @@
                                                              <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword" CssClass="failureNotification" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match." ValidationGroup="RegisterUserValidationGroup">*</asp:CompareValidator>--%>
                                                         </div>
                                                      </div>
-                                                      <div class="cntfrm_one">
+                                                      <div class="cntfrm_cbo">
                                                         <label><asp:Label ID="QuestionLabel" runat="server" AssociatedControlID="Question">Security Question *</asp:Label></label>
                                                          <div class="cntfrm_right"><asp:DropDownList ID="Question" runat="server" CssClass="validate[required] input_box2 select" style="min-width:254px; border:1px solid #999;">
                                                                 <asp:ListItem>What is your mother&#39;s maiden name?</asp:ListItem>

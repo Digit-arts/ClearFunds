@@ -7,12 +7,55 @@ Imports System.Configuration
 Imports System.Web.Security
 Partial Class About
     Inherits System.Web.UI.Page
+    Dim obj As New ClassFunctions()
+    Dim dt As New DataTable()
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        Label12.Text = "CONTACT US"
-        Label12.CssClass = "innerptitl"
+        If Not IsPostBack Then
+            Label12.Text = "CONTACT US"
+            Label12.CssClass = "innerptitl"
+
+            Dim contentid As String = "13"
+            Dim dt1 As New DataTable()
+            dt1 = obj.returndatatable("select * from [CF_contents] where [contents_id]='" & contentid & "'", dt1)
+            'Page title
+            Page.Title = dt1.Rows(0)("contents_metatitle").ToString()
+            'Page description
+            Dim pagedesc As New HtmlMeta()
+            pagedesc.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagedesc.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagedesc)
+            'page keywords
+            Dim pagekeywords As New HtmlMeta()
+            pagekeywords.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagekeywords.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagekeywords)
+        End If
     End Sub
-    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+
+
+    Private Sub SendEmail(ByVal recepientEmail As String, ByVal subject As String, ByVal body As String)
+        Using mailMessage As New MailMessage()
+            mailMessage.From = New MailAddress(ConfigurationManager.AppSettings("UserName"))
+            mailMessage.Subject = subject
+            mailMessage.Body = body
+            mailMessage.IsBodyHtml = True
+            mailMessage.[To].Add(New MailAddress(recepientEmail))
+            Dim smtp As New SmtpClient()
+            smtp.Host = ConfigurationManager.AppSettings("Host")
+            smtp.EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings("EnableSsl"))
+            Dim NetworkCred As New System.Net.NetworkCredential()
+            NetworkCred.UserName = ConfigurationManager.AppSettings("UserName")
+            NetworkCred.Password = ConfigurationManager.AppSettings("Password")
+            smtp.UseDefaultCredentials = False
+            smtp.Credentials = NetworkCred
+            smtp.Port = Integer.Parse(ConfigurationManager.AppSettings("Port"))
+            smtp.Send(mailMessage)
+        End Using
+    End Sub
+
+    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles Button1.Click
         Dim con As New SqlConnection
         Dim obj As New ClassFunctions()
         con = New SqlConnection(obj.ConnectionString)
@@ -37,24 +80,5 @@ Partial Class About
         txtemail.Text = ""
         txtfirstname.Text = ""
         txtlastname.Text = ""
-    End Sub
-    Private Sub SendEmail(ByVal recepientEmail As String, ByVal subject As String, ByVal body As String)
-        Using mailMessage As New MailMessage()
-            mailMessage.From = New MailAddress(ConfigurationManager.AppSettings("UserName"))
-            mailMessage.Subject = subject
-            mailMessage.Body = body
-            mailMessage.IsBodyHtml = True
-            mailMessage.[To].Add(New MailAddress(recepientEmail))
-            Dim smtp As New SmtpClient()
-            smtp.Host = ConfigurationManager.AppSettings("Host")
-            smtp.EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings("EnableSsl"))
-            Dim NetworkCred As New System.Net.NetworkCredential()
-            NetworkCred.UserName = ConfigurationManager.AppSettings("UserName")
-            NetworkCred.Password = ConfigurationManager.AppSettings("Password")
-            smtp.UseDefaultCredentials = False
-            smtp.Credentials = NetworkCred
-            smtp.Port = Integer.Parse(ConfigurationManager.AppSettings("Port"))
-            smtp.Send(mailMessage)
-        End Using
     End Sub
 End Class

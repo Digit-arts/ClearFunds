@@ -9,7 +9,10 @@
     <asp:Label ID="Label5" runat="server" Text=""></asp:Label>
     <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
 
-    <asp:Label ID="Label4" ForeColor="Black" Font-Bold="true" runat="server" Text=""></asp:Label></div>
+    <asp:Label ID="Label4" ForeColor="Black" Font-Bold="true" runat="server" Text=""></asp:Label>
+    </div>
+        <div>
+            <asp:Image ID="imgBanner" runat="server" Height="274px" Width="980px" /></div>
    <div id="divcontent" runat="server" class="inne_ctes">  </div>
     <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
     </div>

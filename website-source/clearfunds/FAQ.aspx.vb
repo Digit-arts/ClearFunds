@@ -3,12 +3,31 @@ Imports System.Data
 
 Partial Class FAQ
     Inherits System.Web.UI.Page
-    Dim obj As ClassFunctions()
+    Dim obj As New ClassFunctions()
+    Dim dt As New DataTable()
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
 
         Label12.Text = "FAQ"
         Label12.CssClass = "innerptitl"
         If Not IsPostBack Then
+            Dim contentid As String = "12"
+            Dim dt1 As New DataTable()
+            dt1 = obj.returndatatable("select * from [CF_contents] where [contents_id]='" & contentid & "'", dt1)
+            'Page title
+            Page.Title = dt1.Rows(0)("contents_metatitle").ToString()
+            'Page description
+            Dim pagedesc As New HtmlMeta()
+            pagedesc.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagedesc.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagedesc)
+            'page keywords
+            Dim pagekeywords As New HtmlMeta()
+            pagekeywords.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagekeywords.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagekeywords)
+
+
 
 
             PopulateAcrDynamically()

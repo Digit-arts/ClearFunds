@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 
 input,img,p
@@ -6,8 +6,8 @@ input,img,p
 	margin:0; padding:0;
 	
 }
-body {  margin:0; padding:0;width:100%; }
-h1,h2,h3,h4,h5,h6 { color:#F6BD08; margin:0px; padding:0px; text-transform:capitalize; font-family:Calibri; }
+body { margin:0; padding:0;width:100%; }
+h1,h2,h3,h4,h5,h6 { margin:0px; padding:0px; text-transform:capitalize; font-family:Calibri; }
 input:focus ,a:focus	{ outline:none;}
 img{ border:0;}
 html
@@ -377,14 +377,23 @@ padding-left:22px;
 }
 .acc_cnt
 {
-/*width:984px;*/
+width:984px;
 height:auto;
-padding:5px;
+padding:14px 8px;
 background:#FFFFFF;
-margin:auto;
+margin:0 auto;
 
 }
-.clear {clear:both;}
+
+.acc_cnt h2
+{
+width: 100%;
+height:46px;
+
+ font: normal 20px Calibri;
+ color:#000;
+ float:left;
+}
 
 .acc_mn
 {
@@ -426,15 +435,14 @@ text-decoration:none;
 float:left;
 margin-top:15px;
 }
-.acc_table table
+.acc_table 
 {
-width:710px;
+width:860px;
 height:auto;
 border:1px solid #bdbdbd;
 border-collapse: collapse;
 float:left;
-margin-left:2px;
-margin-top:15px;
+margin-left:40px;
 margin-bottom:5px;
 }
 
@@ -807,17 +815,6 @@ text-align:center;
     float:left;
     background:#EBEBE2;
     padding:5px;
-}
-.historyTabHeader
-{
-    color: #F6BD08;
-    float: left;
-    font-weight: bold;
-}
-.historyTab
-{
-    font-family :Verdana ;
-    font-size: 11px;
 }
 .postone_comments
 {

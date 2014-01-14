@@ -16,9 +16,27 @@ Partial Class Stats
     Dim selectedIndexDetId As String = ""
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         Dim dt As New DataTable()
-         Dim ds As New DataSet()
+        Dim ds As New DataSet()
         Dim str As String = ""
+
+        Dim contentid As String = "17"
+        Dim dt1 As New DataTable()
+        dt1 = obj.returndatatable("select * from [CF_contents] where [contents_id]='" & contentid & "'", dt1)
+        'Page title
+        Page.Title = dt1.Rows(0)("contents_metatitle").ToString()
+        'Page description
+        Dim pagedesc As New HtmlMeta()
+        pagedesc.Name = dt1.Rows(0)("contents_metakey").ToString()
+        pagedesc.Content = dt1.Rows(0)("contents_metadesc").ToString()
+        Header.Controls.Add(pagedesc)
+        'page keywords
+        Dim pagekeywords As New HtmlMeta()
+        pagekeywords.Name = dt1.Rows(0)("contents_metakey").ToString()
+        pagekeywords.Content = dt1.Rows(0)("contents_metadesc").ToString()
+        Header.Controls.Add(pagekeywords)
+
         str = "select distinct(username),Deposit_Amount as Deposit ,WithDrawl_Amount as Withdraw from aspnet_Users a  inner Join  CF_Deposit b on b.Deposit_UserId=a.UserId inner Join  CF_WithDrawl c on c.WithDrawl_UserId=a.UserId"
         ds = obj.ReturnDataSet(str)
         GVStats.DataSource = ds

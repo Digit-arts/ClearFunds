@@ -7,7 +7,6 @@ Imports System.Web
 Imports System.Net.Mail
 Imports System.Configuration
 Imports System.Web.Security
-Imports System.Data.SqlClient
 
 Public Class CEmail1
     Private Sub SendEmail(ByVal recepientEmail As String, ByVal subject As String, ByVal body As String)
@@ -92,15 +91,9 @@ Public Class CEmail1
 
     Public Sub EmailSendbonus(ByVal txtEmails As String, ByVal amount As Decimal)
         Dim txtMessage As String = [String].Empty
-        'txtMessage = ("Contact email: " & txtEmails)
-        'txtMessage = ("Bonus: " & amount)
-        Dim dst As New DataSet
-        dst = ReturnTemplate("sendbouns")
-        Dim mainbody As String
-
-        mainbody = dst.Tables(0).Rows(0).Item("Email_Templates_Message")
-        mainbody.Replace("[Bonus_Amount]", amount)
-        SendEmail(txtEmails, dst.Tables(0).Rows(0).Item("Email_Templates_Subject"), mainbody)
+        txtMessage = ("Contact email: " & txtEmails)
+        txtMessage = ("Bonus: " & amount)
+        SendEmail(txtEmails, "Bonus From http://clearfunds.acopies.com", txtMessage)
     End Sub
     Public Sub emailSendPenality(ByVal txtEmails As String, ByVal amount As Decimal)
         Dim txtMessage As String = [String].Empty
@@ -108,30 +101,6 @@ Public Class CEmail1
         txtMessage = ("Penality: " & amount)
         SendEmail(txtEmails, "Bonus From http://clearfunds.acopies.com", txtMessage)
     End Sub
-
-    Public Function ReturnTemplate(ByVal Templates_Title As String) As DataSet
-        Dim sqlcon As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("ApplicationServices").ToString)
-        Dim SqlCmd As New SqlCommand()
-        Dim Ds As New DataSet
-        Dim SqlAda As New SqlDataAdapter
-        ReturnTemplate = Nothing
-        Try
-            sqlcon.Open()
-            SqlCmd.Connection = sqlcon
-            SqlCmd.CommandText = "select Email_Templates_Subject, Email_Templates_Message from CF_Email_Templates where Email_Templates_Title='" & Templates_Title & "'"
-            SqlCmd.CommandType = CommandType.Text
-            SqlAda.SelectCommand = SqlCmd
-            SqlAda.Fill(Ds, "TableName")
-            Return Ds
-        Catch ex As Exception
-        Finally
-            If sqlcon.State = ConnectionState.Open Then sqlcon.Close()
-            SqlCmd.Dispose()
-            sqlcon.Dispose()
-            SqlCmd = Nothing
-            sqlcon = Nothing
-        End Try
-    End Function
 End Class
 
 

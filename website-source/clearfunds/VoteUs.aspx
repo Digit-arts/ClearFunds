@@ -7,6 +7,8 @@
      <asp:Label ID="Label12" runat="server" Text=""></asp:Label>
 
 </div>
+<div> <asp:Image ID="imgVoteus" runat="server" 
+        ImageUrl="~/Images/banner-voteus.jpg" /></div>
    <div id="div1" runat="server" class="peocontent">
 
     </div>

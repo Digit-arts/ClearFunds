@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.Data.SqlClient
 
 Partial Class VoteUs
     Inherits System.Web.UI.Page
@@ -10,6 +11,21 @@ Partial Class VoteUs
             Label12.CssClass = "innerptitl"
             Dim SelectedIndexId As String = ""
 
+            Dim contentid As String = "9"
+            Dim dt1 As New DataTable()
+            dt1 = obj.returndatatable("select * from [CF_contents] where [contents_id]='" & contentid & "'", dt1)
+            'Page title
+            Page.Title = dt1.Rows(0)("contents_metatitle").ToString()
+            'Page description
+            Dim pagedesc As New HtmlMeta()
+            pagedesc.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagedesc.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagedesc)
+            'page keywords
+            Dim pagekeywords As New HtmlMeta()
+            pagekeywords.Name = dt1.Rows(0)("contents_metakey").ToString()
+            pagekeywords.Content = dt1.Rows(0)("contents_metadesc").ToString()
+            Header.Controls.Add(pagekeywords)
 
             dt = obj.returndatatable("select * from   [CF_VoteUs]", dt)
 

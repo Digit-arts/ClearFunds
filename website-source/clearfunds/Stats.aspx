@@ -6,11 +6,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <div class ="ContentPadding ">
-    <h2 style="left:353px; color:#CA7F03; text-transform:capitalize ; font:bold 25px calibri; ">Status</h2>
-  
+     <div class="abtus_cnt"><asp:Label ID="Label10" runat="server" Text="Status"></asp:Label></div>
      <div class="acc_table">
 <asp:GridView ID="GVStats"  AutoGenerateColumns="false"  AllowPaging="true" PageSize="10"
-        OnPageIndexChanging="OnPageIndexChanging" runat="server" >
+        OnPageIndexChanging="OnPageIndexChanging" runat="server" Width="840px" >
  <PagerSettings Mode="Numeric" PageButtonCount="6"  
              FirstPageText="First" LastPageText="Last" NextPageText="" PreviousPageText="" /> 
     <Columns>

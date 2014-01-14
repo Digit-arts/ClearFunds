@@ -1,17 +1,14 @@
 ﻿<%@ Page Title="ClearFunds" Language="VB" MasterPageFile="ContentMaster.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" %>
 
-    <%@ Register Src="~/Login1.ascx" TagName="Login1" TagPrefix="uc1" %>
+    <%@ Register Src="Usercontrol/Login1.ascx" TagName="Login1" TagPrefix="uc1" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
  
     <link href="css/skitter.styles.css" type="text/css" media="all" rel="stylesheet" />	
     
-
-
 	<script src="js/jquery-1.6.3.min.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/jquery.skitter.min.js"></script>
-    
+	<script src="js/jquery.skitter.min.js"></script>  
 	<script>
 	    $(document).ready(function () {
 	        $('.box_skitter_large').skitter({ label: false, numbers: false });
@@ -28,12 +25,11 @@
 		<div class="border_box">
 			<div class="box_skitter box_skitter_large">
 				<ul>
-                    <li><a href="#"><img src="Images/Slide_1.jpg" class="cubeRandom" /></a></li>
-                    <li><a href="#"><img src="Images/Slide_2.jpg" class="cubeRandom" /></a></li>
-				
-					<li><a href="#"><img src="Images/Slide_3.jpg" class="block" /></a></li>
-					<li><a href="#"><img src="Images/Slide_4.jpg" class="cubeStop" /></a></li>
-					<li><a href="#"><img src="Images/Slide_5.jpg" class="cubeHide" /></a></li>
+                    <li><a href="#"><img src="Images/Slide_1.jpg" class="cubeRandom" alt="" width="980px" height="px" /></a></li>
+                    <li><a href="#"><img src="Images/Slide_2.jpg" class="cubeRandom" alt="" height="350px" width="980px" /></a></li>
+					<li><a href="#"><img src="Images/Slide_3.jpg" class="block" alt="" width="980px" height="350px" /></a></li>
+					<li><a href="#"><img src="Images/Slide_4.jpg" class="cubeStop" alt="" height="350px" width="980px" /></a></li>
+					<li><a href="#"><img src="Images/Slide_5.jpg" class="cubeHide" alt="" height="350px" width="980px" /></a></li>
                    
 				</ul>
 			</div>
@@ -43,58 +39,41 @@
          </div><!---end img_content-->
 
         <div class="mainpage_center">
-
-
-            <div class="mainpage_left">
-                <h2>Welcome to Clearfunds</h2>
-               <div class="h_left">              
-                    <div class="hompg_img">
-                        <img src="Images/homepag_img.png" />
+         <div class="planTitle">Reasons to choose Clear Funds</div>
+       
+                
+                <div class="feat_plan1">
+                    <div class="feat_pic"><img alt="" src="Images/picInterest.jpg" align="middle" 
+                            height="172px" width="257px" /></div>
+                    <div class="feat_plan_title">Interest</div>
+                    <div class="plan_content_txt">
+                    The interest that we pay to our investors depends on the results of trading activity of our company for the last business day and is set automatically at midnight... 
+                    &nbsp;&nbsp;<asp:HyperLink ID="hlnkfeat_plan1" runat="server" ImageUrl="Images/picMore.jpg" NavigateUrl="~//content.aspx?id=8"></asp:HyperLink>
+                    </div>
+                </div>
                     
-                        </div>   
-                        <p>Malaysian INC today operates in several fields. Our business lines in our core markets of Malaysia, Indonesia, Singapore and Thailand are organized primarily across the following areas: short-term lending market, trading on a stock exchange, equity trade, dividends reinvestment and note brokerage.
-
-Our company is a leading financial services provider taking care of the needs of consumers, investors, entrepreneurs, commercial organizations and corporations. We focus on capturing growth opportunities while taking a proactive and conservative approach to capital management by continuing to establish our presence in high growth markets.
-
-Our strong track record of financial performance and high credit ratings allow us to keep our momentum and continue with robust performance even amidst the current environment. Our priority is long-term cooperation with investors, so we make all efforts to gain a good reputation and confidence of their investments.
-
-Our international operations capture value from new investments and continue to pursue organic expansion by delivering innovation and superior customer value. In the domestic market we aim to achieve leadership in key and profitable segments.
-
-Since February 2013, we are open to investors from around the world. Now anyone can increase their capital by placing funds to be managed by our company.
-
-Therefore, only Malaysian INC can provide stable and reliable source of income for each of you for many years. </p>    
-                </div>  
-            
-            
-            </div>
-            <div id="divmain" runat="server" class="mainpage_right">    
-               <%--  <h2>Latest News</h2>
-                 <div id="divrht" runat="server" class="h_right">
-                        <div class="h_ritimg "><img src="Images/lat_news.png" /></div>
-                     <asp:Label ID="Label1" runat="server" Text="27/05/2013"></asp:Label><br />
-                     <asp:HyperLink ID="HyperLink1" Text="Liberty Reserve is unavailable" NavigateUrl="https://en.bitcoin.it/wiki/Liberty_Reserve" runat="server"></asp:HyperLink>
-                       <div style="font:12px arial; line-height:21px; text-align:justify;">  <asp:Label ID="Label2" runat="server" Text="Dear investors. How many of you have noticed, Liberty Reserve is unavailable. There is no official information released yet…"></asp:Label><br /></div>
-                       <asp:HyperLink ID="HyperLink2" NavigateUrl="~/News.aspx" Text="Read More.." runat="server"></asp:HyperLink>
-
-
+                
+                <div class="feat_plan2">
+                    <div class="feat_pic"><img alt="" src="Images/picCompounding.jpg" align="middle" 
+                            height="172px" width="257px" /></div>
+                    <div class="feat_plan_title">Principal</div>
+                    <div class="plan_content_txt">
+                    The principal will be returned to your account balance at the end of the investment period...
+                    &nbsp;&nbsp;<asp:HyperLink ID="hlnkfeat_plan2" runat="server" ImageUrl="Images/picMore.jpg" NavigateUrl="~//content.aspx?id=8"></asp:HyperLink>
+                    </div>
                  </div>
 
-                  <div class="h_right">
-                        <div class="h_ritimg "><img src="Images/celebrat.png" /></div>
-                     <asp:Label ID="Label3" runat="server" Text="04/06/2013"></asp:Label><br />
-                     <asp:HyperLink ID="HyperLink3" Text=" Paypal is Now Great"  NavigateUrl="https://www.paypal.com" runat="server"></asp:HyperLink>
-                       <div style="font:12px arial; line-height:21px; text-align:justify;">  <asp:Label ID="Label4" runat="server" Text="Dear investors. How many of you have noticed, Liberty Reserve is unavailable. There is no official information released yet…"></asp:Label><br /></div>
-                       <asp:HyperLink ID="HyperLink4" Text="Read More.." NavigateUrl="~/News.aspx" runat="server"></asp:HyperLink>
+                <div class="feat_plan3">
+                    <div class="feat_pic"><img alt="" src="Images/picPrincipal.jpg" align="middle" 
+                            height="172px" width="257px" /></div>
+                    <div class="feat_plan_title">Compounding</div>
+                    <div class="plan_content_txt">
+                    Compounding is available up to 100% for all investment plans. Compounding rate can be set either during the initial deposit and change at any time...
+                    &nbsp;&nbsp;<asp:HyperLink ID="hlnkfeat_plan3" runat="server" ImageUrl="Images/picMore.jpg" NavigateUrl="~//content.aspx?id=8"></asp:HyperLink>
+                    </div>
+                </div>
+         
 
-
-                 </div>
-                 <div class="h_right ">
-                  <h2>Online Support</h2>
-                 <div class="h_ritimg "><img src="Images/contact.png" /></div>
-                 </div>--%>
-            </div>
-        
-        
         
         
         </div>

@@ -1,15 +1,15 @@
 ﻿<%@ Master Language="VB" CodeFile="ContentMaster.master.vb" Inherits="ContentMaster" %>
-<%@ Register Src="~/Calculation.ascx" TagName="cal" TagPrefix="uc1" %>
+<%@ Register Src="Usercontrol/Calculation.ascx" TagName="cal" TagPrefix="uc1" %>
 <%@ Register Src="~/Account/SmallLogOut.ascx" TagName="smallLogout" TagPrefix="uc3" %>
-<%@ Register Src="~/Barchart.ascx" TagName="Barchart" TagPrefix="uc4" %>
-<%@ Register Src="~/Payment.ascx" TagName="Payment" TagPrefix="uc5" %>
+<%@ Register Src="Usercontrol/Barchart.ascx" TagName="Barchart" TagPrefix="uc4" %>
+<%@ Register Src="Usercontrol/Payment.ascx" TagName="Payment" TagPrefix="uc5" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link href="Content.css" rel="stylesheet" type="text/css" />
+    <link href="css/Content.css" rel="stylesheet" type="text/css" />
     <link href="css/StyleSheet.css" rel="stylesheet" type="text/css" />
     <link href="css/c_style.css" rel="stylesheet" type="text/css" />
 
@@ -23,29 +23,29 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class ="OutPage ">
+    <div class ="OutPage">
      
-     <div style="width:1000px; margin:0 auto;"> <uc3:smallLogout ID="SmallLogout1" runat="server" /></div>
+     <div style="width:1000px; margin:0 auto; color:#DBAA0C; font-weight: bold;"> <uc3:smallLogout ID="SmallLogout1" runat="server" /></div>
        
        
             <div   runat="server"  class="main_top"><!---start main_top-->
              <div class="my_acc"> <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Account/Home.aspx" runat="server">My Account</asp:HyperLink></div>
                <asp:Panel ID="Panel1" Visible="false" runat="server">
             <div   class="main_left"><!---start main_left-->
-            	<p>Sales& Support & Payments: <span style="color:#fff;">23984305-0000-4400</span></p>
+            	<p>Sales & Support & Payments: <span style="color:#DBAA0C; font-weight: bold;">23984305-0000-4400</span></p>
             </div><!---end main_left-->
              <div class="main_right"><!---start main_right-->
             	<ul>
            			<li><a href="support.aspx">Support</a></li>
-                	<li>/</li>
+                	<li>|</li>
                 	<li><%--<a href="Account/Login.aspx">Login</a>--%>
                         <asp:HyperLink ID="HyperLink6" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
                     </li>
                 
              </ul>
              <div><a href="~/Register.aspx"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/Register.aspx" runat="server">
-                        <asp:Image ID="Image3" BorderWidth="0" CssClass="s_up" AlternateText="ClearFunds"
-                            ImageUrl="~/images/sign.png" runat="server" /></asp:HyperLink></a></div>
+                        <asp:Image ID="Image3" BorderWidth="0"  AlternateText="ClearFunds"
+                            ImageUrl="~/images/btnSignUp.jpg" runat="server" Height="31px" Width="110px" /></asp:HyperLink></a></div>
             </div><!---end main_right-->
             </asp:Panel>
             </div> 
@@ -53,70 +53,77 @@
     </div>
     <div class ="Main">
     <div class ="Header ">
-    <div class ="HeaderOne ">
-       
-            
-            
-        <asp:ImageButton ID="ImageButton1" Height="67px" Width="236px" 
-            ImageUrl="~/Images/cf.png"   PostBackUrl="~/default.aspx" runat="server" /></div>
-    <div class ="HeaderTwo "></div>
+    <div class ="HeaderOne "><asp:ImageButton ID="ImageButton1" Height="67px" Width="336px" ImageUrl="~/Images/cf.png"   PostBackUrl="~/default.aspx" runat="server" /></div>
+    <div class ="HeaderTwo "><asp:Image ID="Image1" runat="server" ImageUrl="~/Images/banner_r3_c6.jpg" ImageAlign="Bottom" /></div>
     <div class ="HeaderThree "></div>
-    
     </div>
     <div class="clear"></div>
-   
-    <div class ="Menu" id="menu">
-    <div id="menu" runat="server">
-			
-		
-	
-
-	</div>
-        </div>
+      
+        
+    
+    
+    <div class ="topMenu" id="topMenu">
+         <div class="firstMenu">
+         <div id="menu" runat="server"></div>
+         
+         </div>
+     </div>
+     
+    
    
     <div class ="Contents">
-     <asp:ContentPlaceHolder id="MainContent" runat="server">
-       
-        </asp:ContentPlaceHolder>
+     <asp:ContentPlaceHolder id="MainContent" runat="server"></asp:ContentPlaceHolder>
    </div>
-   <div>
-   
-   
-   </div>
+
 
    
             <uc4:Barchart ID="Brchart" runat="server" Visible="False" />
             
-             
-      
-   <div class="features">
-                <div class="feat_boxone">
-                    
-                </div>
+   <div class="features-bottom">
 
-                <div class="feat_boxtwo">
-                
-                    
-                    <h1>Payment Options</h1>
-               
-                  
-                     <uc5:Payment ID="Payment" runat="server" />
-                    
-                   
-              
+   <div class="featuresContent"><div class="features">
+   
+                <div class="feat_boxpic">
+                    <asp:Image ID="Image4" runat="server" Height="158px" 
+                        ImageUrl="~/Images/dollar.png" Width="125px" />
                 </div>
-                 
-                 <div class="feat_boxthree">
+                <div class="feat_boxthree">
                     <uc1:cal ID="Cal1" runat="server"  />
                 </div>
 
-            
-            
-            </div>
-   
-  
+                <div class="feat_boxone">
+                <div class="feat_boxtwo_title">Our Features</div>
+                    <img alt="" src="Images/features.png" width="285px" height="130px" /></div>
 
-  <div class ="FooterContent"><div class ="Footer ">
+                <div class="feat_boxtwo">
+                    <div class="feat_boxtwo_title">Payment Options</div>
+                     <uc5:Payment ID="Payment" runat="server" />
+                </div>
+            </div></div>
+
+     <div class ="BottomContent"><div class ="Bottom ">
+         <div class ="BottomOne ">
+                <div class="feat2_pic"><img alt="" src="Images/feat2_pic1.jpg" width="116px" 
+                        height="70px"/></div>
+                <div class="feat2_title">HOW TO HELP</div>
+                <div class="feat2_body">Become a member and invest with us, increase your oppurtunities to gain a profit ....</div>
+         </div>
+         <div class ="BottomTwo ">
+                <div class="feat2_pic"><img alt="" src="Images/feat2_pic2.jpg" width="116px" 
+                        height="70px"/></div>
+                <div class="feat2_title">WHAT WE DO</div>
+                <div class="feat2_body">Investors entrust us with funds and we trade them with a variety of long term investment tools ....</div>
+         </div>
+         <div class ="BottomThree ">
+                <div class="feat2_pic"><img alt="" src="Images/feat2_pic3.jpg" width="116px" 
+                        height="70px"/></div>
+                <div class="feat2_title">WHO WE ARE</div>
+                <div class="feat2_body">Professional traders, market analysts, legal advisors, internet security experts ....</div>
+         </div>  
+   </div></div>
+     
+   <div class ="FooterContent"><div class ="Footer "> 
+
    <div class ="FooterOne ">
         <h1>Quick Links</h1>
         <ul>
@@ -132,16 +139,16 @@
          </div>
    <div class ="FooterTwo ">
         <h2>Contact Us</h2>
-        <span style="font:12px arial; color:#D4D4D4;">Got some questions? Need advice? Get in touch with us!</span><br /><br />
-        <span style="font:12px arial; color:#D4D4D4;">by phone: <span style="color:#E39D1C;">+48 555-654-983</span></span><br /><br />
-        <span style="font:12px arial; color:#D4D4D4;">by mail: <span style="color:#E39D1C; text-decoration:underline;">johndoes@ohnoes.com</span></span><br /><br />
-         <span style="font:12px arial; color:#D4D4D4;">or by your: <span><a class="foot_cntus" href ="Contact.aspx">ContactPage</a></span></span>
+        <span class="ContactUsLabel">Got some questions? Need advice?</span><br /><span class="ContactUsContent">Get in touch with us!</span><br />
+        <span class="ContactUsLabel">by phone: <span class="ContactUsContent">+48 555-654-983</span></span><br />
+        <span class="ContactUsLabel">by mail: <span class="ContactUsUnderline">johndoes@ohnoes.com</span></span><br />
+        <span class="ContactUsLabel">or by your: <span><a class="foot_cntus" href ="Contact.aspx">ContactPage</a></span></span>
 
          </div>
    <div class ="FooterThree ">
           <h2>News Letter</h2>
            
-           <span style="font:12px arial; color:#D4D4D4;" >Subscribe our newsletter to always be up to date! learn more.</span>
+           <span style="font:normal 12px arial; color:#D4D4D4;" >Subscribe our newsletter to always be up to date! learn more.</span>
           <div class="newsltr">
                <%-- <input type="text" value=""/>--%>
               <asp:TextBox ID="txtemail" runat="server"></asp:TextBox>
@@ -154,17 +161,17 @@
                    ValidationGroup="a"></asp:RegularExpressionValidator>
              <%--   <input class="news_submit" type="button" value="Subscribe " />--%>
           </div> 
-          <div  style="color:#E39D1C; font:normal 14px arial;">
+          <div  style="color:#E39D1C; font:normal 12px arial;">
               <asp:Label ID="lblmsg" runat="server" ></asp:Label>
           </div>
          </div>
    <div class ="FooterFour ">
-   <h2>Our Affiliates</h2>
-      <span style="font:12px arial; color:#D4D4D4;">Lorem Ipsum is simply dummy text.</span>
+      <div class="bottom_pic">
+       <img src="css/img/bottom_pic.jpg" /></div>
          </div>
    
    </div></div>
-     
+   </div> 
     </div>
     </form>
 </body>

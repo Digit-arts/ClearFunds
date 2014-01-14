@@ -72,7 +72,13 @@ Partial Class ContentMaster
                     hyp1.NavigateUrl = "~/content.aspx?id=" + dt.Rows(i).Item("contents_id").ToString()
                 End If
                 li.Controls.Add(hyp1)
+
             Next
+
+            Dim img1 As New Image
+            img1.ImageUrl = "images/endMenu.jpg"
+
+            menu.Controls.Add(img1)
         End If
         'End If
     End Sub

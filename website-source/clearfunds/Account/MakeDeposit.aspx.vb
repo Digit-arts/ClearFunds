@@ -226,12 +226,12 @@ Partial Class Account_MakeDeposit
 
     Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmit.Click
 
-            Dim ID As String = ""
-            Dim rbid As String = ""
-            Dim rbpid As String = ""
-            Dim dt2 As New DataTable()
-            Dim dt3 As New DataTable()
-            Dim dt As New DataTable()
+        Dim ID As String = ""
+        Dim rbid As String = ""
+        Dim rbpid As String = ""
+        Dim dt2 As New DataTable()
+        Dim dt3 As New DataTable()
+        Dim dt As New DataTable()
         paymethod = ""
         Dim dtt As New DataTable
         Dim uid As Guid = Membership.GetUser.ProviderUserKey()
@@ -769,7 +769,7 @@ Partial Class Account_MakeDeposit
         sb.AppendFormat("<body onload='document.forms[""form""].submit()'>")
         sb.AppendFormat("<form name='form' action='{0}' method='post'>", post_url)
         For Each field As KeyValuePair(Of String, String) In post_values
-                'sb.AppendFormat("<input type='hidden' name='{0}' value='{1}'>", field.Key, HttpUtility.UrlEncode(field.Value))
+            'sb.AppendFormat("<input type='hidden' name='{0}' value='{1}'>", field.Key, HttpUtility.UrlEncode(field.Value))
             sb.AppendFormat("<input type='hidden' name='{0}' value='{1}'>", field.Key, field.Value)
         Next
         sb.Append("</form>")
@@ -1513,7 +1513,7 @@ Partial Class Account_MakeDeposit
 
     End Function
 
- 
+
     Protected Sub txtSpendAmount_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSpendAmount.TextChanged
 
         If txtSpendAmount.Text <> "" Then

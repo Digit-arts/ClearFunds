@@ -214,6 +214,10 @@ button {  width: auto; overflow: visible; }
  float:right;
  background:url(img/hr.png) no-repeat top right transparent;
  }
+  .pr_imag
+{
+    margin-top: 10px;
+}
 .spaceclear{
 height:10px;
 clear:both;
@@ -459,8 +463,9 @@ color:#1e1e1e;
 }
 
 /* BACKGROUND */
-body{
-background:url(img/background.png) repeat-x scroll 0 0 #e8e9eb;
+body
+{
+    background: #fff url('../Images/background.png') repeat-x 0 0;
 }
 .dropcapspot{
 background-color:#DE5328;
@@ -487,14 +492,15 @@ a:link { -webkit-tap-highlight-color: #de0f0f; font-weight:bold; }
 ************************************************************************** USER MODULAR STYLES *********************************************************************
 *******************************************************************************************************************************************************************/
 
-p{
-font:12px Arial,Helvetica,sans-serif;
-letter-spacing:0.1px;
-line-height:23px;
-margin:0 0 1.5em;
-color:#666666;
-text-align:justify;
-overflow:visible;
+p
+{
+    font: 83% arial;
+    color: #666666;
+    text-align: left;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    line-height: 22px;
 }
 p strong{
 color:#1e1e1e;
@@ -505,6 +511,7 @@ color:#C6C6C6;
 h1 span, h2 span, h3 span, h4 span, h5 span, h6 span,h1 strong,h2 strong,h3 strong,h4 strong,h5 strong,h6 strong,.inner_main .widget ul.testimonials li p{
 font-family:'customFontBold', Arial, sans-serif;
 font-weight:normal;
+padding-left: 40px;
 }
 h1,h2,h3,h4,h5,h6,.hotstuff ul li a,.inner_main .widget ul.testimonials li p span{
 font-family:'customFont', Arial, sans-serif;
@@ -702,53 +709,57 @@ text-align:right;
 #personal_data p span a{
 text-decoration:none;
 }
-#menu{
-width:1000px;
-height:39px;
-
-margin: 0 auto;
-border:1px solid #ccc;
-display:block;
-position:relative;
-z-index:996;
-zoom:1;
+#menu
+{
+    width: 900px;
+    margin: 0 auto;
+    left: 30px;
+    position: relative;
+    z-index: 996;
+    zoom: 1;
+    top: 0px;
+    
 }
-#menu ul{
-height:28px;
-margin:1px 0 0 17px;
+#menu ul
+{
+    background-image: url('../Images/1pxl-menu.jpg');
+    background-repeat: repeat-x;
+    height: 29px;
+    margin: 0px 0 0 0px;
+    float: left;
+    z-index: 997;
+    zoom: 1;
 
-float:left;
-text-shadow:1px 1px #ffffff;
-z-index:997;
-zoom:1;
 }
 .ie6 #menu ul{
 margin-left:11px;
 }
-#menu ul li{
-height:15px;
-padding:0px 8px 14px 5px;
-margin:0;
-background:url(img/menu_separator.png) repeat-y top right transparent;
-font:15px/15px Arial, sans-serif;
-display:inline;
-float:left;
-position:relative;
-z-index:998;
-zoom:1;
+#menu ul li
+{
+    height: 10px;
+    background: transparent url(img/menu_separator.png) no-repeat right 4px;
+    padding: 3px 8px 18px 8px;
+    margin: 0;
+    display: inline;
+    float: right;
+    position: relative;
+    z-index: 998;
+    zoom: 1;
 }
 .ie6 #menu ul li{
 padding-bottom:0px;
 }
-#menu ul li a{
-text-decoration:none;
-color:#777777;
-font:normal 15px/15px calibri;
-letter-spacing:0.3px;
-display:block;
-float:left;
-padding:8px 6px 11px;
-zoom:1;
+#menu ul li a
+{
+    text-decoration: none;
+    color: #ffffff;
+    font: normal 18px 'Sakkal Majalla';
+    display: block;
+    float: left;
+    zoom: 1;
+    font-weight: bold;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 #menu ul li a.menu_box_mid_bg{
 background:url(img/menu_box.png) no-repeat center 2px transparent;
@@ -778,7 +789,7 @@ background:url(img/menu_box.png) no-repeat -297px 2px transparent;
 color:#777777;
 }
 #menu ul li.selected a,#menu ul li:hover a,#menu ul li ul li ul li:hover a{
-color:#1e1e1e;
+color:#4B3E0E;
 }
 #menu ul li ul{
 position: absolute;
@@ -2128,11 +2139,11 @@ margin: 5px 0 8px;
 
 .mainpage_center                { width:980px; height:auto; float:left; }
 
-.mainpage_left                  { width:605px; height:630px; float:left; border:1px solid #ccc; padding:5px; }
+.mainpage_left                  { width:605px; height:630px; float:left;padding:5px; }
 
 .mainpage_left  h2              { margin:0; padding:0; font:bold 15px calibri; border-bottom:3px solid #EBBE2F; padding:5px; margin-bottom:5px; }
 
-.mainpage_right                 { width:330px; height:auto; float:right; border:1px solid #ccc; padding:10px; }
+.mainpage_right                 { width:330px; height:auto; float:right; padding:10px; }
 
 .mainpage_right h2              { margin:0; padding:0; font:bold 14px arial; border-bottom:3px solid #EBBE2F;  }
 
@@ -2148,13 +2159,22 @@ margin: 5px 0 8px;
 
 .h_right a                      { font:12px arial; color:#de0f0f; }
 
-.my_acc                         {float:right; padding:6px 22px 6px 6px; }
+.my_acc
+{
+    float: right;
+    padding: 8px 22px 6px 6px;
+}
 
-.my_acc a                        { color:#fff; }
+.my_acc a                        { color:#4B3E0E; }
 
-.my_acc a:hover                 { color:#46B736; }
+.my_acc a:hover                 { color:#DBAA0C; }
 
 .feat_boxtwo>div input[type="image"] 
 {
     margin:4px !important; border:1px solid #999 !important; 	
+}
+.bottom
+{
+	width:40px; height:140; float:right; background:#F6F8F5; 
+	
 }
