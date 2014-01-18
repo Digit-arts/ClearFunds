@@ -49,7 +49,7 @@ Partial Class DeposistsHistory
                     "FROM CF_Deposit a " &
                     "INNER JOIN CF_User b on b. User_UserId=a.Deposit_UserId  " &
                     "INNER JOIN CF_Package c on c.Package_Id = a.Deposit_PackageId " &
-                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (Deposit_Status='True') " &
+                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (Deposit_Status='ACCEPTED') " &
                     "ORDER BY Reference ASC"
             acceptedTable = obj.returndatatable(str, acceptedTable)
             GVDepositAcceptedHistory.DataSource = acceptedTable.DefaultView
@@ -61,7 +61,7 @@ Partial Class DeposistsHistory
                     "FROM CF_Deposit a " &
                     "INNER JOIN CF_User b on b. User_UserId=a.Deposit_UserId  " &
                     "INNER JOIN CF_Package c on c.Package_Id = a.Deposit_PackageId " &
-                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (Deposit_Status IS NULL) " &
+                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (Deposit_Status = 'PENDING') " &
                     "ORDER BY Reference ASC"
             pendingTable = obj.returndatatable(str, pendingTable)
             GVDepositPendingHistory.DataSource = pendingTable.DefaultView
@@ -73,7 +73,7 @@ Partial Class DeposistsHistory
                     "FROM CF_Deposit a " &
                     "INNER JOIN CF_User b on b. User_UserId=a.Deposit_UserId  " &
                     "INNER JOIN CF_Package c on c.Package_Id = a.Deposit_PackageId " &
-                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (Deposit_Status='False') " &
+                    "WHERE user_id='" & SelectedIndexId.ToString() & "' and (Deposit_Status='REJECTED') " &
                     "ORDER BY Reference ASC"
             rejectedTable = obj.returndatatable(str, rejectedTable)
             GVDepositRejectedHistory.DataSource = rejectedTable.DefaultView

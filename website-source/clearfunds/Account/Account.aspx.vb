@@ -78,10 +78,10 @@ Partial Class Account
                     Dim Balance As Double
                     Dim BendingWithdrawal As Double
                     Dim EarnedTotal As Double
-                    Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  user_id='" + SelectedIndexId + "' and Deposit_Status='true' ")
+                    Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  user_id='" + SelectedIndexId + "' and Deposit_Status='ACCEPTED' ")
                     Bonus = obj.Returnsinglevalue("select sum(Bonus_Amount) from CF_Bonus a inner join cf_user b on b.user_userid=a.Bonus_Userid where  user_id='" + SelectedIndexId + "' ")
-                    WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + SelectedIndexId + "' and WithDrawl_Status='true'")
-                    BendingWithdrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + SelectedIndexId + "' and WithDrawl_Status='Request' ")
+                    WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + SelectedIndexId + "' and WithDrawl_Status='ACCEPTED'")
+                    BendingWithdrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + SelectedIndexId + "' and WithDrawl_Status='PENDING' ")
                     Penalty = obj.Returnsinglevalue("select SUM(Penalty_Amount) from CF_Penalty  a inner join cf_user b on b.user_userid=a.Penalty_Userid where user_id='" + SelectedIndexId + "' ")
                     Balance = Val((Deposit + Bonus) - (WithDrawal + Penalty))
                     EarnedTotal = Val(Bonus)

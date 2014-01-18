@@ -32,7 +32,7 @@ Partial Class Account_EarningsHistory
             Dim Profit As Double
             Dim total As Double
             Dim totalpercentage As String = ""
-            str = ("select distinct(Package_name + ' - ' + Packagedet_Plan) as type , convert (varchar,Deposit_ModifyDate,103) as Date,  Deposit_Amount as Amount from  CF_Packagedet  a inner Join   CF_Package b on b.Package_Id=a.Packagedet_PackageId inner Join   CF_Deposit c on c.Deposit_PackageId=b.Package_Id inner join CF_User d on d.User_UserId=c.Deposit_UserId  where user_id='" + SelectedIndexId + "' and  Deposit_Status='true'  and Deposit_Amount between Packagedet_MinAmount and Packagedet_MaxAmount")
+            str = ("select distinct(Package_name + ' - ' + Packagedet_Plan) as type , convert (varchar,Deposit_ModifyDate,103) as Date,  Deposit_Amount as Amount from  CF_Packagedet  a inner Join   CF_Package b on b.Package_Id=a.Packagedet_PackageId inner Join   CF_Deposit c on c.Deposit_PackageId=b.Package_Id inner join CF_User d on d.User_UserId=c.Deposit_UserId  where user_id='" + SelectedIndexId + "' and  Deposit_Status='ACCEPTED'  and Deposit_Amount between Packagedet_MinAmount and Packagedet_MaxAmount")
 
             dt = obj.returndatatable(str, dt)
 
@@ -77,7 +77,7 @@ Partial Class Account_EarningsHistory
         Dim Profit As Double
         Dim total As Double
 
-        str = ("select distinct(Package_name + ' - ' + Packagedet_Plan) as type , convert (varchar,Deposit_ModifyDate,103) as Date,  Deposit_Amount as Amount from  CF_Packagedet  a inner Join   CF_Package b on b.Package_Id=a.Packagedet_PackageId inner Join   CF_Deposit c on c.Deposit_PackageId=b.Package_Id inner join CF_User d on d.User_UserId=c.Deposit_UserId  where (Deposit_ModifyDate  BETWEEN '" + txtfrom.Text + "' AND '" + txtto.Text + "') and user_id='" + SelectedIndexId + "' and  Deposit_Status='true'  and Deposit_Amount between Packagedet_MinAmount and Packagedet_MaxAmount")
+        str = ("select distinct(Package_name + ' - ' + Packagedet_Plan) as type , convert (varchar,Deposit_ModifyDate,103) as Date,  Deposit_Amount as Amount from  CF_Packagedet  a inner Join   CF_Package b on b.Package_Id=a.Packagedet_PackageId inner Join   CF_Deposit c on c.Deposit_PackageId=b.Package_Id inner join CF_User d on d.User_UserId=c.Deposit_UserId  where (Deposit_ModifyDate  BETWEEN '" + txtfrom.Text + "' AND '" + txtto.Text + "') and user_id='" + SelectedIndexId + "' and  Deposit_Status='ACCEPTED'  and Deposit_Amount between Packagedet_MinAmount and Packagedet_MaxAmount")
 
         dt = obj.returndatatable(str, dt)
 

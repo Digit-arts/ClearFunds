@@ -942,6 +942,8 @@ color:#494949;
 white-space:nowrap;
 }
 
+.depos_con              {width:auto; background:none; border:0px; float:right;  font:bold 16px Arial, Helvetica, sans-serif; margin:7px 13px 7px 0px; text-transform:uppercase;  }
+
 .acc_table tr td
 {
 width:699px;

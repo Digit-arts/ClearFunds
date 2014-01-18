@@ -38,9 +38,9 @@ Partial Class Account_CurrentPlan
             Dim ds As New DataTable
             Dim str As String = ""
             Dim Amt As Double
-            Amt = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join CF_User b on b.User_UserId=a.Deposit_UserId where b.User_Id='" + SelectedIndexId + "' and Deposit_Status='true' ")
+            Amt = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join CF_User b on b.User_UserId=a.Deposit_UserId where b.User_Id='" + SelectedIndexId + "' and Deposit_Status='ACCEPTED' ")
             lblAmt.Text = Val(Amt)
-            str = "select Package_name as name, Package_duration as type, convert(varchar,Deposit_ModifyDate,103) as StartDate , Deposit_Amount  as Amount,Package_Status as PackStatus from CF_Package a inner join CF_Deposit b on b.Deposit_PackageId=a.Package_Id left join CF_user c on c.User_UserId=b.Deposit_UserId  where c.User_Id='" + SelectedIndexId + "' and Deposit_Status='true' "
+            str = "select Package_name as name, Package_duration as type, convert(varchar,Deposit_ModifyDate,103) as StartDate , Deposit_Amount  as Amount,Package_Status as PackStatus from CF_Package a inner join CF_Deposit b on b.Deposit_PackageId=a.Package_Id left join CF_user c on c.User_UserId=b.Deposit_UserId  where c.User_Id='" + SelectedIndexId + "' and Deposit_Status='ACCEPTED' "
             ds = obj.returndatatable(str, ds)
             ds.Columns.Add("EndDate")
             If ds.Rows.Count > 0 Then

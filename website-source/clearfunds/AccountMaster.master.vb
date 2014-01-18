@@ -70,7 +70,7 @@ Partial Class AccountMaster
                 "FROM CF_Deposit a  " &
                 "INNER JOIN CF_Package b ON b.Package_Id =a.Deposit_PackageId   " &
                 "INNER JOIN CF_Packagedet c ON c.Packagedet_Id=a.Deposit_PackageDetId  " &
-                "WHERE a.Deposit_UserId = '" + userid1 + "' AND Deposit_Status ='True' "
+                "WHERE a.Deposit_UserId = '" + userid1 + "' AND Deposit_Status ='ACCEPTED' "
 
         ds = obj.ReturnDataSet(Str2)
         If ds.Tables(0).Rows.Count > 0 Then
@@ -92,9 +92,9 @@ Partial Class AccountMaster
         Dim WithDrawal As Double
         Dim Penalty As Double
         Dim Balance As Double
-        Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  user_id='" + selectedIndexDetIdnew + "' and Deposit_Status='True' ")
+        Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  user_id='" + selectedIndexDetIdnew + "' and Deposit_Status ='ACCEPTED' ")
         Bonus = obj.Returnsinglevalue("select sum(Bonus_Amount) from CF_Bonus a inner join cf_user b on b.user_userid=a.Bonus_Userid where  user_id='" + selectedIndexDetIdnew + "'")
-        WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + selectedIndexDetIdnew + "' and  WithDrawl_Status='True'")
+        WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + selectedIndexDetIdnew + "' and  WithDrawl_Status='ACCEPTED'")
         Penalty = obj.Returnsinglevalue("select SUM(Penalty_Amount) from CF_Penalty  a inner join cf_user b on b.user_userid=a.Penalty_Userid where user_id='" + selectedIndexDetIdnew + "'")
         Balance = ((Deposit + Bonus) - (WithDrawal + Penalty))
 

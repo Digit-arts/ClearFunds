@@ -34,9 +34,9 @@ Partial Class Account_WithdrawalsHistory
                 pendingTable = ViewState("pendingTable")
                 acceptedTable = ViewState("acceptedTable")
                 rejectedTable = ViewState("rejectedTable")
-                pendingSortExpression = ViewState("pendingSortExpression")
-                acceptedSortExpression = ViewState("acceptedSortExpression")
-                rejectedSortExpression = ViewState("rejectedSortExpression")
+                pendingSortExpression = If(ViewState("pendingSortExpression") Is Nothing, "", ViewState("pendingSortExpression"))
+                acceptedSortExpression = If(ViewState("acceptedSortExpression") Is Nothing, "", ViewState("acceptedSortExpression"))
+                rejectedSortExpression = If(ViewState("rejectedSortExpression") Is Nothing, "", ViewState("rejectedSortExpression"))
                 Return
             End If
 
@@ -86,29 +86,33 @@ Partial Class Account_WithdrawalsHistory
 
     End Sub
 
-    
-    Protected Sub GVWithDrawalPendingHistory_Sorting(sender As Object, e As GridViewSortEventArgs) Handles GVWithDrawalPendingHistory.Sorting
+    Sub SortGrid(cacheSortExp As String, sortExpression As String, dt As DataTable, grid As GridView, e As GridViewSortEventArgs)
+        If (sortExpression.Contains(e.SortExpression.ToString())) Then
+            If (sortExpression.Contains("DESC")) Then
+                dt.DefaultView.Sort = e.SortExpression.ToString() & " ASC"
+                ViewState(cacheSortExp) = e.SortExpression.ToString() & " ASC"
+            Else
+                dt.DefaultView.Sort = e.SortExpression.ToString() & " DESC"
+                ViewState(cacheSortExp) = e.SortExpression.ToString() & " DESC"
+            End If
+        Else
+            dt.DefaultView.Sort = e.SortExpression.ToString()
+            ViewState(cacheSortExp) = e.SortExpression.ToString()
+        End If
+        grid.DataSource = dt.DefaultView
+        grid.DataBind()
+    End Sub
 
-        pendingTable.DefaultView.Sort = e.SortExpression.ToString()
-        ViewState("pendingSortExpression") = e.SortExpression.ToString()
-        GVWithDrawalPendingHistory.DataSource = pendingTable.DefaultView
-        GVWithDrawalPendingHistory.DataBind()
+    Protected Sub GVWithDrawalPendingHistory_Sorting(sender As Object, e As GridViewSortEventArgs) Handles GVWithDrawalPendingHistory.Sorting
+        SortGrid("pendingSortExpression", pendingSortExpression, pendingTable, GVWithDrawalPendingHistory, e)
     End Sub
 
     Protected Sub GVWithDrawalRejectedHistory_Sorting(sender As Object, e As GridViewSortEventArgs) Handles GVWithDrawalRejectedHistory.Sorting
-
-        rejectedTable.DefaultView.Sort = e.SortExpression.ToString()
-        ViewState("rejectedSortExpression") = e.SortExpression.ToString()
-        GVWithDrawalRejectedHistory.DataSource = rejectedTable.DefaultView
-        GVWithDrawalRejectedHistory.DataBind()
+        SortGrid("rejectedSortExpression", rejectedSortExpression, rejectedTable, GVWithDrawalRejectedHistory, e)
     End Sub
 
     Protected Sub GVWithDrawalAcceptedHistory_Sorting(sender As Object, e As GridViewSortEventArgs) Handles GVWithDrawalAcceptedHistory.Sorting
-
-        acceptedTable.DefaultView.Sort = e.SortExpression.ToString()
-        ViewState("acceptedSortExpression") = e.SortExpression.ToString()
-        GVWithDrawalAcceptedHistory.DataSource = acceptedTable.DefaultView
-        GVWithDrawalAcceptedHistory.DataBind()
+        SortGrid("acceptedSortExpression", acceptedSortExpression, acceptedTable, GVWithDrawalAcceptedHistory, e)
     End Sub
 
     Protected Sub GVWithDrawalPendingHistory_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles GVWithDrawalPendingHistory.PageIndexChanging

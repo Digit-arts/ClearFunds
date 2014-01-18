@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PendingDeposists.aspx.vb" MasterPageFile="~/Admin/Site.master" Inherits="Admin_PendingDeposists" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PendingDeposits.aspx.vb" MasterPageFile="~/Admin/Site.master" Inherits="Admin_PendingDeposists" %>
 <%--<%@ Page Language="VB" AutoEventWireup="false" MasterPageFile="~/Admin/Site.master" CodeFile="DepositDetails.aspx.vb" Inherits="Admin_DepositDetails" %>--%>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>

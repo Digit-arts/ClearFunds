@@ -36,13 +36,13 @@ Partial Class Account_WithDraw
             Dim Penalty As Double
             Dim Balance As Double
 
-            d4 = obj.returndatatable("select distinct(Deposit_PackageId) from  CF_Deposit where Deposit_UserId='" + uids + "' and Deposit_Status='True' ", d4)
+            d4 = obj.returndatatable("select distinct(Deposit_PackageId) from  CF_Deposit where Deposit_UserId='" + uids + "' and Deposit_Status ='ACCEPTED' ", d4)
 
 
             If d4.Rows.Count > 0 Then
                 For i As Integer = 0 To d4.Rows.Count - 1
                     Dim RBPayment As New RadioButton
-                    Dim amount As String = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit Where Deposit_UserId='" + uids + "' and Deposit_PackageId='" + d4.Rows(i).Item("Deposit_PackageId").ToString() + "' and  Deposit_Status='True' ")
+                    Dim amount As String = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit Where Deposit_UserId='" + uids + "' and Deposit_PackageId='" + d4.Rows(i).Item("Deposit_PackageId").ToString() + "' and  Deposit_Status ='ACCEPTED' ")
                     RBPayment.ID = d4.Rows(i).Item("Deposit_PackageId").ToString()
                     'RBPayment.AutoPostBack = True
                     RBPayment.Text = obj.Returnsinglevalue("select Package_name from CF_Package where Package_Id='" + d4.Rows(i).Item("Deposit_PackageId").ToString() + "'")
@@ -64,9 +64,9 @@ Partial Class Account_WithDraw
                     Dim lb1 As New Label
                     lb1.ID = "txtvalue_" + i.ToString
 
-                    Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  b.user_userid='" + uids + "'and  Deposit_PackageId='" + d4.Rows(i).Item("Deposit_PackageId").ToString() + "' and Deposit_Status='True' ")
+                    Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  b.user_userid='" + uids + "'and  Deposit_PackageId='" + d4.Rows(i).Item("Deposit_PackageId").ToString() + "' and Deposit_Status ='ACCEPTED' ")
                     'Bonus = obj.Returnsinglevalue("select sum(Bonus_Amount) from CF_Bonus a inner join cf_user b on b.user_userid=a.Bonus_Userid where  user_id='" + uids + "'")
-                    WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where b.user_userid='" + uids + "' and withdrawl_PackageId='" + d4.Rows(i).Item("Deposit_PackageId").ToString() + "' and  WithDrawl_Status='True'")
+                    WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where b.user_userid='" + uids + "' and withdrawl_PackageId='" + d4.Rows(i).Item("Deposit_PackageId").ToString() + "' and  WithDrawl_Status='ACCEPTED'")
                     'Penalty = obj.Returnsinglevalue("select SUM(Penalty_Amount) from CF_Penalty  a inner join cf_user b on b.user_userid=a.Penalty_Userid where user_id='" + uids + "'")
                     Balance = ((Deposit + Bonus) - (WithDrawal + Penalty))
                     lb1.Text = Val(Balance)
@@ -125,7 +125,7 @@ Partial Class Account_WithDraw
             Dim uids As String = Convert.ToString(userId)
 
             Dim d4 As New DataTable
-            d4 = obj.returndatatable("select distinct(Deposit_PackageId) from   CF_Deposit where  Deposit_UserId='" + uids + "' and Deposit_Status='True'", d4)
+            d4 = obj.returndatatable("select distinct(Deposit_PackageId) from   CF_Deposit where  Deposit_UserId='" + uids + "' and Deposit_Status ='ACCEPTED'", d4)
 
             Dim rbtn1 As RadioButton
 
@@ -147,9 +147,9 @@ Partial Class Account_WithDraw
                                 rbpid = rbtn1.ID.ToString()
                                 'rpackid = rbpid.Split("_")
                                 'rbid = rpackid(0)
-                                Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  b.user_userid='" + uids + "'and  Deposit_PackageId='" + rbpid + "' and Deposit_Status='True' ")
+                                Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  b.user_userid='" + uids + "'and  Deposit_PackageId='" + rbpid + "' and Deposit_Status ='ACCEPTED' ")
                                 'Bonus = obj.Returnsinglevalue("select sum(Bonus_Amount) from CF_Bonus a inner join cf_user b on b.user_userid=a.Bonus_Userid where  user_id='" + uids + "'")
-                                WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where b.user_userid='" + uids + "' and withdrawl_PackageId='" + rbpid + "' and  WithDrawl_Status='True'")
+                                WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where b.user_userid='" + uids + "' and withdrawl_PackageId='" + rbpid + "' and  WithDrawl_Status='ACCEPTED'")
                                 'Penalty = obj.Returnsinglevalue("select SUM(Penalty_Amount) from CF_Penalty  a inner join cf_user b on b.user_userid=a.Penalty_Userid where user_id='" + uids + "'")
                                 Balance = ((Deposit + Bonus) - (WithDrawal + Penalty))
                                 'lb1.Text = Val(Balance)

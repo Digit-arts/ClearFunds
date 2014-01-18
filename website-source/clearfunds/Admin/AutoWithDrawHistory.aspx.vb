@@ -8,8 +8,8 @@ Partial Class Admin_AutoWithDrawHistory
         Dim ds As New DataSet()
         Dim str As String = ""
         Dim Total As Double
-        str = ("select UserName,CONVERT (varchar, WithDrawl_Date,106) as Date, WithDrawl_Amount as Amount from CF_WithDrawl a Join aspnet_Users b on b.UserId=a.WithDrawl_UserId where a.WithDrawl_Status='true' and a.Auto_WithDrawl='true'")
-        Total = obj.Returnsinglevalue("select SUM( WithDrawl_Amount) as Amount from CF_WithDrawl a Join aspnet_Users b on b.UserId=a.WithDrawl_UserId  where a.WithDrawl_Status='true' and a.Auto_WithDrawl='true'")
+        str = ("select UserName,CONVERT (varchar, WithDrawl_Date,106) as Date, WithDrawl_Amount as Amount from CF_WithDrawl a Join aspnet_Users b on b.UserId=a.WithDrawl_UserId where a.WithDrawl_Status='ACCEPTED' and a.Auto_WithDrawl='true'")
+        Total = obj.Returnsinglevalue("select SUM( WithDrawl_Amount) as Amount from CF_WithDrawl a Join aspnet_Users b on b.UserId=a.WithDrawl_UserId  where a.WithDrawl_Status='ACCEPTED' and a.Auto_WithDrawl='true'")
         lblAmt.Text = Val(Total)
         dt = obj.returndatatable(str, dt)
         GVPaymentDetails.DataSource = dt

@@ -105,7 +105,8 @@
             <li>
                 <a class="collapsed heading">Payment Details</a>
                  <ul class="navigation">
-                    <li><a href="DepositDetails.aspx" title="">Deposit Details</a></li>
+                    <li><a href="PendingDeposits.aspx" title="">Pending Deposits</a></li>
+                    <li><a href="DepositHistory.aspx" title="">Deposit History</a></li>
                     <li><a href="WithDrawalHistory.aspx" title="">Withdrawal History</a></li>
                     <li><a href="#" title="">Earning History</a></li>
                     <li><asp:HyperLink ID="HyperLink6" NavigateUrl="~/Admin/WithDarwlRequest.aspx" runat="server">Withdrawal Request</asp:HyperLink></li>

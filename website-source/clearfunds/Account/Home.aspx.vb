@@ -47,7 +47,7 @@ Partial Class Account_Home
         Dim ds As New DataSet()
         'DT6 = obj.returndatatable("select  Deposit_UserId from CF_Deposit ", DT6)        
 
-        Str2 = "select distinct c.PackageDet_Plan ,b.Package_name,b.Package_duration ,b.Package_PaymentPeriod , convert (varchar,Deposit_ModifyDate,103) as Date  from CF_Deposit a  inner join CF_Package b on b.Package_Id =a.Deposit_PackageId   inner join CF_Packagedet  c  on c.Packagedet_Id=a.Deposit_PackageDetId  where a.Deposit_UserId = '" + userid1 + "' and Deposit_Status ='True' "
+        Str2 = "select distinct c.PackageDet_Plan ,b.Package_name,b.Package_duration ,b.Package_PaymentPeriod , convert (varchar,Deposit_ModifyDate,103) as Date  from CF_Deposit a  inner join CF_Package b on b.Package_Id =a.Deposit_PackageId   inner join CF_Packagedet  c  on c.Packagedet_Id=a.Deposit_PackageDetId  where a.Deposit_UserId = '" + userid1 + "' and Deposit_Status ='ACCEPTED' "
 
         ds = obj.ReturnDataSet(Str2)
         If ds.Tables(0).Rows.Count = 0 Then

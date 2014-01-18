@@ -54,9 +54,9 @@ Partial Class Account_MakeDeposit
             Dim WithDrawal As Double
             Dim Penalty As Double
             Dim Balance As Double
-            Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  user_id='" + selectedIndexDetIdnew + "' and Deposit_Status='True' ")
+            Deposit = obj.Returnsinglevalue("select sum(Deposit_Amount) from CF_Deposit a inner join cf_user b on b.user_userid=a.Deposit_UserId where  user_id='" + selectedIndexDetIdnew + "' and Deposit_Status='ACCEPTED' ")
             Bonus = obj.Returnsinglevalue("select sum(Bonus_Amount) from CF_Bonus a inner join cf_user b on b.user_userid=a.Bonus_Userid where  user_id='" + selectedIndexDetIdnew + "'")
-            WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + selectedIndexDetIdnew + "' and  WithDrawl_Status='True'")
+            WithDrawal = obj.Returnsinglevalue("select sum(WithDrawl_Amount) from CF_WithDrawl a inner join cf_user b on b.user_userid=a.WithDrawl_UserId where user_id='" + selectedIndexDetIdnew + "' and  WithDrawl_Status='ACCEPTED'")
             Penalty = obj.Returnsinglevalue("select SUM(Penalty_Amount) from CF_Penalty  a inner join cf_user b on b.user_userid=a.Penalty_Userid where user_id='" + selectedIndexDetIdnew + "'")
             Balance = ((Deposit + Bonus) - (WithDrawal + Penalty))
 
@@ -65,7 +65,7 @@ Partial Class Account_MakeDeposit
             dt3 = obj.returndatatable("select CustomProcessing_id, CustomProcessing_Name  from dbo.CF_CustomProcessing", dt3)
             Dim counts As Integer = 0
             Dim i As Integer = 0
-            dt = obj.returndatatable("select package_id, Package_name from CF_Package  where  package_id not in ( select  Deposit_PackageId from [CF_Deposit] where Deposit_UserId  in (select User_UserId from cf_user where [User_Id]='" & selectedIndexDetIdnew & "')  and [Deposit_Status]='true')", dt)
+            dt = obj.returndatatable("select package_id, Package_name from CF_Package  where  package_id not in ( select  Deposit_PackageId from [CF_Deposit] where Deposit_UserId  in (select User_UserId from cf_user where [User_Id]='" & selectedIndexDetIdnew & "')  and [Deposit_Status]='ACCEPTED')", dt)
 
             If Not Request.QueryString("packid") = Nothing Then
                 For Each Count In dt.Rows
@@ -211,7 +211,7 @@ Partial Class Account_MakeDeposit
             Dim uid1 As String = Convert.ToString(uid)
             Dim uname As String = obj.Returnsinglevalue("select username from aspnet_users where userId='" + uid1 + "'")
             Dim bonusamt As String = obj.Returnsinglevalue("select sum(Bonus_Amount) as Bonus from [CF_Bonus] where Bonus_Username='" + uname + "'")
-            Dim bonusdeposit As String = obj.Returnsinglevalue("select sum(Deposit_Amount) as deposit from  [CF_Deposit] where Deposit_UserId='" + uid1 + "' and Deposit_Type='Deposit From Bonus' and Deposit_Status='True'")
+            Dim bonusdeposit As String = obj.Returnsinglevalue("select sum(Deposit_Amount) as deposit from  [CF_Deposit] where Deposit_UserId='" + uid1 + "' and Deposit_Type='Deposit From Bonus' and Deposit_Status='ACCEPTED'")
 
             lblbonusamt.Text = bonusamt - bonusdeposit
         Else
@@ -239,7 +239,7 @@ Partial Class Account_MakeDeposit
 
         Try
 
-            obj.returndatatable("select * from CF_Deposit where Deposit_UserId='" + uid1 + "' and Deposit_Type='Deposit From Bonus' and Deposit_Status='True' order by Deposit_ModifyDate desc", dtt)
+            obj.returndatatable("select * from CF_Deposit where Deposit_UserId='" + uid1 + "' and Deposit_Type='Deposit From Bonus' and Deposit_Status ='ACCEPTED' order by Deposit_ModifyDate desc", dtt)
             Dim count As Integer = dtt.Rows.Count
 
             Dim originDate As DateTime = Convert.ToDateTime(DateAndTime.Now.ToString()).ToString("yyyy/MM/dd")
@@ -250,7 +250,7 @@ Partial Class Account_MakeDeposit
 
             Dim st As String = DateDiff(DateInterval.Day, admincount, originDate)
 
-            Dim value As String = obj.Returnsinglevalue("select Package_duration from CF_Package a inner join CF_Deposit b on  b.Deposit_PackageId=a.Package_Id where Deposit_UserId='" + uid1 + "' and Deposit_Type='Deposit From Bonus' and Deposit_Status='True'")
+            Dim value As String = obj.Returnsinglevalue("select Package_duration from CF_Package a inner join CF_Deposit b on  b.Deposit_PackageId=a.Package_Id where Deposit_UserId='" + uid1 + "' and Deposit_Type='Deposit From Bonus' and Deposit_Status ='ACCEPTED'")
 
             If count <> 0 And st < value Then
 
@@ -376,9 +376,9 @@ Partial Class Account_MakeDeposit
                             cmd.Parameters.Add(New SqlParameter("@Deposit_PackageId", SqlDbType.VarChar, 10)).Value = rbid
                             cmd.Parameters.Add(New SqlParameter("@Deposit_PackageDetId", SqlDbType.VarChar, 10)).Value = obj.Returnsinglevalue("select a.packagedet_id from cf_packagedet a join CF_Package b on a.Packagedet_PackageId=b.Package_Id where b.Package_Id ='" + rbid.ToString() + "'")
                             cmd.Parameters.Add(New SqlParameter("@Deposit_Amount", SqlDbType.Decimal, 18, 2)).Value = txtSpendAmount.Text
-                            cmd.Parameters.Add(New SqlParameter("@Deposit_Status", SqlDbType.VarChar, 10)).Value = "True"
+                            cmd.Parameters.Add(New SqlParameter("@Deposit_Status", SqlDbType.VarChar, 10)).Value = "ACCEPTED"
                             cmd.Parameters.Add(New SqlParameter("@Deposit_Type", SqlDbType.VarChar, 50)).Value = "Deposit From Bonus"
-                            cmd.Parameters.Add(New SqlParameter("@Deposit_ModifyDate", SqlDbType.DateTime)).Value = Format(obj.GetCurrentDate(), "yyyy/MM/dd")
+                            cmd.Parameters.Add(New SqlParameter("@Deposit_ModifyDate", SqlDbType.DateTime)).Value = obj.GetCurrentDate()
                             cmd.Parameters.Add(New SqlParameter("@Deposit_SysIp", SqlDbType.VarChar, 10)).Value = strIPAddress
                             cmd.Parameters.Add(New SqlParameter("@Deposit_CountryName", SqlDbType.VarChar, 50)).Value = countryname
                             cmd.Parameters.Add(New SqlParameter("@Deposit_PayName", SqlDbType.VarChar, 50)).Value = paymethod
@@ -444,9 +444,9 @@ Partial Class Account_MakeDeposit
                         cmd.Parameters.Add(New SqlParameter("@Deposit_PackageId", SqlDbType.VarChar, 10)).Value = rbid
                         cmd.Parameters.Add(New SqlParameter("@Deposit_PackageDetId", SqlDbType.VarChar, 10)).Value = obj.Returnsinglevalue("select a.packagedet_id from cf_packagedet a join CF_Package b on a.Packagedet_PackageId=b.Package_Id where b.Package_Id ='" + rbid.ToString() + "'")
                         cmd.Parameters.Add(New SqlParameter("@Deposit_Amount", SqlDbType.Decimal, 18, 2)).Value = txtSpendAmount.Text
-
+                        cmd.Parameters.Add(New SqlParameter("@Deposit_Status", SqlDbType.VarChar, 10)).Value = "PENDING"
                         cmd.Parameters.Add(New SqlParameter("@Deposit_Type", SqlDbType.VarChar, 50)).Value = "Deposit From Payment"
-                        cmd.Parameters.Add(New SqlParameter("@Deposit_ModifyDate", SqlDbType.DateTime)).Value = Format(obj.GetCurrentDate(), "yyyy/MM/dd")
+                        cmd.Parameters.Add(New SqlParameter("@Deposit_ModifyDate", SqlDbType.DateTime)).Value = obj.GetCurrentDate()
                         cmd.Parameters.Add(New SqlParameter("@Deposit_SysIp", SqlDbType.VarChar, 10)).Value = strIPAddress
                         cmd.Parameters.Add(New SqlParameter("@Deposit_CountryName", SqlDbType.VarChar, 50)).Value = countryname
                         cmd.Parameters.Add(New SqlParameter("@Deposit_PayName", SqlDbType.VarChar, 50)).Value = paymethod
@@ -1072,7 +1072,7 @@ Partial Class Account_MakeDeposit
             cmd = New SqlCommand(query, con)
             cmd.ExecuteNonQuery()
             con.Close()
-            query = "update CF_Deposit set Deposit_Status='true' where Deposit_Id='" + Dep_id.ToString + "'"
+            query = "update CF_Deposit set Deposit_Status ='ACCEPTED' where Deposit_Id='" + Dep_id.ToString + "'"
             con.Open()
             cmd = New SqlCommand(query, con)
             cmd.ExecuteNonQuery()

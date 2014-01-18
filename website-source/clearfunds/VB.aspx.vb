@@ -15,7 +15,7 @@ Partial Class VB
         End If
     End Sub
     Protected Sub ddlCountries_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim query As String = String.Format("select DATENAME(MM, Deposit_ModifyDate) as Date,sum(Deposit_Amount)as Amount from CF_Deposit where Deposit_Status='true'   group by DATENAME(MM, Deposit_ModifyDate)")
+        Dim query As String = String.Format("select DATENAME(MM, Deposit_ModifyDate) as Date,sum(Deposit_Amount)as Amount from CF_Deposit where Deposit_Status ='ACCEPTED'   group by DATENAME(MM, Deposit_ModifyDate)")
         Dim dt As DataTable = GetData(query)
 
         Dim x As String() = New String(dt.Rows.Count - 1) {}

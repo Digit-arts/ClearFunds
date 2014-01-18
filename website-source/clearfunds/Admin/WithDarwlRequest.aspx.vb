@@ -17,7 +17,7 @@ Partial Class Admin_WithDarwlRequest
        
         If Not Me.IsPostBack Then
             str = " select a.WithDrawl_Id,b.UserId, b.UserName, CONVERT(varchar,a.WithDrawl_Date,106) as WithDrawl_date,a.WithDrawl_Amount,a.WithDrawl_Status,a.WithDrawl_Remarks from CF_WithDrawl a join aspnet_Users b on a.WithDrawl_UserId=b.UserId  where  WithDrawl_Status='Request' "
-            Total = obj.Returnsinglevalue(" select SUM( a.WithDrawl_Amount) from CF_WithDrawl a   join aspnet_Users b on a.WithDrawl_UserId=b.UserId and WithDrawl_Status<>'true'")
+            Total = obj.Returnsinglevalue(" select SUM( a.WithDrawl_Amount) from CF_WithDrawl a   join aspnet_Users b on a.WithDrawl_UserId=b.UserId and WithDrawl_Status<>'ACCEPTED'")
             lblAmt.Text = Val(Total)
             dt = obj.returndatatable(str, dt)
             GVMembersList.DataSource = dt
@@ -113,7 +113,7 @@ Partial Class Admin_WithDarwlRequest
                     cmd.ExecuteNonQuery()
                     cmd.Parameters.Clear()
                     Dim dt As New DataTable()
-                    dt = obj.returndatatable("select a.WithDrawl_Id, b.UserId,b.UserName,a.WithDrawl_Date,a.WithDrawl_Status,a.WithDrawl_Amount,a.WithDrawl_Remarks from CF_WithDrawl a join aspnet_Users b on a.WithDrawl_UserId=b.UserId and WithDrawl_Status='Request' ", dt)
+                    dt = obj.returndatatable("select a.WithDrawl_Id, b.UserId,b.UserName,a.WithDrawl_Date,a.WithDrawl_Status,a.WithDrawl_Amount,a.WithDrawl_Remarks from CF_WithDrawl a join aspnet_Users b on a.WithDrawl_UserId=b.UserId and WithDrawl_Status='PENDING' ", dt)
                     GVMembersList.DataSource = dt
                     GVMembersList.DataBind()
                 Else

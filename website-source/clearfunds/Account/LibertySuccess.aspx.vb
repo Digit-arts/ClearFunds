@@ -40,7 +40,7 @@ Partial Class Success
                 con.Close()
 
 
-                query = "update CF_Deposit set Deposit_Status= 'true' where Deposit_Id='" + Dep_id.ToString + "'"
+                query = "update CF_Deposit set Deposit_Status= 'ACCEPTED' where Deposit_Id='" + Dep_id.ToString + "'"
                 con.Open()
                 cmd = New SqlCommand(query, con)
                 cmd.ExecuteNonQuery()
